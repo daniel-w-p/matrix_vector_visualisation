@@ -1,0 +1,84 @@
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 2.5rem;
+}
+
+.app-header {
+  margin-bottom: 1.5rem;
+}
+
+.app-kicker {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4f5f72;
+}
+
+.app-header h1 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.app-subtitle {
+  margin: 0;
+  color: #3f4c5b;
+}
+
+.module-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.module-tab {
+  border: 1px solid #bcc6d2;
+  border-radius: 999px;
+  background: #f7f9fc;
+  color: #1f2a37;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.module-tab.is-active {
+  border-color: #2f7ad8;
+  background: #e9f2ff;
+  color: #164b90;
+}
+
+.module-layout {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 1rem;
+}
+
+.module-viewport,
+.module-panel {
+  border: 1px solid #d4dce5;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  padding: 1rem;
+}
+
+.module-viewport {
+  min-height: 260px;
+}
+
+.placeholder-screen h2,
+.module-panel h2 {
+  margin-top: 0;
+}
+
+.module-status {
+  margin-top: 1rem;
+}
+
+@media (max-width: 840px) {
+  .module-layout {
+    grid-template-columns: 1fr;
+  }
+}
