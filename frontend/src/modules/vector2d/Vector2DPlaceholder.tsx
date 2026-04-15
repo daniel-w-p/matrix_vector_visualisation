@@ -1,10 +1,14 @@
 import { PlaceholderScreen } from '../shared/PlaceholderScreen'
+import { Scene2DPlayground } from '../../scene2d'
 
 export function Vector2DPlaceholder() {
   return (
-    <PlaceholderScreen
-      heading="Vector 2D Module"
-      description="Placeholder scene for vector addition, subtraction, and scaling."
-    />
+    <div>
+      <PlaceholderScreen
+        heading="Vector 2D Module"
+        description="Placeholder scene for vector addition, subtraction, and scaling."
+      />
+      <Scene2DPlayground />
+    </div>
   )
 }

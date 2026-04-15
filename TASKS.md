@@ -32,14 +32,14 @@ Use this file as the high-level implementation queue.
 
 ## 2D scene foundation
 
-- [ ] Axes primitive
-- [ ] Grid primitive
-- [ ] Vector arrow primitive
-- [ ] Label primitive
-- [ ] Angle arc primitive
-- [ ] Polygon / area highlight primitive
-- [ ] Drag interaction helpers
-- [ ] Scene-to-data coordinate mapping tests
+- [x] Axes primitive
+- [x] Grid primitive
+- [x] Vector arrow primitive
+- [x] Label primitive
+- [x] Angle arc primitive
+- [x] Polygon / area highlight primitive
+- [x] Drag interaction helpers
+- [x] Scene-to-data coordinate mapping tests
 
 ## Module 1 — Vector 2D
 
