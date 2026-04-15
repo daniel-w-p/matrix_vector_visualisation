@@ -83,6 +83,23 @@ Do **not** paste the whole prompt sequence into one session.
 14. Pedagogy layer
 15. Django integration and release polish
 
+## Local commands
+
+### Frontend
+
+- install dependencies: `cd frontend && npm install`
+- run dev server: `cd frontend && npm run dev`
+- lint: `cd frontend && npm run lint`
+- tests: `cd frontend && npm run test`
+- production build: `cd frontend && npm run build`
+
+### Backend
+
+- install dependencies: `cd backend && py -3 -m pip install -r requirements.txt`
+- run development server: `cd backend && py -3 manage.py runserver`
+- Django system checks: `cd backend && py -3 manage.py check`
+- backend tests: `cd backend && py -3 manage.py test vectorlab_web`
+
 ## Working principle
 
 For this project, prioritize:
