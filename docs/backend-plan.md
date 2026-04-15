@@ -4,7 +4,7 @@ This document describes the intended Django host application.
 
 ## Planned role
 
-Django should initially act as a **thin host** for:
+Django should act as a thin host for:
 
 - the HTML shell
 - collected frontend static assets
@@ -20,10 +20,17 @@ Django should initially act as a **thin host** for:
 
 ```text
 backend/
-├─ config/
-└─ vectorlab_web/
+|- config/
+`- vectorlab_web/
 ```
 
-## Integration goal
+## Current scaffold status
 
-In production, Django should be able to serve the built frontend cleanly from the same deployment target.
+- `backend/config/` contains project settings and URL routing.
+- `backend/vectorlab_web/` serves the host shell route at `/`.
+- The backend remains API-free at this stage.
+
+## Dev and production fit
+
+- Development: run Vite and Django separately; Vite is the main frontend loop.
+- Production: build `frontend/dist`, then serve shell and static assets via Django.

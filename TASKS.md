@@ -16,7 +16,7 @@ Use this file as the high-level implementation queue.
 - [x] Create docs-first starter repository
 - [ ] Run `FIRST_PROMPT.md` in Codex Ask/Plan mode
 - [ ] Scaffold `frontend/` with React + TypeScript + Vite
-- [ ] Scaffold `backend/` with Django host shell
+- [x] Scaffold `backend/` with Django host shell
 - [ ] Add build/lint/test quality gates
 - [ ] Add base README instructions for local development
 
