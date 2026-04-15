@@ -26,8 +26,9 @@ Use this file as the high-level implementation queue.
 - [ ] Create shared UI primitives for controls and panels
 - [ ] Create content/preset loading strategy
 - [ ] Define domain types for vectors and matrices
-- [ ] Implement pure math core for v1 operations
-- [ ] Add tests for pure math core
+- [x] Define domain types for vectors and matrices
+- [x] Implement pure math core for v1 operations
+- [x] Add tests for pure math core
 
 ## 2D scene foundation
 
