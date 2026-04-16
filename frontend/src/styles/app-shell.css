@@ -361,6 +361,7 @@
 }
 
 .det3-cell {
+  position: relative;
   text-align: center;
   border: 1px solid var(--panel-border);
   border-radius: 6px;
@@ -379,6 +380,38 @@
   background: #fdecec;
   color: #b42318;
   font-weight: 600;
+}
+
+.det3-cell-dual {
+  background: linear-gradient(135deg, #eaf8ef 0 49%, #fdecec 51% 100%);
+  color: #122033;
+  font-weight: 700;
+}
+
+.det3-dual-markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.det3-dual-plus,
+.det3-dual-minus {
+  position: absolute;
+  font-size: 0.6rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.det3-dual-plus {
+  top: 0.1rem;
+  left: 0.16rem;
+  color: #1b7f43;
+}
+
+.det3-dual-minus {
+  right: 0.16rem;
+  bottom: 0.1rem;
+  color: #b42318;
 }
 
 .det3-formula {
@@ -420,6 +453,52 @@
   font-weight: 700;
 }
 
+.det3-signs {
+  margin-top: 0.55rem;
+  border-top: 1px solid var(--panel-border);
+  padding-top: 0.5rem;
+}
+
+.det3-signs-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.det3-sign-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1.5rem);
+  width: fit-content;
+  gap: 0.16rem;
+  margin-bottom: 0.35rem;
+}
+
+.det3-sign-cell {
+  text-align: center;
+  border: 1px solid var(--panel-border);
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  background: var(--tab-bg);
+}
+
+.det3-sign-positive {
+  color: #1b7f43;
+  background: #e8f8ed;
+}
+
+.det3-sign-negative {
+  color: #b42318;
+  background: #fdeaea;
+}
+
+.det3-signs-explanation {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 .theme-dark .det3-cell-positive {
   color: #9be7be;
   background: #183426;
@@ -428,6 +507,19 @@
 .theme-dark .det3-cell-negative {
   color: #ffb4ab;
   background: #3a2023;
+}
+
+.theme-dark .det3-cell-dual {
+  background: linear-gradient(135deg, #183426 0 49%, #3a2023 51% 100%);
+  color: #e5edf8;
+}
+
+.theme-dark .det3-dual-plus {
+  color: #9be7be;
+}
+
+.theme-dark .det3-dual-minus {
+  color: #ffb4ab;
 }
 
 .theme-dark .det3-positive-term {
@@ -443,6 +535,16 @@
 }
 
 .theme-dark .det3-negative-term-selected {
+  background: #3a2023;
+}
+
+.theme-dark .det3-sign-positive {
+  color: #9be7be;
+  background: #173324;
+}
+
+.theme-dark .det3-sign-negative {
+  color: #ffb4ab;
   background: #3a2023;
 }
 

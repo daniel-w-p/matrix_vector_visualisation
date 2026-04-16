@@ -62,19 +62,19 @@ type DeterminantColumnInfo = {
 const determinant3x3ColumnInfo: Record<DeterminantColumn, DeterminantColumnInfo> = {
   c1: {
     positiveCells: ['a11', 'a22', 'a33'],
-    negativeCells: ['a23', 'a32'],
+    negativeCells: ['a11', 'a23', 'a32'],
     positiveTerm: ['a11', 'a22', 'a33'],
     negativeTerm: ['a11', 'a23', 'a32'],
   },
   c2: {
     positiveCells: ['a12', 'a23', 'a31'],
-    negativeCells: ['a21', 'a33'],
+    negativeCells: ['a12', 'a21', 'a33'],
     positiveTerm: ['a12', 'a23', 'a31'],
     negativeTerm: ['a12', 'a21', 'a33'],
   },
   c3: {
     positiveCells: ['a13', 'a21', 'a32'],
-    negativeCells: ['a22', 'a31'],
+    negativeCells: ['a13', 'a22', 'a31'],
     positiveTerm: ['a13', 'a21', 'a32'],
     negativeTerm: ['a13', 'a22', 'a31'],
   },
@@ -292,6 +292,11 @@ function Determinant3DTheoryVisual({ language }: { language: AppLanguage }) {
   const [selectedColumn, setSelectedColumn] = useState<DeterminantColumn>('c1')
   const selectedInfo = determinant3x3ColumnInfo[selectedColumn]
   const hint = language === 'pl' ? 'Kliknij kolumnę' : 'Click column'
+  const signTitle = language === 'pl' ? 'Szachownica znaków kofaktorów' : 'Cofactor sign checkerboard'
+  const signExplanation =
+    language === 'pl'
+      ? 'Znaki wynikają z wzoru (-1)^(i+j). Dlatego druga kolumna ma odwrócony układ znaków względem pierwszej i trzeciej.'
+      : 'Signs come from (-1)^(i+j). That is why the second column has the opposite sign pattern compared with the first and third.'
 
   const matrixCells = [
     ['a11', 'a12', 'a13'],
@@ -299,12 +304,31 @@ function Determinant3DTheoryVisual({ language }: { language: AppLanguage }) {
     ['a31', 'a32', 'a33'],
   ] as const
 
+  const getCellState = (cell: string): 'neutral' | 'positive' | 'negative' | 'dual' => {
+    const isPositive = selectedInfo.positiveCells.includes(cell)
+    const isNegative = selectedInfo.negativeCells.includes(cell)
+    if (isPositive && isNegative) {
+      return 'dual'
+    }
+    if (isPositive) {
+      return 'positive'
+    }
+    if (isNegative) {
+      return 'negative'
+    }
+    return 'neutral'
+  }
+
   const getCellClassName = (cell: string) => {
-    if (selectedInfo.positiveCells.includes(cell)) {
+    const state = getCellState(cell)
+    if (state === 'positive') {
       return 'det3-cell det3-cell-positive'
     }
-    if (selectedInfo.negativeCells.includes(cell)) {
+    if (state === 'negative') {
       return 'det3-cell det3-cell-negative'
+    }
+    if (state === 'dual') {
+      return 'det3-cell det3-cell-dual'
     }
     return 'det3-cell'
   }
@@ -328,11 +352,20 @@ function Determinant3DTheoryVisual({ language }: { language: AppLanguage }) {
       </div>
 
       <div className="det3-grid" aria-hidden="true">
-        {matrixCells.flat().map((cell) => (
-          <div key={cell} className={getCellClassName(cell)}>
-            {renderIndexedMatrixSymbol(cell)}
-          </div>
-        ))}
+        {matrixCells.flat().map((cell) => {
+          const state = getCellState(cell)
+          return (
+            <div key={cell} className={getCellClassName(cell)}>
+              {state === 'dual' && (
+                <span className="det3-dual-markers" aria-hidden="true">
+                  <span className="det3-dual-plus">+</span>
+                  <span className="det3-dual-minus">-</span>
+                </span>
+              )}
+              {renderIndexedMatrixSymbol(cell)}
+            </div>
+          )
+        })}
       </div>
 
       <p className="det3-formula">
@@ -397,6 +430,22 @@ function Determinant3DTheoryVisual({ language }: { language: AppLanguage }) {
           {renderTerm(determinant3x3ColumnInfo.c3.negativeTerm, 'c3', selectedColumn)}
         </span>
       </p>
+
+      <div className="det3-signs">
+        <p className="det3-signs-title">{signTitle}</p>
+        <div className="det3-sign-grid" aria-hidden="true">
+          <div className="det3-sign-cell det3-sign-positive">+</div>
+          <div className="det3-sign-cell det3-sign-negative">-</div>
+          <div className="det3-sign-cell det3-sign-positive">+</div>
+          <div className="det3-sign-cell det3-sign-negative">-</div>
+          <div className="det3-sign-cell det3-sign-positive">+</div>
+          <div className="det3-sign-cell det3-sign-negative">-</div>
+          <div className="det3-sign-cell det3-sign-positive">+</div>
+          <div className="det3-sign-cell det3-sign-negative">-</div>
+          <div className="det3-sign-cell det3-sign-positive">+</div>
+        </div>
+        <p className="det3-signs-explanation">{signExplanation}</p>
+      </div>
     </div>
   )
 }
