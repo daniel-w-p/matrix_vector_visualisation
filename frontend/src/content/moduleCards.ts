@@ -106,7 +106,7 @@ export const moduleCards: Record<ModuleKey, ModuleCard> = {
         pl: 'Dla macierzy 2x2 wyznacznik opisuje skalę pola z orientacją.',
       },
     ],
-    defaultStatus: { en: 'Placeholder screen', pl: 'Ekran placeholdera' },
+    defaultStatus: { en: 'Interactive module', pl: 'Modul interaktywny' },
   },
   crossProduct3d: {
     id: 'crossProduct3d',

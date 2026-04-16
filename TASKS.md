@@ -60,14 +60,14 @@ Use this file as the high-level implementation queue.
 
 ## Module 3 - Matrix 2D and determinant
 
-- [ ] Matrix 2D edit controls
-- [ ] Matrix add/subtract/scale interaction
-- [ ] Matrix-vector multiplication view
-- [ ] Transformed basis view
-- [ ] Transformed grid view
-- [ ] Unit square to parallelogram determinant view
-- [ ] Orientation flip indicator
-- [ ] Module tests
+- [x] Matrix 2D edit controls
+- [x] Matrix add/subtract/scale interaction
+- [x] Matrix-vector multiplication view
+- [x] Transformed basis view
+- [x] Transformed grid view
+- [x] Unit square to parallelogram determinant view
+- [x] Orientation flip indicator
+- [x] Module tests
 
 ## 3D foundation
 
