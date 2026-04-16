@@ -78,6 +78,18 @@ export function Matrix3DModule() {
     { id: 'subtract', label: ui.subtract },
     { id: 'scale', label: ui.scale },
   ]
+  const orientationClass =
+    detState === 'positive'
+      ? 'orientation-badge orientation-positive'
+      : detState === 'negative'
+        ? 'orientation-badge orientation-negative'
+        : 'orientation-badge orientation-zero'
+  const orientationText =
+    detState === 'positive'
+      ? ui.orientationPositive
+      : detState === 'negative'
+        ? ui.orientationNegative
+        : ui.orientationZero
 
   return (
     <section className="matrix3d-module">
@@ -247,6 +259,12 @@ export function Matrix3DModule() {
           </p>
           <p>
             det = <code>{formatNumber(determinant)}</code>
+          </p>
+          <p>
+            {ui.orientation}:{' '}
+            <span className={orientationClass}>
+              {orientationText}
+            </span>
           </p>
           <p>
             {detState === 'positive'

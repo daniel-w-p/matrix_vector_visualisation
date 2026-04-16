@@ -20,6 +20,7 @@ const STORAGE_LANGUAGE_KEY = 'vector-lab-language'
 const STORAGE_THEME_KEY = 'vector-lab-theme'
 
 type CrossAxis = 'x' | 'y' | 'z'
+type DeterminantColumn = 'c1' | 'c2' | 'c3'
 
 const crossComponentInfo: Record<
   CrossAxis,
@@ -50,6 +51,34 @@ const crossMatrixCells = [
   ['a₁', 'a₂', 'a₃'],
   ['b₁', 'b₂', 'b₃'],
 ] as const
+
+type DeterminantColumnInfo = {
+  positiveCells: readonly string[]
+  negativeCells: readonly string[]
+  positiveTerm: readonly [string, string, string]
+  negativeTerm: readonly [string, string, string]
+}
+
+const determinant3x3ColumnInfo: Record<DeterminantColumn, DeterminantColumnInfo> = {
+  c1: {
+    positiveCells: ['a11', 'a22', 'a33'],
+    negativeCells: ['a23', 'a32'],
+    positiveTerm: ['a11', 'a22', 'a33'],
+    negativeTerm: ['a11', 'a23', 'a32'],
+  },
+  c2: {
+    positiveCells: ['a12', 'a23', 'a31'],
+    negativeCells: ['a21', 'a33'],
+    positiveTerm: ['a12', 'a23', 'a31'],
+    negativeTerm: ['a12', 'a21', 'a33'],
+  },
+  c3: {
+    positiveCells: ['a13', 'a21', 'a32'],
+    negativeCells: ['a22', 'a31'],
+    positiveTerm: ['a13', 'a21', 'a32'],
+    negativeTerm: ['a13', 'a22', 'a31'],
+  },
+}
 
 export function AppShell() {
   const { selectedModule, selectModule } = useModuleSelection('vector2d')
@@ -216,6 +245,7 @@ function ModuleDetails({
           <p key={paragraph}>{paragraph}</p>
         ))}
         {moduleId === 'matrix2d' && <DeterminantTheoryVisual />}
+        {moduleId === 'matrix3d' && <Determinant3DTheoryVisual language={language} />}
         {moduleId === 'crossProduct3d' && <CrossProductTheoryVisual language={language} />}
       </section>
 
@@ -255,6 +285,143 @@ function DeterminantTheoryVisual() {
         </span>
       </p>
     </div>
+  )
+}
+
+function Determinant3DTheoryVisual({ language }: { language: AppLanguage }) {
+  const [selectedColumn, setSelectedColumn] = useState<DeterminantColumn>('c1')
+  const selectedInfo = determinant3x3ColumnInfo[selectedColumn]
+  const hint = language === 'pl' ? 'Kliknij kolumnę' : 'Click column'
+
+  const matrixCells = [
+    ['a11', 'a12', 'a13'],
+    ['a21', 'a22', 'a23'],
+    ['a31', 'a32', 'a33'],
+  ] as const
+
+  const getCellClassName = (cell: string) => {
+    if (selectedInfo.positiveCells.includes(cell)) {
+      return 'det3-cell det3-cell-positive'
+    }
+    if (selectedInfo.negativeCells.includes(cell)) {
+      return 'det3-cell det3-cell-negative'
+    }
+    return 'det3-cell'
+  }
+
+  return (
+    <div className="det3-theory" aria-label={language === 'pl' ? 'Wizualizacja det 3x3' : 'Determinant 3x3 visual'}>
+      <div className="det3-column-row">
+        <p className="det3-hint">{hint}</p>
+        <div className="det3-column-tabs" role="tablist" aria-label="determinant-column-tabs">
+          {(['c1', 'c2', 'c3'] as const).map((column, index) => (
+            <button
+              key={column}
+              type="button"
+              className={selectedColumn === column ? 'det3-column-tab is-active' : 'det3-column-tab'}
+              onClick={() => setSelectedColumn(column)}
+            >
+              C{index + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="det3-grid" aria-hidden="true">
+        {matrixCells.flat().map((cell) => (
+          <div key={cell} className={getCellClassName(cell)}>
+            {renderIndexedMatrixSymbol(cell)}
+          </div>
+        ))}
+      </div>
+
+      <p className="det3-formula">
+        det(A) ={' '}
+        <span
+          className={
+            selectedColumn === 'c1'
+              ? 'det3-positive-term det3-positive-term-selected'
+              : 'det3-positive-term'
+          }
+        >
+          {renderTerm(determinant3x3ColumnInfo.c1.positiveTerm, 'c1', selectedColumn)}
+        </span>{' '}
+        <span className="det3-plus">+</span>{' '}
+        <span
+          className={
+            selectedColumn === 'c2'
+              ? 'det3-positive-term det3-positive-term-selected'
+              : 'det3-positive-term'
+          }
+        >
+          {renderTerm(determinant3x3ColumnInfo.c2.positiveTerm, 'c2', selectedColumn)}
+        </span>{' '}
+        <span className="det3-plus">+</span>{' '}
+        <span
+          className={
+            selectedColumn === 'c3'
+              ? 'det3-positive-term det3-positive-term-selected'
+              : 'det3-positive-term'
+          }
+        >
+          {renderTerm(determinant3x3ColumnInfo.c3.positiveTerm, 'c3', selectedColumn)}
+        </span>{' '}
+        <span className="det3-minus">-</span>{' '}
+        <span
+          className={
+            selectedColumn === 'c1'
+              ? 'det3-negative-term det3-negative-term-selected'
+              : 'det3-negative-term'
+          }
+        >
+          {renderTerm(determinant3x3ColumnInfo.c1.negativeTerm, 'c1', selectedColumn)}
+        </span>{' '}
+        <span className="det3-minus">-</span>{' '}
+        <span
+          className={
+            selectedColumn === 'c2'
+              ? 'det3-negative-term det3-negative-term-selected'
+              : 'det3-negative-term'
+          }
+        >
+          {renderTerm(determinant3x3ColumnInfo.c2.negativeTerm, 'c2', selectedColumn)}
+        </span>{' '}
+        <span className="det3-minus">-</span>{' '}
+        <span
+          className={
+            selectedColumn === 'c3'
+              ? 'det3-negative-term det3-negative-term-selected'
+              : 'det3-negative-term'
+          }
+        >
+          {renderTerm(determinant3x3ColumnInfo.c3.negativeTerm, 'c3', selectedColumn)}
+        </span>
+      </p>
+    </div>
+  )
+}
+
+function renderTerm(
+  term: readonly [string, string, string],
+  termColumn: DeterminantColumn,
+  selectedColumn: DeterminantColumn,
+) {
+  const className = termColumn === selectedColumn ? 'det3-term-selected' : undefined
+  return (
+    <span className={className}>
+      {renderIndexedMatrixSymbol(term[0])}*{renderIndexedMatrixSymbol(term[1])}*
+      {renderIndexedMatrixSymbol(term[2])}
+    </span>
+  )
+}
+
+function renderIndexedMatrixSymbol(value: string) {
+  const row = value.slice(1, 2)
+  const column = value.slice(2, 3)
+  return (
+    <>
+      a<sub>{row}{column}</sub>
+    </>
   )
 }
 

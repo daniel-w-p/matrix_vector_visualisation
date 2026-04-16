@@ -114,6 +114,43 @@
   padding: 0.1rem 0.3rem;
 }
 
+.orientation-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-weight: 600;
+}
+
+.orientation-positive {
+  background: #e8f8ed;
+  color: #1b7f43;
+}
+
+.orientation-zero {
+  background: #eef2f8;
+  color: #334a62;
+}
+
+.orientation-negative {
+  background: #fdeaea;
+  color: #b42318;
+}
+
+.theme-dark .orientation-positive {
+  background: #173324;
+  color: #9be7be;
+}
+
+.theme-dark .orientation-zero {
+  background: #243347;
+  color: #c7d4e6;
+}
+
+.theme-dark .orientation-negative {
+  background: #3a2023;
+  color: #ffb4ab;
+}
+
 @media (max-width: 920px) {
   .matrix3d-layout {
     grid-template-columns: 1fr;

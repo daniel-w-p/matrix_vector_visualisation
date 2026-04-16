@@ -310,6 +310,142 @@
   background: #3a2023;
 }
 
+.det3-theory {
+  margin-top: 0.55rem;
+  border: 1px dashed var(--panel-border);
+  border-radius: 10px;
+  padding: 0.55rem;
+}
+
+.det3-column-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.det3-hint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.det3-column-tabs {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.det3-column-tab {
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  background: var(--tab-bg);
+  color: var(--text-main);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.det3-column-tab.is-active {
+  border-color: var(--tab-active-border);
+  background: var(--tab-active-bg);
+  color: var(--tab-active-text);
+  font-weight: 600;
+}
+
+.det3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 2.05rem);
+  width: fit-content;
+  gap: 0.18rem;
+  margin-bottom: 0.45rem;
+}
+
+.det3-cell {
+  text-align: center;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 0.18rem 0.12rem;
+  font-size: 0.82rem;
+  background: var(--tab-bg);
+}
+
+.det3-cell-positive {
+  background: #eaf8ef;
+  color: #0f7a3a;
+  font-weight: 600;
+}
+
+.det3-cell-negative {
+  background: #fdecec;
+  color: #b42318;
+  font-weight: 600;
+}
+
+.det3-formula {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.det3-positive-term {
+  color: #1b7f43;
+}
+
+.det3-positive-term-selected {
+  background: #e8f8ed;
+  border-radius: 6px;
+  padding: 0.05rem 0.16rem;
+}
+
+.det3-negative-term {
+  color: #b42318;
+}
+
+.det3-negative-term-selected {
+  background: #fdeaea;
+  border-radius: 6px;
+  padding: 0.05rem 0.16rem;
+}
+
+.det3-plus {
+  color: #1b7f43;
+  font-weight: 700;
+}
+
+.det3-minus {
+  color: #b42318;
+  font-weight: 700;
+}
+
+.det3-term-selected {
+  font-weight: 700;
+}
+
+.theme-dark .det3-cell-positive {
+  color: #9be7be;
+  background: #183426;
+}
+
+.theme-dark .det3-cell-negative {
+  color: #ffb4ab;
+  background: #3a2023;
+}
+
+.theme-dark .det3-positive-term {
+  color: #9be7be;
+}
+
+.theme-dark .det3-negative-term {
+  color: #ffb4ab;
+}
+
+.theme-dark .det3-positive-term-selected {
+  background: #183426;
+}
+
+.theme-dark .det3-negative-term-selected {
+  background: #3a2023;
+}
+
 @media (max-width: 840px) {
   .app-header {
     flex-direction: column;
