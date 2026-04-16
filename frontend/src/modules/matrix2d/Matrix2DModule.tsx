@@ -32,6 +32,7 @@ import {
   transformedUnitSquare,
   transformedVector,
 } from './matrix2dMath'
+import { Vector2Editor } from '../shared/Vector2Editor'
 import './matrix2d-module.css'
 
 const SCENE_WIDTH = 640
@@ -234,6 +235,8 @@ export function Matrix2DModule() {
               />
             </label>
           )}
+
+          <Vector2Editor label={ui.inputVector} value={inputVector} onChange={setInputVector} />
 
           <p className="matrix2d-section-title">{ui.overlays}</p>
           <div className="matrix2d-toggle-list">

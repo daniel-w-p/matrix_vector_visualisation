@@ -29,6 +29,7 @@ import {
   projectionOfSourceOnTarget,
   safeCosineBetweenVectors,
 } from './dotProductMath'
+import { Vector2Editor } from '../shared/Vector2Editor'
 import './dot-product-module.css'
 
 const SCENE_WIDTH = 640
@@ -207,6 +208,9 @@ export function DotProductModule() {
               {ui.bOnA}
             </button>
           </div>
+
+          <Vector2Editor label={ui.vectorA} value={vectorA} onChange={setVectorA} />
+          <Vector2Editor label={ui.vectorB} value={vectorB} onChange={setVectorB} />
 
           <div className="dot-toggle-list">
             <label>

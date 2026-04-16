@@ -1,0 +1,34 @@
+.vector2-editor {
+  margin: 0.45rem 0 0.55rem;
+}
+
+.vector2-editor-title {
+  margin: 0 0 0.3rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.vector2-editor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(72px, 120px));
+  gap: 0.4rem;
+}
+
+.vector2-editor-grid label {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.vector2-editor-grid span {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.vector2-editor-grid input {
+  width: 100%;
+  border: 1px solid var(--panel-border);
+  border-radius: 7px;
+  background: var(--tab-bg);
+  color: var(--text-main);
+  padding: 0.28rem 0.38rem;
+}

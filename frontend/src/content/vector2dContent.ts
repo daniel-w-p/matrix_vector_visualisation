@@ -1,4 +1,4 @@
-﻿import type { AppLanguage } from '../app/AppPreferencesContext'
+import type { AppLanguage } from '../app/AppPreferencesContext'
 import type { Vector2 } from '../math'
 
 export type Vector2DOperation = 'add' | 'subtract' | 'scale'
@@ -139,6 +139,8 @@ export function getVector2DUIText(language: AppLanguage) {
       operationScale: 'Skalowanie',
       viewTailToHead: 'Tail-to-head',
       viewParallelogram: 'Równoległobok',
+      vectorA: 'Wektor a',
+      vectorB: 'Wektor b',
       scaleFactor: 'Współczynnik skali k',
       dragHintPrefix: 'Przeciągaj punkty',
       dragHintConnector: 'i',
@@ -158,6 +160,8 @@ export function getVector2DUIText(language: AppLanguage) {
     operationScale: 'Scale',
     viewTailToHead: 'Tail-to-head',
     viewParallelogram: 'Parallelogram',
+    vectorA: 'Vector a',
+    vectorB: 'Vector b',
     scaleFactor: 'Scale factor k',
     dragHintPrefix: 'Drag points',
     dragHintConnector: 'and',

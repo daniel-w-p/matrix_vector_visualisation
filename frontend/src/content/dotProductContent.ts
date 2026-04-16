@@ -1,4 +1,4 @@
-﻿import type { AppLanguage } from '../app/AppPreferencesContext'
+import type { AppLanguage } from '../app/AppPreferencesContext'
 import type { Vector2 } from '../math'
 
 export type ProjectionMode = 'aOnB' | 'bOnA'
@@ -50,6 +50,8 @@ export function getDotProductUIText(language: AppLanguage) {
       controls: 'Sterowanie i presety',
       algebra: 'Widok algebraiczny',
       projectionMode: 'Kierunek rzutu',
+      vectorA: 'Wektor a',
+      vectorB: 'Wektor b',
       aOnB: 'Rzut a na b',
       bOnA: 'Rzut b na a',
       showAngle: 'Pokaż kąt',
@@ -72,6 +74,8 @@ export function getDotProductUIText(language: AppLanguage) {
     controls: 'Controls and Presets',
     algebra: 'Algebra View',
     projectionMode: 'Projection direction',
+    vectorA: 'Vector a',
+    vectorB: 'Vector b',
     aOnB: 'Project a onto b',
     bOnA: 'Project b onto a',
     showAngle: 'Show angle',

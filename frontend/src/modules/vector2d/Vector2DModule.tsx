@@ -28,6 +28,7 @@ import {
   formatVector2,
   midpoint2,
 } from './vector2dMath'
+import { Vector2Editor } from '../shared/Vector2Editor'
 import './vector2d-module.css'
 
 const SCENE_WIDTH = 640
@@ -198,6 +199,9 @@ export function Vector2DModule() {
               ))}
             </div>
           )}
+
+          <Vector2Editor label={ui.vectorA} value={vectorA} onChange={setVectorA} />
+          <Vector2Editor label={ui.vectorB} value={vectorB} onChange={setVectorB} />
 
           <label className="scalar-control" htmlFor="scale-slider">
             {ui.scaleFactor}: <strong>{formatNumber(scalar)}</strong>
