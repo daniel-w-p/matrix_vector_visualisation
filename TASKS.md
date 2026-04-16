@@ -79,12 +79,12 @@ Use this file as the high-level implementation queue.
 
 ## Module 4 - Cross product
 
-- [ ] Cross product screen
-- [ ] Parallelogram visualization
-- [ ] Sine-of-angle visualization
-- [ ] Normal vector visualization
-- [ ] Operand-order swap mode
-- [ ] Module tests
+- [x] Cross product screen
+- [x] Parallelogram visualization
+- [x] Sine-of-angle visualization
+- [x] Normal vector visualization
+- [x] Operand-order swap mode
+- [x] Module tests
 
 ## Module 5 - Matrix 3D
 

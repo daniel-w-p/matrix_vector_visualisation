@@ -1,0 +1,105 @@
+.cross3d-module {
+  display: grid;
+  gap: 1rem;
+}
+
+.cross3d-scene-card {
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  background: var(--panel-bg);
+  padding: 0.5rem;
+}
+
+.cross3d-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.cross3d-controls,
+.cross3d-algebra {
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  background: var(--panel-bg);
+}
+
+.cross3d-controls h3,
+.cross3d-algebra h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.swap-button {
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: var(--tab-bg);
+  color: var(--text-main);
+  padding: 0.45rem 0.65rem;
+  cursor: pointer;
+  font-size: 0.87rem;
+  margin-bottom: 0.7rem;
+}
+
+.cross3d-control-title {
+  margin: 0.4rem 0 0.35rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.vector3-input-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(68px, 1fr));
+  gap: 0.4rem;
+}
+
+.vector3-input-grid label {
+  display: grid;
+  gap: 0.22rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.vector3-input-grid input {
+  width: 100%;
+  border: 1px solid var(--panel-border);
+  border-radius: 7px;
+  background: var(--tab-bg);
+  color: var(--text-main);
+  padding: 0.28rem 0.38rem;
+}
+
+.cross3d-toggle-list {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.7rem;
+}
+
+.cross3d-toggle-list label {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+.cross3d-algebra p {
+  margin: 0.4rem 0;
+}
+
+.cross3d-algebra code {
+  background: var(--tab-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+}
+
+.cross3d-note {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 920px) {
+  .cross3d-layout {
+    grid-template-columns: 1fr;
+  }
+}

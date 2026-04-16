@@ -7,6 +7,11 @@ import { Vector2DModule } from './vector2d/Vector2DModule'
 
 type ModuleScreenComponent = ComponentType | LazyExoticComponent<ComponentType>
 
+const CrossProduct3DModule = lazy(async () => {
+  const module = await import('./crossProduct3d/CrossProductModule')
+  return { default: module.CrossProductModule }
+})
+
 const ThreeFoundationPlaceholder = lazy(async () => {
   const module = await import('./shared/ThreeFoundationPlaceholder')
   return { default: module.ThreeFoundationPlaceholder }
@@ -16,7 +21,7 @@ export const moduleScreens: Record<ModuleKey, ModuleScreenComponent> = {
   vector2d: Vector2DModule,
   dotProduct: DotProductModule,
   matrix2d: Matrix2DModule,
-  crossProduct3d: ThreeFoundationPlaceholder,
+  crossProduct3d: CrossProduct3DModule,
   matrix3d: ThreeFoundationPlaceholder,
   eigen: EigenPlaceholder,
 }
