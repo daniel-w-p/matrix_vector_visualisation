@@ -1,6 +1,7 @@
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import type { ReactNode } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 import type { Point3D } from './types'
 
 type Scene3DCanvasProps = {
@@ -11,6 +12,7 @@ type Scene3DCanvasProps = {
   showGrid?: boolean
   children: ReactNode
   overlay?: ReactNode
+  resetLabel?: string
 }
 
 export function Scene3DCanvas({
@@ -21,7 +23,14 @@ export function Scene3DCanvas({
   showGrid = true,
   children,
   overlay,
+  resetLabel = 'Reset view',
 }: Scene3DCanvasProps) {
+  const controlsRef = useRef<OrbitControlsImpl | null>(null)
+
+  useEffect(() => {
+    controlsRef.current?.saveState()
+  }, [])
+
   return (
     <div className="scene3d-shell" style={{ height }} role="img" aria-label={ariaLabel}>
       <Canvas
@@ -39,9 +48,16 @@ export function Scene3DCanvas({
 
         {children}
 
-        <OrbitControls makeDefault minDistance={3} maxDistance={26} />
+        <OrbitControls ref={controlsRef} makeDefault minDistance={3} maxDistance={26} />
       </Canvas>
 
+      <button
+        type="button"
+        className="scene3d-reset-button"
+        onClick={() => controlsRef.current?.reset()}
+      >
+        {resetLabel}
+      </button>
       {overlay ? <div className="scene3d-overlay">{overlay}</div> : null}
     </div>
   )

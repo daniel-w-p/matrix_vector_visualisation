@@ -59,23 +59,29 @@ export function Vector3DArrow({
     )
   }
 
-  const labelPosition: Point3D = [vector[0] * 0.55, vector[1] * 0.55, vector[2] * 0.55]
+  const labelPosition: Point3D = [
+    origin[0] + vector[0] * 1.06,
+    origin[1] + vector[1] * 1.06,
+    origin[2] + vector[2] * 1.06,
+  ]
 
   return (
-    <group position={origin} quaternion={metrics.quaternion}>
-      <mesh position={[0, metrics.shaftLength / 2, 0]}>
-        <cylinderGeometry args={[thickness, thickness, metrics.shaftLength, 12]} />
-        <meshStandardMaterial color={color} />
-      </mesh>
-      <mesh position={[0, metrics.shaftLength + metrics.headLength / 2, 0]}>
-        <coneGeometry args={[metrics.headRadius, metrics.headLength, 14]} />
-        <meshStandardMaterial color={color} />
-      </mesh>
+    <>
+      <group position={origin} quaternion={metrics.quaternion}>
+        <mesh position={[0, metrics.shaftLength / 2, 0]}>
+          <cylinderGeometry args={[thickness, thickness, metrics.shaftLength, 12]} />
+          <meshStandardMaterial color={color} />
+        </mesh>
+        <mesh position={[0, metrics.shaftLength + metrics.headLength / 2, 0]}>
+          <coneGeometry args={[metrics.headRadius, metrics.headLength, 14]} />
+          <meshStandardMaterial color={color} />
+        </mesh>
+      </group>
       {label ? (
         <Html position={labelPosition} center>
           <span className="scene3d-vector-label">{label}</span>
         </Html>
       ) : null}
-    </group>
+    </>
   )
 }

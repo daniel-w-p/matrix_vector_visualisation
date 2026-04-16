@@ -65,6 +65,7 @@ export function CrossProductModule() {
       <div className="cross3d-scene-card">
         <Scene3DCanvas
           ariaLabel={ui.sceneLabel}
+          resetLabel={ui.resetView}
           overlay={
             <Scene3DReadout
               title={ui.readoutTitle}
@@ -197,6 +198,12 @@ export function CrossProductModule() {
           </p>
           <p>
             b = <code>{formatVector3(vectorB)}</code>
+          </p>
+          <p>
+            |a| = <code>{formatNumber(state.magnitudeFirst)}</code>
+          </p>
+          <p>
+            |b| = <code>{formatNumber(state.magnitudeSecond)}</code>
           </p>
           <p>
             {operationLabel} = <code>{formatVector3(state.cross)}</code>

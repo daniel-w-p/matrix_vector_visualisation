@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
+﻿import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
 import {
   AppPreferencesContext,
   type AppLanguage,
@@ -18,6 +18,38 @@ import { moduleScreens } from '../modules'
 
 const STORAGE_LANGUAGE_KEY = 'vector-lab-language'
 const STORAGE_THEME_KEY = 'vector-lab-theme'
+
+type CrossAxis = 'x' | 'y' | 'z'
+
+const crossComponentInfo: Record<
+  CrossAxis,
+  {
+    formula: string
+    positive: readonly [string, string]
+    negative: readonly [string, string]
+  }
+> = {
+  x: {
+    formula: 'a₂b₃ - a₃b₂',
+    positive: ['a₂', 'b₃'],
+    negative: ['a₃', 'b₂'],
+  },
+  y: {
+    formula: 'a₃b₁ - a₁b₃',
+    positive: ['a₃', 'b₁'],
+    negative: ['a₁', 'b₃'],
+  },
+  z: {
+    formula: 'a₁b₂ - a₂b₁',
+    positive: ['a₁', 'b₂'],
+    negative: ['a₂', 'b₁'],
+  },
+}
+
+const crossMatrixCells = [
+  ['a₁', 'a₂', 'a₃'],
+  ['b₁', 'b₂', 'b₃'],
+] as const
 
 export function AppShell() {
   const { selectedModule, selectModule } = useModuleSelection('vector2d')
@@ -184,6 +216,7 @@ function ModuleDetails({
           <p key={paragraph}>{paragraph}</p>
         ))}
         {moduleId === 'matrix2d' && <DeterminantTheoryVisual />}
+        {moduleId === 'crossProduct3d' && <CrossProductTheoryVisual language={language} />}
       </section>
 
       <section className="sidebar-card">
@@ -220,6 +253,66 @@ function DeterminantTheoryVisual() {
         <span className="det-second">
           a<sub>12</sub>*a<sub>21</sub>
         </span>
+      </p>
+    </div>
+  )
+}
+
+function CrossProductTheoryVisual({ language }: { language: AppLanguage }) {
+  const [selectedAxis, setSelectedAxis] = useState<CrossAxis>('x')
+  const selectedInfo = crossComponentInfo[selectedAxis]
+  const hint = language === 'pl' ? 'Kliknij' : 'Click'
+
+  const getClassName = (value: string) => {
+    if (selectedInfo.positive.includes(value)) {
+      return 'cross-cell cross-cell-positive'
+    }
+    if (selectedInfo.negative.includes(value)) {
+      return 'cross-cell cross-cell-negative'
+    }
+    return 'cross-cell'
+  }
+
+  return (
+    <div className="cross-theory" aria-label={language === 'pl' ? 'Macierz iloczynu wektorowego' : 'Cross product matrix'}>
+      <div className="cross-axis-row">
+        <p className="cross-theory-hint">{hint}</p>
+        <div className="cross-axis-tabs" role="tablist" aria-label="cross-axis-tabs">
+        {(['x', 'y', 'z'] as const).map((axis) => (
+          <button
+            key={axis}
+            type="button"
+            className={selectedAxis === axis ? 'cross-axis-tab is-active' : 'cross-axis-tab'}
+            onClick={() => setSelectedAxis(axis)}
+          >
+            {axis}
+          </button>
+        ))}
+        </div>
+      </div>
+
+      <div className="cross-grid" aria-hidden="true">
+        <div className={selectedAxis === 'x' ? 'cross-head is-active' : 'cross-head'}>x</div>
+        <div className={selectedAxis === 'y' ? 'cross-head is-active' : 'cross-head'}>y</div>
+        <div className={selectedAxis === 'z' ? 'cross-head is-active' : 'cross-head'}>z</div>
+
+        {crossMatrixCells[0].map((entry) => (
+          <div key={`a-${entry}`} className={getClassName(entry)}>
+            {entry}
+          </div>
+        ))}
+
+        {crossMatrixCells[1].map((entry) => (
+          <div key={`b-${entry}`} className={getClassName(entry)}>
+            {entry}
+          </div>
+        ))}
+      </div>
+
+      <p className="cross-formula">
+        {selectedAxis} = <span className="cross-pos">{selectedInfo.formula.split(' - ')[0]}</span>{' '}
+        <span className="cross-minus">-</span>{' '}
+        <span className="cross-neg">{selectedInfo.formula.split(' - ')[1]}</span>
       </p>
     </div>
   )

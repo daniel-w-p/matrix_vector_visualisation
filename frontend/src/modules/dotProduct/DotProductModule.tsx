@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { dotVector2, magnitudeVector2, type Vector2 } from '../../math'
 import { useAppPreferences } from '../../app/AppPreferencesContext'
 import { useModuleSidebar } from '../../app/ModuleSidebarContext'
@@ -12,10 +12,10 @@ import {
 import {
   AngleArc2D,
   Axes2D,
-  createSceneTransform2D,
   DraggablePointHandle2D,
   Grid2D,
   LabelAnchor2D,
+  useScene2DViewport,
   VectorArrow2D,
   worldToScenePoint2D,
 } from '../../scene2d'
@@ -39,8 +39,8 @@ export function DotProductModule() {
   const { language } = useAppPreferences()
   const { setSidebarOverride } = useModuleSidebar()
   const ui = getDotProductUIText(language)
-  const svgRef = useRef<SVGSVGElement>(null)
-  const transform = useMemo(() => createSceneTransform2D(SCENE_WIDTH, SCENE_HEIGHT, 40), [])
+  const viewport = useScene2DViewport(SCENE_WIDTH, SCENE_HEIGHT, 40)
+  const { svgRef, transform } = viewport
 
   const [vectorA, setVectorA] = useState<Vector2>([2, 2])
   const [vectorB, setVectorB] = useState<Vector2>([4.5, 0])
@@ -93,6 +93,11 @@ export function DotProductModule() {
           viewBox={`0 0 ${SCENE_WIDTH} ${SCENE_HEIGHT}`}
           className="dot-scene"
           aria-label={ui.vectorSceneLabel}
+          onPointerDown={viewport.onPointerDown}
+          onPointerMove={viewport.onPointerMove}
+          onPointerUp={viewport.onPointerUp}
+          onPointerCancel={viewport.onPointerCancel}
+          style={{ touchAction: 'none', cursor: 'grab' }}
         >
           <Grid2D transform={transform} step={1} />
           <Axes2D transform={transform} />
@@ -176,6 +181,9 @@ export function DotProductModule() {
             stroke="#166534"
           />
         </svg>
+        <button type="button" className="scene-reset-button" onClick={viewport.resetView}>
+          {ui.resetView}
+        </button>
       </div>
 
       <div className="dot-layout">

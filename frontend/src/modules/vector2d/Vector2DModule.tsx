@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { addVector2, magnitudeVector2, type Vector2 } from '../../math'
 import { useAppPreferences } from '../../app/AppPreferencesContext'
 import { useModuleSidebar } from '../../app/ModuleSidebarContext'
@@ -13,10 +13,10 @@ import {
 import {
   AreaPolygon2D,
   Axes2D,
-  createSceneTransform2D,
   DraggablePointHandle2D,
   Grid2D,
   LabelAnchor2D,
+  useScene2DViewport,
   VectorArrow2D,
 } from '../../scene2d'
 import {
@@ -38,8 +38,8 @@ export function Vector2DModule() {
   const { setSidebarOverride } = useModuleSidebar()
   const ui = getVector2DUIText(language)
 
-  const svgRef = useRef<SVGSVGElement>(null)
-  const transform = useMemo(() => createSceneTransform2D(SCENE_WIDTH, SCENE_HEIGHT, 40), [])
+  const viewport = useScene2DViewport(SCENE_WIDTH, SCENE_HEIGHT, 40)
+  const { svgRef, transform } = viewport
 
   const [operation, setOperation] = useState<Vector2DOperation>('add')
   const [viewMode, setViewMode] = useState<Vector2DViewMode>('tailToHead')
@@ -94,6 +94,11 @@ export function Vector2DModule() {
           viewBox={`0 0 ${SCENE_WIDTH} ${SCENE_HEIGHT}`}
           className="vector2d-scene"
           aria-label={ui.vectorSceneLabel}
+          onPointerDown={viewport.onPointerDown}
+          onPointerMove={viewport.onPointerMove}
+          onPointerUp={viewport.onPointerUp}
+          onPointerCancel={viewport.onPointerCancel}
+          style={{ touchAction: 'none', cursor: 'grab' }}
         >
           <Grid2D transform={transform} step={1} />
           <Axes2D transform={transform} />
@@ -157,6 +162,9 @@ export function Vector2DModule() {
             stroke="#166534"
           />
         </svg>
+        <button type="button" className="scene-reset-button" onClick={viewport.resetView}>
+          {ui.resetView}
+        </button>
       </div>
 
       <div className="vector2d-layout">

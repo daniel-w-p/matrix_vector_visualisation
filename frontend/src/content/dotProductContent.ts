@@ -1,4 +1,4 @@
-import type { AppLanguage } from '../app/AppPreferencesContext'
+﻿import type { AppLanguage } from '../app/AppPreferencesContext'
 import type { Vector2 } from '../math'
 
 export type ProjectionMode = 'aOnB' | 'bOnA'
@@ -17,17 +17,17 @@ export const dotProductPresets: readonly DotProductPreset[] = [
     label: { en: 'Acute Case', pl: 'Przypadek ostry' },
     description: {
       en: 'Angle less than 90 degrees gives a positive dot product.',
-      pl: 'KÄ…t mniejszy niĹĽ 90 stopni daje dodatni iloczyn skalarny.',
+      pl: 'Kąt mniejszy niż 90 stopni daje dodatni iloczyn skalarny.',
     },
     vectorA: [3, 1.5],
     vectorB: [2.5, 2.2],
   },
   {
     id: 'right',
-    label: { en: 'Right Angle', pl: 'KÄ…t prosty' },
+    label: { en: 'Right Angle', pl: 'Kąt prosty' },
     description: {
       en: 'Perpendicular vectors give dot product near zero.',
-      pl: 'Wektory prostopadĹ‚e dajÄ… iloczyn skalarny bliski zeru.',
+      pl: 'Wektory prostopadłe dają iloczyn skalarny bliski zeru.',
     },
     vectorA: [3, 0],
     vectorB: [0, 2.5],
@@ -37,7 +37,7 @@ export const dotProductPresets: readonly DotProductPreset[] = [
     label: { en: 'Obtuse Case', pl: 'Przypadek rozwarty' },
     description: {
       en: 'Angle greater than 90 degrees gives a negative dot product.',
-      pl: 'KÄ…t wiÄ™kszy niĹĽ 90 stopni daje ujemny iloczyn skalarny.',
+      pl: 'Kąt większy niż 90 stopni daje ujemny iloczyn skalarny.',
     },
     vectorA: [3, 1],
     vectorB: [-2.4, 1.8],
@@ -52,16 +52,18 @@ export function getDotProductUIText(language: AppLanguage) {
       projectionMode: 'Kierunek rzutu',
       aOnB: 'Rzut a na b',
       bOnA: 'Rzut b na a',
-      showAngle: 'PokaĹĽ kÄ…t',
-      showCosine: 'PokaĹĽ cos(theta)',
+      showAngle: 'Pokaż kąt',
+      showCosine: 'Pokaż cos(theta)',
       unitTarget: 'Tryb wektora jednostkowego celu',
-      dragHint: 'PrzeciÄ…gaj koĹ„cĂłwki wektorĂłw a i b, aby obserwowaÄ‡ zmianÄ™ znaku iloczynu skalarnego.',
+      dragHint:
+        'Przeciągaj końcówki wektorów a i b, aby obserwować zmianę znaku iloczynu skalarnego.',
       signPositive: 'Dodatni',
       signZero: 'Bliski zera',
       signNegative: 'Ujemny',
       projectionLabel: 'Rzut',
       unitTargetLabel: 'u',
-      status: 'ModuĹ‚ interaktywny',
+      resetView: 'Reset widoku',
+      status: 'Moduł interaktywny',
       vectorSceneLabel: 'Scena iloczynu skalarnego',
     }
   }
@@ -81,6 +83,7 @@ export function getDotProductUIText(language: AppLanguage) {
     signNegative: 'Negative',
     projectionLabel: 'proj',
     unitTargetLabel: 'u',
+    resetView: 'Reset view',
     status: 'Interactive module',
     vectorSceneLabel: 'Dot product scene',
   }
@@ -103,6 +106,7 @@ export function getDotProductTheory(language: AppLanguage): string[] {
     'Projection visualizes how much one vector points along the target direction.',
   ]
 }
+
 export function getDotProductWhatToNotice(
   language: AppLanguage,
   signState: 'positive' | 'zero' | 'negative',
@@ -111,13 +115,13 @@ export function getDotProductWhatToNotice(
   if (language === 'pl') {
     if (signState === 'positive') {
       return projectionMode === 'aOnB'
-        ? 'Rzut a na b ma zgodny zwrot z b, wiÄ™c iloczyn skalarny jest dodatni.'
-        : 'Rzut b na a ma zgodny zwrot z a, wiÄ™c iloczyn skalarny jest dodatni.'
+        ? 'Rzut a na b ma zgodny zwrot z b, więc iloczyn skalarny jest dodatni.'
+        : 'Rzut b na a ma zgodny zwrot z a, więc iloczyn skalarny jest dodatni.'
     }
     if (signState === 'zero') {
-      return 'Wektory sÄ… blisko prostopadĹ‚oĹ›ci, wiÄ™c iloczyn skalarny jest bliski zera.'
+      return 'Wektory są blisko prostopadłości, więc iloczyn skalarny jest bliski zera.'
     }
-    return 'Rzut ma przeciwny zwrot do wektora celu, wiÄ™c iloczyn skalarny jest ujemny.'
+    return 'Rzut ma przeciwny zwrot do wektora celu, więc iloczyn skalarny jest ujemny.'
   }
 
   if (signState === 'positive') {

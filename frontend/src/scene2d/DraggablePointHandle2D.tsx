@@ -69,6 +69,7 @@ export function DraggablePointHandle2D({
 
   return (
     <circle
+      data-scene2d-handle="true"
       cx={cx}
       cy={cy}
       r={radius}

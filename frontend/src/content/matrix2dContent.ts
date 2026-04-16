@@ -117,6 +117,7 @@ export function getMatrix2DUIText(language: AppLanguage) {
       detPositive: 'Orientacja zachowana',
       detNegative: 'Orientacja odwrócona',
       detZero: 'Zwinięcie pola do zera',
+      resetView: 'Reset widoku',
       status: 'Moduł interaktywny',
       sceneLabel: 'Scena macierzy 2D',
     }
@@ -144,6 +145,7 @@ export function getMatrix2DUIText(language: AppLanguage) {
     detPositive: 'Orientation preserved',
     detNegative: 'Orientation flipped',
     detZero: 'Area collapsed to zero',
+    resetView: 'Reset view',
     status: 'Interactive module',
     sceneLabel: 'Matrix 2D scene',
   }

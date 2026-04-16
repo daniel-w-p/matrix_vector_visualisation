@@ -1,4 +1,4 @@
-import type { AppLanguage } from '../app/AppPreferencesContext'
+﻿import type { AppLanguage } from '../app/AppPreferencesContext'
 import type { Vector3 } from '../math'
 
 export type CrossProduct3DPreset = {
@@ -52,6 +52,7 @@ export function getCrossProduct3DUIText(language: AppLanguage) {
       showParallelogram: 'Pokaż równoległobok',
       showSine: 'Pokaż zależność sinusową',
       showOppositeNormal: 'Pokaż przeciwny zwrot',
+      resetView: 'Reset widoku',
       vectorA: 'Wektor a',
       vectorB: 'Wektor b',
       readoutTitle: 'Odczyt sceny',
@@ -79,6 +80,7 @@ export function getCrossProduct3DUIText(language: AppLanguage) {
     showParallelogram: 'Show parallelogram',
     showSine: 'Show sine relation',
     showOppositeNormal: 'Show opposite normal',
+    resetView: 'Reset view',
     vectorA: 'Vector a',
     vectorB: 'Vector b',
     readoutTitle: 'Scene Readout',

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { type Matrix2x2, type Vector2 } from '../../math'
 import { useAppPreferences } from '../../app/AppPreferencesContext'
 import { useModuleSidebar } from '../../app/ModuleSidebarContext'
@@ -12,10 +12,10 @@ import {
 import {
   AreaPolygon2D,
   Axes2D,
-  createSceneTransform2D,
   DraggablePointHandle2D,
   Grid2D,
   LabelAnchor2D,
+  useScene2DViewport,
   VectorArrow2D,
   worldToScenePoint2D,
 } from '../../scene2d'
@@ -42,8 +42,8 @@ export function Matrix2DModule() {
   const { language } = useAppPreferences()
   const { setSidebarOverride } = useModuleSidebar()
   const ui = getMatrix2DUIText(language)
-  const svgRef = useRef<SVGSVGElement>(null)
-  const transform = useMemo(() => createSceneTransform2D(SCENE_WIDTH, SCENE_HEIGHT, 38), [])
+  const viewport = useScene2DViewport(SCENE_WIDTH, SCENE_HEIGHT, 38)
+  const { svgRef, transform } = viewport
 
   const [mode, setMode] = useState<Matrix2DMode>('apply')
   const [matrixA, setMatrixA] = useState<Matrix2x2>([
@@ -100,6 +100,11 @@ export function Matrix2DModule() {
           viewBox={`0 0 ${SCENE_WIDTH} ${SCENE_HEIGHT}`}
           className="matrix2d-scene"
           aria-label={ui.sceneLabel}
+          onPointerDown={viewport.onPointerDown}
+          onPointerMove={viewport.onPointerMove}
+          onPointerUp={viewport.onPointerUp}
+          onPointerCancel={viewport.onPointerCancel}
+          style={{ touchAction: 'none', cursor: 'grab' }}
         >
           <Grid2D transform={transform} step={1} />
           <Axes2D transform={transform} />
@@ -186,6 +191,9 @@ export function Matrix2DModule() {
             </>
           )}
         </svg>
+        <button type="button" className="scene-reset-button" onClick={viewport.resetView}>
+          {ui.resetView}
+        </button>
       </div>
 
       <div className="matrix2d-layout">
