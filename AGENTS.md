@@ -51,6 +51,16 @@ Read these files before medium or large tasks:
 - Prefer explicit types over implicit shape assumptions.
 - Use local state and context first; only introduce a larger state library if the repo genuinely needs it.
 
+## Persistent UX requirements (project owner)
+
+- The app must support two UI languages: Polish (`pl`) and English (`en`).
+- The app must support both light mode and dark mode.
+- The right column must always contain, in this order:
+  - `What to notice`
+  - `Theory` (including short explanatory examples for the active concept)
+  - `Status`
+- This right-column structure should be respected across all module tabs, not only the current module.
+
 ## Backend rules
 
 - Django should initially serve:

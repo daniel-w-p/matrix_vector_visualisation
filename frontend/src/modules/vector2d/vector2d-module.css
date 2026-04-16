@@ -4,15 +4,15 @@
 }
 
 .vector2d-scene-card {
-  border: 1px solid #d4dce5;
+  border: 1px solid var(--panel-border);
   border-radius: 10px;
-  background: #f9fbff;
+  background: var(--panel-bg);
   padding: 0.5rem;
 }
 
 .vector2d-scene {
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--panel-bg);
 }
 
 .vector2d-layout {
@@ -24,10 +24,10 @@
 .vector2d-controls,
 .vector2d-algebra,
 .vector2d-note {
-  border: 1px solid #d4dce5;
+  border: 1px solid var(--panel-border);
   border-radius: 10px;
   padding: 0.9rem;
-  background: #ffffff;
+  background: var(--panel-bg);
 }
 
 .vector2d-controls h3,
@@ -46,19 +46,19 @@
 }
 
 .chip {
-  border: 1px solid #c6d0dc;
+  border: 1px solid var(--panel-border);
   border-radius: 999px;
-  background: #f8fafc;
-  color: #1f2a37;
+  background: var(--tab-bg);
+  color: var(--text-main);
   padding: 0.35rem 0.7rem;
   font-size: 0.85rem;
   cursor: pointer;
 }
 
 .chip.is-active {
-  border-color: #2563eb;
-  background: #eaf2ff;
-  color: #174187;
+  border-color: var(--tab-active-border);
+  background: var(--tab-active-bg);
+  color: var(--tab-active-text);
 }
 
 .scalar-control {
@@ -69,7 +69,7 @@
 .control-hint {
   margin: 0.5rem 0 0.75rem;
   font-size: 0.85rem;
-  color: #45556a;
+  color: var(--text-muted);
 }
 
 .preset-list {
@@ -82,17 +82,17 @@
   justify-items: start;
   gap: 0.2rem;
   text-align: left;
-  border: 1px solid #ced8e4;
+  border: 1px solid var(--panel-border);
   border-radius: 8px;
-  background: #fcfdff;
-  color: #1f2a37;
+  background: var(--tab-bg);
+  color: var(--text-main);
   padding: 0.55rem 0.65rem;
   cursor: pointer;
 }
 
 .preset-button span {
   font-size: 0.82rem;
-  color: #4e5f73;
+  color: var(--text-muted);
 }
 
 .vector2d-algebra p,
@@ -101,8 +101,8 @@
 }
 
 .vector2d-algebra code {
-  background: #f1f5fb;
-  border: 1px solid #d8e1ee;
+  background: var(--tab-bg);
+  border: 1px solid var(--panel-border);
   border-radius: 4px;
   padding: 0.1rem 0.3rem;
 }
@@ -110,7 +110,7 @@
 .prediction-prompt {
   margin-top: 0.7rem;
   font-size: 0.88rem;
-  color: #33455d;
+  color: var(--text-muted);
 }
 
 @media (max-width: 920px) {

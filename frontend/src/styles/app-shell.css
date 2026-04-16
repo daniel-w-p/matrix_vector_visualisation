@@ -1,11 +1,41 @@
 .app-shell {
-  max-width: 1100px;
+  --app-bg: #f2f6fb;
+  --panel-bg: #ffffff;
+  --panel-border: #d4dce5;
+  --text-main: #122033;
+  --text-muted: #3f4c5b;
+  --tab-bg: #f7f9fc;
+  --tab-active-bg: #e9f2ff;
+  --tab-border: #bcc6d2;
+  --tab-active-border: #2f7ad8;
+  --tab-active-text: #164b90;
+
+  max-width: 1120px;
   margin: 0 auto;
   padding: 2rem 1rem 2.5rem;
+  background: var(--app-bg);
+  color: var(--text-main);
+}
+
+.app-shell.theme-dark {
+  --app-bg: #0f1620;
+  --panel-bg: #151f2b;
+  --panel-border: #2a3a4d;
+  --text-main: #e5edf8;
+  --text-muted: #a9b8ca;
+  --tab-bg: #1b2735;
+  --tab-active-bg: #20354f;
+  --tab-border: #39506b;
+  --tab-active-border: #63a4ff;
+  --tab-active-text: #d6e9ff;
 }
 
 .app-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
 }
 
 .app-kicker {
@@ -13,7 +43,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #4f5f72;
+  color: var(--text-muted);
 }
 
 .app-header h1 {
@@ -24,7 +54,31 @@
 
 .app-subtitle {
   margin: 0;
-  color: #3f4c5b;
+  color: var(--text-muted);
+}
+
+.app-preferences {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 0.6rem 0.7rem;
+}
+
+.pref-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.app-preferences select {
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  background: var(--tab-bg);
+  color: var(--text-main);
+  padding: 0.2rem 0.35rem;
 }
 
 .module-nav {
@@ -35,19 +89,19 @@
 }
 
 .module-tab {
-  border: 1px solid #bcc6d2;
+  border: 1px solid var(--tab-border);
   border-radius: 999px;
-  background: #f7f9fc;
-  color: #1f2a37;
+  background: var(--tab-bg);
+  color: var(--text-main);
   padding: 0.45rem 0.8rem;
   font-size: 0.9rem;
   cursor: pointer;
 }
 
 .module-tab.is-active {
-  border-color: #2f7ad8;
-  background: #e9f2ff;
-  color: #164b90;
+  border-color: var(--tab-active-border);
+  background: var(--tab-active-bg);
+  color: var(--tab-active-text);
 }
 
 .module-layout {
@@ -58,9 +112,9 @@
 
 .module-viewport,
 .module-panel {
-  border: 1px solid #d4dce5;
+  border: 1px solid var(--panel-border);
   border-radius: 0.75rem;
-  background: #ffffff;
+  background: var(--panel-bg);
   padding: 1rem;
 }
 
@@ -68,16 +122,41 @@
   min-height: 260px;
 }
 
-.placeholder-screen h2,
 .module-panel h2 {
   margin-top: 0;
+  margin-bottom: 0.4rem;
+}
+
+.module-panel > p {
+  color: var(--text-muted);
+}
+
+.sidebar-card {
+  margin-top: 0.9rem;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+}
+
+.sidebar-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.sidebar-card p {
+  margin: 0.4rem 0;
 }
 
 .module-status {
-  margin-top: 1rem;
+  margin-top: 0.2rem;
+  font-weight: 600;
 }
 
 @media (max-width: 840px) {
+  .app-header {
+    flex-direction: column;
+  }
+
   .module-layout {
     grid-template-columns: 1fr;
   }

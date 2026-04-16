@@ -37,6 +37,8 @@ Responsible for:
 - page/module selection
 - shared layout
 - global theme and common UI state
+- language selection (`pl` / `en`)
+- light/dark mode switching
 
 Suggested path:
 - `frontend/src/app/`
@@ -112,6 +114,12 @@ Each module should own:
 - pedagogical presets
 - module-specific explanatory text mapping
 - composition of math + rendering pieces
+
+Shared shell expectation across all modules:
+- right column always renders:
+  1. `What to notice`
+  2. `Theory` (with concise examples)
+  3. `Status`
 
 ### 3.6 Content layer
 Pedagogical copy and presets.

@@ -17,9 +17,16 @@ A simpler initial version may use a single shell with module tabs.
 Recommended desktop layout:
 
 - **Center:** primary visualization
-- **Right:** controls and presets
-- **Bottom or side panel:** algebraic representation
-- **Context panel:** explanation / “what to notice”
+- **Left-lower area:** controls, presets, and algebraic representation
+- **Right column (always present):**
+  - `What to notice`
+  - `Theory` (short conceptual explanation + simple example)
+  - `Status`
+
+Global UI controls:
+
+- language switch: `EN` / `PL`
+- theme switch: light / dark
 
 ## Core module navigation
 
@@ -37,7 +44,7 @@ Suggested initial module list:
 For smaller screens:
 
 - stack visualization above controls
-- move explanation below the scene
+- keep right-column cards present, but move them below the scene if needed
 - reduce simultaneous panels
 - prefer progressive reveal over density
 

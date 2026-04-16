@@ -1,11 +1,11 @@
-import { useMemo, useRef, useState } from 'react'
-import {
-  addVector2,
-  magnitudeVector2,
-  type Vector2,
-} from '../../math'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { addVector2, magnitudeVector2, type Vector2 } from '../../math'
+import { useAppPreferences } from '../../app/AppPreferencesContext'
+import { useModuleSidebar } from '../../app/ModuleSidebarContext'
 import {
   getWhatToNoticeVector2D,
+  getVector2DTheory,
+  getVector2DUIText,
   type Vector2DOperation,
   vector2DPresets,
   type Vector2DViewMode,
@@ -32,18 +32,11 @@ import './vector2d-module.css'
 const SCENE_WIDTH = 640
 const SCENE_HEIGHT = 360
 
-const OPERATION_OPTIONS: Array<{ id: Vector2DOperation; label: string }> = [
-  { id: 'add', label: 'Add' },
-  { id: 'subtract', label: 'Subtract' },
-  { id: 'scale', label: 'Scale' },
-]
-
-const VIEW_OPTIONS: Array<{ id: Vector2DViewMode; label: string }> = [
-  { id: 'tailToHead', label: 'Tail-to-head' },
-  { id: 'parallelogram', label: 'Parallelogram' },
-]
-
 export function Vector2DModule() {
+  const { language } = useAppPreferences()
+  const { setSidebarOverride } = useModuleSidebar()
+  const ui = getVector2DUIText(language)
+
   const svgRef = useRef<SVGSVGElement>(null)
   const transform = useMemo(() => createSceneTransform2D(SCENE_WIDTH, SCENE_HEIGHT, 40), [])
 
@@ -53,12 +46,34 @@ export function Vector2DModule() {
   const [vectorB, setVectorB] = useState<Vector2>([1.5, 2.5])
   const [scalar, setScalar] = useState(1)
 
+  useEffect(() => {
+    setSidebarOverride({
+      whatToNotice: getWhatToNoticeVector2D(language, operation, scalar),
+      theory: getVector2DTheory(language),
+      status: ui.status,
+    })
+
+    return () => {
+      setSidebarOverride(null)
+    }
+  }, [language, operation, scalar, setSidebarOverride, ui.status])
+
   const computation = computeVector2DOperation(operation, vectorA, vectorB, scalar)
   const resultVector = computation.resultVector
   const helperVector = computation.helperVector
   const tailStart = buildTailToHeadStart(vectorA)
   const tailEnd = buildTailToHeadEnd(vectorA, helperVector)
-  const whatToNotice = getWhatToNoticeVector2D(operation, scalar)
+
+  const operationOptions: Array<{ id: Vector2DOperation; label: string }> = [
+    { id: 'add', label: ui.operationAdd },
+    { id: 'subtract', label: ui.operationSubtract },
+    { id: 'scale', label: ui.operationScale },
+  ]
+
+  const viewOptions: Array<{ id: Vector2DViewMode; label: string }> = [
+    { id: 'tailToHead', label: ui.viewTailToHead },
+    { id: 'parallelogram', label: ui.viewParallelogram },
+  ]
 
   return (
     <section className="vector2d-module">
@@ -68,7 +83,7 @@ export function Vector2DModule() {
           width="100%"
           viewBox={`0 0 ${SCENE_WIDTH} ${SCENE_HEIGHT}`}
           className="vector2d-scene"
-          aria-label="Vector 2D scene"
+          aria-label={ui.vectorSceneLabel}
         >
           <Grid2D transform={transform} step={1} />
           <Axes2D transform={transform} />
@@ -133,10 +148,10 @@ export function Vector2DModule() {
 
       <div className="vector2d-layout">
         <section className="vector2d-controls" aria-label="Vector controls">
-          <h3>Controls and Presets</h3>
+          <h3>{ui.controlsAndPresets}</h3>
 
           <div className="vector2d-chip-group">
-            {OPERATION_OPTIONS.map((option) => (
+            {operationOptions.map((option) => (
               <button
                 key={option.id}
                 type="button"
@@ -150,7 +165,7 @@ export function Vector2DModule() {
 
           {(operation === 'add' || operation === 'subtract') && (
             <div className="vector2d-chip-group">
-              {VIEW_OPTIONS.map((option) => (
+              {viewOptions.map((option) => (
                 <button
                   key={option.id}
                   type="button"
@@ -164,7 +179,7 @@ export function Vector2DModule() {
           )}
 
           <label className="scalar-control" htmlFor="scale-slider">
-            Scale factor k: <strong>{formatNumber(scalar)}</strong>
+            {ui.scaleFactor}: <strong>{formatNumber(scalar)}</strong>
           </label>
           <input
             id="scale-slider"
@@ -178,8 +193,8 @@ export function Vector2DModule() {
           />
 
           <p className="control-hint">
-            Drag points <strong>a</strong> and <strong>b</strong> in the scene to explore direct
-            manipulation.
+            {ui.dragHintPrefix} <strong>a</strong> {ui.dragHintConnector} <strong>b</strong>{' '}
+            {ui.dragHintSuffix}
           </p>
 
           <div className="preset-list">
@@ -196,15 +211,15 @@ export function Vector2DModule() {
                   setViewMode(preset.viewMode)
                 }}
               >
-                <strong>{preset.label}</strong>
-                <span>{preset.description}</span>
+                <strong>{preset.label[language]}</strong>
+                <span>{preset.description[language]}</span>
               </button>
             ))}
           </div>
         </section>
 
         <section className="vector2d-algebra" aria-label="Algebra panel">
-          <h3>Algebra View</h3>
+          <h3>{ui.algebraView}</h3>
           <p>
             a = <code>{formatVector2(vectorA)}</code>
           </p>
@@ -236,19 +251,10 @@ export function Vector2DModule() {
             <code>{formatNumber(computation.resultMagnitude)}</code>
           </p>
           <p>
-            Result as composition: <code>{formatVector2(addVector2(vectorA, helperVector))}</code>
+            {ui.resultLabel}: <code>{formatVector2(addVector2(vectorA, helperVector))}</code>
           </p>
         </section>
       </div>
-
-      <section className="vector2d-note" aria-label="What to notice">
-        <h3>What to notice</h3>
-        <p>{whatToNotice}</p>
-        <p className="prediction-prompt">
-          Prediction prompt: before dragging, guess whether the result length grows, shrinks, flips,
-          or collapses.
-        </p>
-      </section>
     </section>
   )
 }
