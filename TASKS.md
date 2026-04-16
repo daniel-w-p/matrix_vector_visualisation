@@ -71,11 +71,11 @@ Use this file as the high-level implementation queue.
 
 ## 3D foundation
 
-- [ ] Shared R3F canvas wrapper
-- [ ] Axes helper
-- [ ] Vector mesh helper
-- [ ] Camera / controls setup
-- [ ] Overlay strategy for labels and explanations
+- [x] Shared R3F canvas wrapper
+- [x] Axes helper
+- [x] Vector mesh helper
+- [x] Camera / controls setup
+- [x] Overlay strategy for labels and explanations
 
 ## Module 4 - Cross product
 

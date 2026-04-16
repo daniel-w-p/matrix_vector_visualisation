@@ -1,1 +1,6 @@
-export {}
+export { Axes3D } from './Axes3D'
+export { Scene3DCanvas } from './Scene3DCanvas'
+export { Scene3DPlayground } from './Scene3DPlayground'
+export { Scene3DReadout } from './Scene3DReadout'
+export type { Point3D, Scene3DReadoutItem } from './types'
+export { Vector3DArrow } from './Vector3DArrow'

@@ -1,0 +1,85 @@
+.scene3d-playground {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.scene3d-playground-caption {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.scene3d-shell {
+  position: relative;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel-bg);
+}
+
+.scene3d-overlay {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  pointer-events: none;
+}
+
+.scene3d-readout {
+  background: color-mix(in srgb, var(--panel-bg) 88%, #ffffff 12%);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  min-width: 170px;
+}
+
+.scene3d-readout-title {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.scene3d-readout-list {
+  margin: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.scene3d-readout-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+}
+
+.scene3d-readout-row dt {
+  color: var(--text-muted);
+}
+
+.scene3d-readout-row dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 600;
+}
+
+.scene3d-axis-label,
+.scene3d-vector-label {
+  display: inline-block;
+  background: color-mix(in srgb, var(--panel-bg) 90%, #ffffff 10%);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 0.12rem 0.32rem;
+  font-size: 0.75rem;
+  line-height: 1.1;
+  color: var(--text-main);
+}
+
+.scene3d-vector-label {
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .scene3d-overlay {
+    position: static;
+    padding: 0.45rem;
+  }
+}
