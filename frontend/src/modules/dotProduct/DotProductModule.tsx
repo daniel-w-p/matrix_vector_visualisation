@@ -42,8 +42,8 @@ export function DotProductModule() {
   const svgRef = useRef<SVGSVGElement>(null)
   const transform = useMemo(() => createSceneTransform2D(SCENE_WIDTH, SCENE_HEIGHT, 40), [])
 
-  const [vectorA, setVectorA] = useState<Vector2>([3, 1.5])
-  const [vectorB, setVectorB] = useState<Vector2>([2.5, 2.2])
+  const [vectorA, setVectorA] = useState<Vector2>([2, 2])
+  const [vectorB, setVectorB] = useState<Vector2>([4.5, 0])
   const [projectionMode, setProjectionMode] = useState<ProjectionMode>('aOnB')
   const [showAngle, setShowAngle] = useState(true)
   const [showCosine, setShowCosine] = useState(true)

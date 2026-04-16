@@ -197,7 +197,7 @@ function getShellText(language: AppLanguage) {
       moduleNavigation: 'Nawigacja modułów',
       moduleViewport: 'Widok modułu',
       moduleDetails: 'Szczegóły modułu',
-      whatToNotice: 'What to notice',
+      whatToNotice: 'Do zapamiętania',
       theory: 'Teoria',
       status: 'Status',
     }
