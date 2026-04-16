@@ -178,7 +178,7 @@ export const moduleCards: Record<ModuleKey, ModuleCard> = {
         pl: 'Reszta Av - lambda v powinna dążyć do zera dla poprawnej pary własnej.',
       },
     ],
-    defaultStatus: { en: 'Placeholder screen', pl: 'Ekran placeholdera' },
+    defaultStatus: { en: 'Interactive module', pl: 'Modul interaktywny' },
   },
 }
 

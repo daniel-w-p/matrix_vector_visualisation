@@ -98,14 +98,14 @@ Use this file as the high-level implementation queue.
 
 ## Module 6 - Eigen
 
-- [ ] Eigen screen
-- [ ] Candidate vector selection
-- [ ] `A v` overlay
-- [ ] `? v` overlay
-- [ ] Difference vector overlay
-- [ ] Presets for special cases
-- [ ] 2D no-real-eigenvector rotation case
-- [ ] Module tests
+- [x] Eigen screen
+- [x] Candidate vector selection
+- [x] `A v` overlay
+- [x] `? v` overlay
+- [x] Difference vector overlay
+- [x] Presets for special cases
+- [x] 2D no-real-eigenvector rotation case
+- [x] Module tests
 
 ## Performance and workers
 

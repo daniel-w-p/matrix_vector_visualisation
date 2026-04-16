@@ -1,7 +1,7 @@
 import { lazy, type ComponentType, type LazyExoticComponent } from 'react'
 import type { ModuleKey } from '../content/moduleCards'
 import { DotProductModule } from './dotProduct/DotProductModule'
-import { EigenPlaceholder } from './eigen/EigenPlaceholder'
+import { EigenModule } from './eigen/EigenModule'
 import { Matrix2DModule } from './matrix2d/Matrix2DModule'
 import { Vector2DModule } from './vector2d/Vector2DModule'
 
@@ -23,5 +23,5 @@ export const moduleScreens: Record<ModuleKey, ModuleScreenComponent> = {
   matrix2d: Matrix2DModule,
   crossProduct3d: CrossProduct3DModule,
   matrix3d: Matrix3DModule,
-  eigen: EigenPlaceholder,
+  eigen: EigenModule,
 }
