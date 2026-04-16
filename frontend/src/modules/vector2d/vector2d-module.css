@@ -1,0 +1,120 @@
+.vector2d-module {
+  display: grid;
+  gap: 1rem;
+}
+
+.vector2d-scene-card {
+  border: 1px solid #d4dce5;
+  border-radius: 10px;
+  background: #f9fbff;
+  padding: 0.5rem;
+}
+
+.vector2d-scene {
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.vector2d-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.vector2d-controls,
+.vector2d-algebra,
+.vector2d-note {
+  border: 1px solid #d4dce5;
+  border-radius: 10px;
+  padding: 0.9rem;
+  background: #ffffff;
+}
+
+.vector2d-controls h3,
+.vector2d-algebra h3,
+.vector2d-note h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.vector2d-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.chip {
+  border: 1px solid #c6d0dc;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #1f2a37;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.chip.is-active {
+  border-color: #2563eb;
+  background: #eaf2ff;
+  color: #174187;
+}
+
+.scalar-control {
+  display: block;
+  margin: 0.4rem 0 0.3rem;
+}
+
+.control-hint {
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  color: #45556a;
+}
+
+.preset-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.preset-button {
+  display: grid;
+  justify-items: start;
+  gap: 0.2rem;
+  text-align: left;
+  border: 1px solid #ced8e4;
+  border-radius: 8px;
+  background: #fcfdff;
+  color: #1f2a37;
+  padding: 0.55rem 0.65rem;
+  cursor: pointer;
+}
+
+.preset-button span {
+  font-size: 0.82rem;
+  color: #4e5f73;
+}
+
+.vector2d-algebra p,
+.vector2d-note p {
+  margin: 0.4rem 0;
+}
+
+.vector2d-algebra code {
+  background: #f1f5fb;
+  border: 1px solid #d8e1ee;
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+}
+
+.prediction-prompt {
+  margin-top: 0.7rem;
+  font-size: 0.88rem;
+  color: #33455d;
+}
+
+@media (max-width: 920px) {
+  .vector2d-layout {
+    grid-template-columns: 1fr;
+  }
+}

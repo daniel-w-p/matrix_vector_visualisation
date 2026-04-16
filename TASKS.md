@@ -22,10 +22,9 @@ Use this file as the high-level implementation queue.
 
 ## Frontend core
 
-- [ ] Create app shell and module navigation
+- [x] Create app shell and module navigation
 - [ ] Create shared UI primitives for controls and panels
 - [ ] Create content/preset loading strategy
-- [ ] Define domain types for vectors and matrices
 - [x] Define domain types for vectors and matrices
 - [x] Implement pure math core for v1 operations
 - [x] Add tests for pure math core
@@ -41,16 +40,16 @@ Use this file as the high-level implementation queue.
 - [x] Drag interaction helpers
 - [x] Scene-to-data coordinate mapping tests
 
-## Module 1 — Vector 2D
+## Module 1 - Vector 2D
 
-- [ ] Vector 2D screen
-- [ ] Add/subtract/scale controls
-- [ ] Tail-to-head and parallelogram views
-- [ ] Live algebra panel
-- [ ] Pedagogical presets
-- [ ] Module tests
+- [x] Vector 2D screen
+- [x] Add/subtract/scale controls
+- [x] Tail-to-head and parallelogram views
+- [x] Live algebra panel
+- [x] Pedagogical presets
+- [x] Module tests
 
-## Module 2 — Dot product
+## Module 2 - Dot product
 
 - [ ] Dot product screen
 - [ ] Projection visualization
@@ -59,11 +58,11 @@ Use this file as the high-level implementation queue.
 - [ ] Unit-vector teaching mode
 - [ ] Module tests
 
-## Module 3 — Matrix 2D and determinant
+## Module 3 - Matrix 2D and determinant
 
 - [ ] Matrix 2D edit controls
 - [ ] Matrix add/subtract/scale interaction
-- [ ] Matrix–vector multiplication view
+- [ ] Matrix-vector multiplication view
 - [ ] Transformed basis view
 - [ ] Transformed grid view
 - [ ] Unit square to parallelogram determinant view
@@ -78,7 +77,7 @@ Use this file as the high-level implementation queue.
 - [ ] Camera / controls setup
 - [ ] Overlay strategy for labels and explanations
 
-## Module 4 — Cross product
+## Module 4 - Cross product
 
 - [ ] Cross product screen
 - [ ] Parallelogram visualization
@@ -87,22 +86,22 @@ Use this file as the high-level implementation queue.
 - [ ] Operand-order swap mode
 - [ ] Module tests
 
-## Module 5 — Matrix 3D
+## Module 5 - Matrix 3D
 
 - [ ] Matrix 3D edit controls
 - [ ] Matrix add/subtract/scale interaction
-- [ ] Matrix–vector multiplication view
+- [ ] Matrix-vector multiplication view
 - [ ] Basis transformation view
 - [ ] Unit cube to parallelepiped view
 - [ ] Determinant as volume scale
 - [ ] Module tests
 
-## Module 6 — Eigen
+## Module 6 - Eigen
 
 - [ ] Eigen screen
 - [ ] Candidate vector selection
 - [ ] `A v` overlay
-- [ ] `λ v` overlay
+- [ ] `? v` overlay
 - [ ] Difference vector overlay
 - [ ] Presets for special cases
 - [ ] 2D no-real-eigenvector rotation case
@@ -119,7 +118,7 @@ Use this file as the high-level implementation queue.
 
 - [ ] Preset system
 - [ ] Explanation text mapping
-- [ ] “What to notice” panel
+- [ ] "What to notice" panel
 - [ ] Compare mode
 - [ ] Prediction-before-reveal mode
 - [ ] Challenge prompts

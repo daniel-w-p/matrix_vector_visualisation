@@ -12,7 +12,7 @@ export function AppShell() {
         <p className="app-kicker">Vector Lab</p>
         <h1>Linear Algebra Exploration Lab</h1>
         <p className="app-subtitle">
-          Early scaffold: module structure, navigation, and screen placeholders.
+          Explore each concept through direct manipulation and synchronized algebraic views.
         </p>
       </header>
 
@@ -50,13 +50,14 @@ export function AppShell() {
 
 function ModuleDetails({ moduleId }: { moduleId: ModuleKey }) {
   const card = moduleCards[moduleId]
+  const isInteractive = moduleId === 'vector2d'
 
   return (
     <>
       <h2>{card.title}</h2>
       <p>{card.description}</p>
       <p className="module-status">
-        Status: <strong>Placeholder screen</strong>
+        Status: <strong>{isInteractive ? 'Interactive module' : 'Placeholder screen'}</strong>
       </p>
     </>
   )
