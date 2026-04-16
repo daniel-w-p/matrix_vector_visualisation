@@ -145,7 +145,7 @@ export function EigenModule() {
               <LabelAnchor2D
                 transform={transform}
                 position={midpoint2(ORIGIN, verification.transformedVector)}
-                text="A*v"
+                text="Av"
               />
             </>
           )}
@@ -162,7 +162,7 @@ export function EigenModule() {
               <LabelAnchor2D
                 transform={transform}
                 position={midpoint2(ORIGIN, verification.scaledVector)}
-                text="lambda*v"
+                text="λv"
               />
             </>
           )}
@@ -337,13 +337,13 @@ export function EigenModule() {
             {ui.bestFitLambda} = <code>{formatNumber(bestFitLambda)}</code>
           </p>
           <p>
-            lambda = <code>{formatNumber(activeLambda)}</code>
+            λ = <code>{formatNumber(activeLambda)}</code>
           </p>
           <p>
-            lambda * v = <code>{formatVector2(verification.scaledVector)}</code>
+            λ v = <code>{formatVector2(verification.scaledVector)}</code>
           </p>
           <p>
-            A*v - lambda*v = <code>{formatVector2(verification.differenceVector)}</code>
+            A v - λ v = <code>{formatVector2(verification.differenceVector)}</code>
           </p>
           <p>
             {ui.residual}: <code>{formatNumber(verification.residual)}</code>{' '}

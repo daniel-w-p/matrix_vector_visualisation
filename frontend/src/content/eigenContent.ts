@@ -107,31 +107,32 @@ export const eigenPresets: readonly EigenPreset[] = [
 ]
 
 export function getEigenUIText(language: AppLanguage) {
+  const L = '\u03BB'
+  const D = '\u0394'
+
   if (language === 'pl') {
     return {
       controls: 'Sterowanie i presety',
       algebra: 'Widok algebraiczny',
       matrixA: 'Macierz A',
       candidateVector: 'Wektor kandydat v',
-      lambdaSection: 'Wartosc lambda',
-      lambdaMode: 'Tryb lambda',
+      lambdaSection: `Wartosc ${L}`,
+      lambdaMode: `Tryb ${L}`,
       lambdaBestFit: 'Dopasowana',
       lambdaManual: 'Reczna',
-      bestFitLambda: 'Najlepsza lambda (Rayleigh)',
-      manualLambda: 'Reczna lambda',
+      bestFitLambda: `Najlepsza ${L} (Rayleigh)`,
+      manualLambda: `Reczna ${L}`,
       copyBestFit: 'Uzyj dopasowanej',
       overlays: 'Nakladki',
       showCandidate: 'Pokaz v',
-      showTransformed: 'Pokaz A*v',
-      showScaled: 'Pokaz lambda*v',
-      showDifference: 'Pokaz roznice A*v - lambda*v',
+      showTransformed: 'Pokaz A v',
+      showScaled: `Pokaz ${L} v`,
+      showDifference: `Pokaz roznice A v - ${L} v`,
       showDirectionScan: 'Pokaz skan kierunkow (przyblizenie)',
-      dragHint:
-        'Przeciagaj koniec wektora v i obserwuj, kiedy A*v pokrywa sie z lambda*v.',
+      dragHint: `Przeciagaj koniec wektora v i obserwuj, kiedy A v pokrywa sie z ${L} v.`,
       scanHint:
-        'Skan kierunkow jest numerycznym przyblizeniem: zielone promienie sugeruja male residuum.',
-      noRealEigenHint:
-        'Ta macierz nie ma rzeczywistych wektorow wlasnych w 2D (dyskryminant < 0).',
+        'Skan kierunkow jest numerycznym przyblizeniem: zielone promienie sugeruja male residuum r.',
+      noRealEigenHint: `Ta macierz nie ma rzeczywistych wektorow wlasnych w 2D (${D} < 0).`,
       residual: 'Residuum',
       residualAligned: 'Prawie idealna para wlasna',
       residualClose: 'Blisko kierunku wlasnego',
@@ -150,22 +151,22 @@ export function getEigenUIText(language: AppLanguage) {
     algebra: 'Algebra View',
     matrixA: 'Matrix A',
     candidateVector: 'Candidate vector v',
-    lambdaSection: 'Lambda value',
-    lambdaMode: 'Lambda mode',
+    lambdaSection: `${L} value`,
+    lambdaMode: `${L} mode`,
     lambdaBestFit: 'Best-fit',
     lambdaManual: 'Manual',
-    bestFitLambda: 'Best lambda (Rayleigh)',
-    manualLambda: 'Manual lambda',
+    bestFitLambda: `Best ${L} (Rayleigh)`,
+    manualLambda: `Manual ${L}`,
     copyBestFit: 'Use best-fit',
     overlays: 'Overlays',
     showCandidate: 'Show v',
-    showTransformed: 'Show A*v',
-    showScaled: 'Show lambda*v',
-    showDifference: 'Show difference A*v - lambda*v',
+    showTransformed: 'Show A v',
+    showScaled: `Show ${L} v`,
+    showDifference: `Show difference A v - ${L} v`,
     showDirectionScan: 'Show direction scan (approximate)',
-    dragHint: 'Drag vector v and watch when A*v aligns with lambda*v.',
-    scanHint: 'Direction scan is numerical approximation: green rays suggest small residual.',
-    noRealEigenHint: 'This matrix has no real eigenvectors in 2D (discriminant < 0).',
+    dragHint: `Drag vector v and watch when A v aligns with ${L} v.`,
+    scanHint: 'Direction scan is numerical approximation: green rays suggest small residual r.',
+    noRealEigenHint: `This matrix has no real eigenvectors in 2D (${D} < 0).`,
     residual: 'Residual',
     residualAligned: 'Near exact eigenpair',
     residualClose: 'Close to eigen-direction',
@@ -180,19 +181,23 @@ export function getEigenUIText(language: AppLanguage) {
 }
 
 export function getEigenTheory(language: AppLanguage): string[] {
+  const L = '\u03BB'
+  const D = '\u0394'
+  const squared = '\u00B2'
+
   if (language === 'pl') {
     return [
-      'Wektor wlasny zachowuje kierunek: A*v = lambda*v.',
-      'lambda to skala (i ewentualne odwrocenie znaku), a residuum ||A*v - lambda*v|| mierzy blad dopasowania.',
-      'Dla macierzy 2x2 znak dyskryminantu tr(A)^2 - 4det(A) wskazuje, czy istnieja rzeczywiste wartosci wlasne.',
+      `Wektor wlasny zachowuje kierunek: A v = ${L} v.`,
+      `${L} to skala (i ewentualne odwrocenie znaku), a residuum ||A v - ${L} v|| mierzy blad dopasowania.`,
+      `Dla macierzy 2x2 znak dyskryminantu ${D} = tr(A)${squared} - 4det(A) wskazuje, czy istnieja rzeczywiste wartosci wlasne.`,
       'Rotacja 2D bez skalowania nie ma rzeczywistych wektorow wlasnych: kazdy wektor zmienia kierunek.',
     ]
   }
 
   return [
-    'An eigenvector preserves direction: A*v = lambda*v.',
-    'lambda is the scaling factor (and possible sign flip), while residual ||A*v - lambda*v|| measures mismatch.',
-    'For 2x2 matrices, discriminant tr(A)^2 - 4det(A) indicates whether real eigenvalues exist.',
+    `An eigenvector preserves direction: A v = ${L} v.`,
+    `${L} is the scaling factor (and possible sign flip), while residual ||A v - ${L} v|| measures mismatch.`,
+    `For 2x2 matrices, discriminant ${D} = tr(A)${squared} - 4det(A) indicates whether real eigenvalues exist.`,
     'Pure 2D rotation has no real eigenvectors: every non-zero vector changes direction.',
   ]
 }
@@ -202,27 +207,29 @@ export function getEigenWhatToNotice(
   residualState: 'aligned' | 'close' | 'off',
   hasRealEigenvectors: boolean,
 ): string {
+  const L = '\u03BB'
+
   if (language === 'pl') {
     if (!hasRealEigenvectors) {
-      return 'Tutaj brak rzeczywistych kierunkow wlasnych: A*v i lambda*v nie pokryja sie dla zadnego niezerowego v.'
+      return `Tutaj brak rzeczywistych kierunkow wlasnych: A v i ${L} v nie pokryja sie dla zadnego niezerowego v.`
     }
     if (residualState === 'aligned') {
-      return 'A*v prawie pokrywa sie z lambda*v, wiec wybrales kierunek bardzo bliski wektorowi wlasnemu.'
+      return `A v prawie pokrywa sie z ${L} v, wiec wybrales kierunek bardzo bliski wektorowi wlasnemu.`
     }
     if (residualState === 'close') {
-      return 'Kierunek jest blisko, ale jeszcze nie idealny - sproboj skorygowac v lub lambda.'
+      return `Kierunek jest blisko, ale jeszcze nie idealny - sproboj skorygowac v lub ${L}.`
     }
     return 'Wiekszosc kierunkow nie jest wlasna: po transformacji A wektor zmienia kierunek.'
   }
 
   if (!hasRealEigenvectors) {
-    return 'No real invariant direction here: A*v and lambda*v cannot fully align for any non-zero real v.'
+    return `No real invariant direction here: A v and ${L} v cannot fully align for any non-zero real v.`
   }
   if (residualState === 'aligned') {
-    return 'A*v nearly overlaps with lambda*v, so this direction is very close to an eigenvector.'
+    return `A v nearly overlaps with ${L} v, so this direction is very close to an eigenvector.`
   }
   if (residualState === 'close') {
-    return 'Direction is close, but not exact yet - adjust v or lambda to reduce mismatch.'
+    return `Direction is close, but not exact yet - adjust v or ${L} to reduce mismatch.`
   }
   return 'Most directions are not eigen-directions: matrix A changes direction after transformation.'
 }

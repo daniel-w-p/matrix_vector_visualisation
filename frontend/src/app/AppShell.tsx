@@ -247,6 +247,7 @@ function ModuleDetails({
         {moduleId === 'matrix2d' && <DeterminantTheoryVisual />}
         {moduleId === 'matrix3d' && <Determinant3DTheoryVisual language={language} />}
         {moduleId === 'crossProduct3d' && <CrossProductTheoryVisual language={language} />}
+        {moduleId === 'eigen' && <EigenTheoryVisual language={language} />}
       </section>
 
       <section className="sidebar-card">
@@ -295,8 +296,8 @@ function Determinant3DTheoryVisual({ language }: { language: AppLanguage }) {
   const signTitle = language === 'pl' ? 'Szachownica znaków kofaktorów' : 'Cofactor sign checkerboard'
   const signExplanation =
     language === 'pl'
-      ? 'Znaki wynikają z wzoru (-1)^(i+j). Dlatego druga kolumna ma odwrócony układ znaków względem pierwszej i trzeciej.'
-      : 'Signs come from (-1)^(i+j). That is why the second column has the opposite sign pattern compared with the first and third.'
+      ? 'Znaki wynikają z wzoru (-1)ⁱ⁺ʲ. Dlatego druga kolumna ma odwrócony układ znaków względem pierwszej i trzeciej.'
+      : 'Signs come from (-1)ⁱ⁺ʲ. That is why the second column has the opposite sign pattern compared with the first and third.'
 
   const matrixCells = [
     ['a11', 'a12', 'a13'],
@@ -446,6 +447,65 @@ function Determinant3DTheoryVisual({ language }: { language: AppLanguage }) {
         </div>
         <p className="det3-signs-explanation">{signExplanation}</p>
       </div>
+    </div>
+  )
+}
+
+function EigenTheoryVisual({ language }: { language: AppLanguage }) {
+  const glossaryTitle = language === 'pl' ? 'Nowe pojęcia' : 'New terms'
+  const lambdaCalcTitle = language === 'pl' ? 'Jak policzyć λ (2x2)' : 'How to compute λ (2x2)'
+  const vectorCalcTitle =
+    language === 'pl' ? 'Jak policzyć wektor własny' : 'How to compute an eigenvector'
+
+  return (
+    <div className="eigen-theory">
+      <p className="eigen-theory-title">{glossaryTitle}</p>
+      <p>
+        <strong>λ (lambda)</strong>: {language === 'pl' ? 'współczynnik skali dla kierunku własnego.' : 'scale factor for an eigen-direction.'}
+      </p>
+      <p>
+        <strong>r</strong>: {language === 'pl' ? 'residuum, czyli r = A v - λ v (błąd dopasowania).' : 'residual, r = A v - λ v (mismatch error).'}
+      </p>
+      <p>
+        <strong>tr(A)</strong>: {language === 'pl' ? 'ślad macierzy (suma elementów na przekątnej).' : 'matrix trace (sum of diagonal entries).'}
+      </p>
+      <p>
+        <strong>det(A)</strong>: {language === 'pl' ? 'wyznacznik macierzy.' : 'matrix determinant.'}
+      </p>
+      <p>
+        <strong>Δ</strong>: {language === 'pl' ? 'dyskryminant wielomianu charakterystycznego.' : 'discriminant of the characteristic polynomial.'}
+      </p>
+
+      <p className="eigen-theory-title">{lambdaCalcTitle}</p>
+      <p className="eigen-theory-formula">
+        det(A - λI) = 0
+      </p>
+      <p className="eigen-theory-formula">
+        <span className="eigen-mono">
+          A = [a<sub>11</sub> a<sub>12</sub>; a<sub>21</sub> a<sub>22</sub>]
+        </span>
+      </p>
+      <p className="eigen-theory-formula">
+        λ<sup>2</sup> - tr(A)λ + det(A) = 0
+      </p>
+      <p className="eigen-theory-formula">
+        Δ = tr(A)<sup>2</sup> - 4det(A), λ<sub>1,2</sub> = (tr(A) ± √Δ) / 2
+      </p>
+
+      <p className="eigen-theory-title">{vectorCalcTitle}</p>
+      <p className="eigen-theory-formula">
+        (A - λI)v = 0
+      </p>
+      <p>
+        {language === 'pl'
+          ? 'Dla każdego znalezionego λ podstawiasz do układu i bierzesz jeden wolny parametr, np. v = [t, m t].'
+          : 'For each λ, substitute into the system and use one free parameter, e.g. v = [t, m t].'}
+      </p>
+      <p>
+        {language === 'pl'
+          ? 'W praktyce wystarczy proporcja składowych i dowolne przeskalowanie wektora.'
+          : 'In practice, component ratio is enough and any non-zero scaling gives the same direction.'}
+      </p>
     </div>
   )
 }

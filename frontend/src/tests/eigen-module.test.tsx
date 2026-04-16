@@ -20,7 +20,7 @@ describe('EigenModule', () => {
 
     await user.click(screen.getByRole('button', { name: /manual/i }))
 
-    expect(screen.getByLabelText(/manual lambda/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/manual/i)).toBeInTheDocument()
   })
 
   it('shows no-real-eigenvector warning for rotation preset', async () => {

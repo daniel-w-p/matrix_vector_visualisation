@@ -548,6 +548,29 @@
   background: #3a2023;
 }
 
+.eigen-theory {
+  margin-top: 0.55rem;
+  border: 1px dashed var(--panel-border);
+  border-radius: 10px;
+  padding: 0.55rem;
+}
+
+.eigen-theory-title {
+  margin: 0.1rem 0 0.35rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.eigen-theory-formula {
+  margin: 0.25rem 0;
+  font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.eigen-mono {
+  font-family: 'Consolas', 'Courier New', monospace;
+}
+
 @media (max-width: 840px) {
   .app-header {
     flex-direction: column;

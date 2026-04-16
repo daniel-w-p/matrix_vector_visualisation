@@ -170,12 +170,12 @@ export const moduleCards: Record<ModuleKey, ModuleCard> = {
     },
     defaultTheory: [
       {
-        en: 'Eigen relation: Av = lambda v.',
-        pl: 'Relacja własna: Av = lambda v.',
+        en: 'Eigen relation: A v = λ v.',
+        pl: 'Relacja własna: A v = λ v.',
       },
       {
-        en: 'Residual Av - lambda v should approach zero for a true eigenpair.',
-        pl: 'Reszta Av - lambda v powinna dążyć do zera dla poprawnej pary własnej.',
+        en: 'Residual A v - λ v should approach zero for a true eigenpair.',
+        pl: 'Reszta A v - λ v powinna dążyć do zera dla poprawnej pary własnej.',
       },
     ],
     defaultStatus: { en: 'Interactive module', pl: 'Modul interaktywny' },
