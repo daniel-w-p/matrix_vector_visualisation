@@ -152,6 +152,60 @@
   font-weight: 600;
 }
 
+.det-theory {
+  margin-top: 0.55rem;
+  border: 1px dashed var(--panel-border);
+  border-radius: 10px;
+  padding: 0.55rem;
+}
+
+.det-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 2.35rem);
+  justify-content: start;
+  width: fit-content;
+  gap: 0.18rem;
+  margin-bottom: 0.45rem;
+}
+
+.det-cell {
+  text-align: center;
+  padding: 0.2rem 0.15rem;
+  border-radius: 6px;
+  font-weight: 600;
+  border: 1px solid var(--panel-border);
+}
+
+.det-main {
+  color: #0f7a3a;
+  background: #eaf8ef;
+}
+
+.det-second {
+  color: #b42318;
+  background: #fdecec;
+}
+
+.det-minus {
+  color: #b42318;
+  font-weight: 700;
+}
+
+.det-formula {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.theme-dark .det-main {
+  color: #9be7be;
+  background: #183426;
+}
+
+.theme-dark .det-second {
+  color: #ffb4ab;
+  background: #3a2023;
+}
+
 @media (max-width: 840px) {
   .app-header {
     flex-direction: column;

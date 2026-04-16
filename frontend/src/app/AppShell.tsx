@@ -16,10 +16,19 @@ import {
 } from '../content/moduleCards'
 import { moduleScreens } from '../modules'
 
+const STORAGE_LANGUAGE_KEY = 'vector-lab-language'
+const STORAGE_THEME_KEY = 'vector-lab-theme'
+
 export function AppShell() {
   const { selectedModule, selectModule } = useModuleSelection('vector2d')
-  const [language, setLanguage] = useState<AppLanguage>('en')
-  const [theme, setTheme] = useState<AppTheme>('light')
+  const [language, setLanguage] = useState<AppLanguage>(() => {
+    const stored = readStorage(STORAGE_LANGUAGE_KEY)
+    return stored === 'pl' || stored === 'en' ? stored : 'en'
+  })
+  const [theme, setTheme] = useState<AppTheme>(() => {
+    const stored = readStorage(STORAGE_THEME_KEY)
+    return stored === 'light' || stored === 'dark' ? stored : 'light'
+  })
   const [sidebarOverride, setSidebarOverride] = useState<{
     moduleId: ModuleKey
     content: ModuleSidebarContent
@@ -28,6 +37,14 @@ export function AppShell() {
 
   useEffect(() => {
     document.body.dataset.theme = theme
+  }, [theme])
+
+  useEffect(() => {
+    writeStorage(STORAGE_LANGUAGE_KEY, language)
+  }, [language])
+
+  useEffect(() => {
+    writeStorage(STORAGE_THEME_KEY, theme)
   }, [theme])
 
   const setSidebarOverrideForModule = useCallback(
@@ -164,6 +181,7 @@ function ModuleDetails({
         {sidebarContent.theory.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
+        {moduleId === 'matrix2d' && <DeterminantTheoryVisual />}
       </section>
 
       <section className="sidebar-card">
@@ -171,6 +189,37 @@ function ModuleDetails({
         <p className="module-status">{sidebarContent.status}</p>
       </section>
     </>
+  )
+}
+
+function DeterminantTheoryVisual() {
+  return (
+    <div className="det-theory">
+      <div className="det-grid" aria-hidden="true">
+        <div className="det-cell det-main">
+          a<sub>11</sub>
+        </div>
+        <div className="det-cell det-second">
+          a<sub>12</sub>
+        </div>
+        <div className="det-cell det-second">
+          a<sub>21</sub>
+        </div>
+        <div className="det-cell det-main">
+          a<sub>22</sub>
+        </div>
+      </div>
+      <p className="det-formula">
+        det(A) ={' '}
+        <span className="det-main">
+          a<sub>11</sub>*a<sub>22</sub>
+        </span>{' '}
+        <span className="det-minus">-</span>{' '}
+        <span className="det-second">
+          a<sub>12</sub>*a<sub>21</sub>
+        </span>
+      </p>
+    </div>
   )
 }
 
@@ -217,5 +266,21 @@ function getShellText(language: AppLanguage) {
     whatToNotice: 'What to notice',
     theory: 'Theory',
     status: 'Status',
+  }
+}
+
+function readStorage(key: string): string | null {
+  try {
+    return window.localStorage.getItem(key)
+  } catch {
+    return null
+  }
+}
+
+function writeStorage(key: string, value: string) {
+  try {
+    window.localStorage.setItem(key, value)
+  } catch {
+    // Ignore storage errors in restricted environments.
   }
 }
