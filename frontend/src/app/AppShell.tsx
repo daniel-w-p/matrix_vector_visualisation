@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
 import {
   AppPreferencesContext,
   type AppLanguage,
@@ -137,7 +137,9 @@ export function AppShell() {
 
           <main className="module-layout">
             <section className="module-viewport" aria-label={shellText.moduleViewport}>
-              <ActiveScreen />
+              <Suspense fallback={<p>{shellText.loadingModule}</p>}>
+                <ActiveScreen />
+              </Suspense>
             </section>
 
             <aside className="module-panel" aria-label={shellText.moduleDetails}>
@@ -249,6 +251,7 @@ function getShellText(language: AppLanguage) {
       whatToNotice: 'Do zapamiętania',
       theory: 'Teoria',
       status: 'Status',
+      loadingModule: 'Ładowanie modułu...',
     }
   }
 
@@ -266,6 +269,7 @@ function getShellText(language: AppLanguage) {
     whatToNotice: 'What to notice',
     theory: 'Theory',
     status: 'Status',
+    loadingModule: 'Loading module...',
   }
 }
 
