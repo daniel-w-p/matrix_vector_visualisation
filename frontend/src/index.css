@@ -14,4 +14,11 @@
 
 body {
   margin: 0;
+  background: #f2f6fb;
+  color: #122033;
+}
+
+body[data-theme='dark'] {
+  background: #0a1118;
+  color: #e5edf8;
 }

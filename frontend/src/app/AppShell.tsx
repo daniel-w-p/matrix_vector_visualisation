@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   AppPreferencesContext,
   type AppLanguage,
@@ -25,6 +25,10 @@ export function AppShell() {
     content: ModuleSidebarContent
   } | null>(null)
   const ActiveScreen = moduleScreens[selectedModule]
+
+  useEffect(() => {
+    document.body.dataset.theme = theme
+  }, [theme])
 
   const setSidebarOverrideForModule = useCallback(
     (content: ModuleSidebarContent | null) => {

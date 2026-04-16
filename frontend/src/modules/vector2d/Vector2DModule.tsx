@@ -26,6 +26,7 @@ import {
   computeVector2DOperation,
   formatNumber,
   formatVector2,
+  midpoint2,
 } from './vector2dMath'
 import './vector2d-module.css'
 
@@ -45,6 +46,7 @@ export function Vector2DModule() {
   const [vectorA, setVectorA] = useState<Vector2>([3, 2])
   const [vectorB, setVectorB] = useState<Vector2>([1.5, 2.5])
   const [scalar, setScalar] = useState(1)
+  const origin: Vector2 = [0, 0]
 
   useEffect(() => {
     setSidebarOverride({
@@ -63,6 +65,14 @@ export function Vector2DModule() {
   const helperVector = computation.helperVector
   const tailStart = buildTailToHeadStart(vectorA)
   const tailEnd = buildTailToHeadEnd(vectorA, helperVector)
+  const translatedHelperStroke = operation === 'add' ? '#22c55e' : '#ef4444'
+  const translatedHelperLabel = operation === 'add' ? "b'" : "-b'"
+
+  const labelA = midpoint2(origin, vectorA)
+  const labelB = midpoint2(origin, vectorB)
+  const labelResult = midpoint2(origin, resultVector)
+  const labelHelper = midpoint2(origin, helperVector)
+  const labelTranslatedHelper = midpoint2(tailStart, tailEnd)
 
   const operationOptions: Array<{ id: Vector2DOperation; label: string }> = [
     { id: 'add', label: ui.operationAdd },
@@ -100,30 +110,33 @@ export function Vector2DModule() {
               transform={transform}
               start={tailStart}
               end={tailEnd}
-              stroke="#f97316"
-              strokeWidth={1.5}
+              stroke={translatedHelperStroke}
+              strokeWidth={1.8}
             />
           )}
 
-          <VectorArrow2D transform={transform} start={[0, 0]} end={vectorA} stroke="#2563eb" />
-          <VectorArrow2D transform={transform} start={[0, 0]} end={vectorB} stroke="#16a34a" />
+          <VectorArrow2D transform={transform} start={origin} end={vectorA} stroke="#2563eb" />
+          <VectorArrow2D transform={transform} start={origin} end={vectorB} stroke="#16a34a" />
           {operation === 'subtract' && (
-            <VectorArrow2D transform={transform} start={[0, 0]} end={helperVector} stroke="#f97316" />
+            <VectorArrow2D transform={transform} start={origin} end={helperVector} stroke="#ef4444" />
           )}
           <VectorArrow2D
             transform={transform}
-            start={[0, 0]}
+            start={origin}
             end={resultVector}
             stroke="#7c3aed"
             strokeWidth={2.5}
           />
 
-          <LabelAnchor2D transform={transform} position={vectorA} text="a" />
-          <LabelAnchor2D transform={transform} position={vectorB} text="b" />
+          <LabelAnchor2D transform={transform} position={labelA} text="a" />
+          <LabelAnchor2D transform={transform} position={labelB} text="b" />
           {operation === 'subtract' && (
-            <LabelAnchor2D transform={transform} position={helperVector} text="-b" />
+            <LabelAnchor2D transform={transform} position={labelHelper} text="-b" />
           )}
-          <LabelAnchor2D transform={transform} position={resultVector} text="result" />
+          {operation !== 'scale' && viewMode === 'tailToHead' && (
+            <LabelAnchor2D transform={transform} position={labelTranslatedHelper} text={translatedHelperLabel} />
+          )}
+          <LabelAnchor2D transform={transform} position={labelResult} text="result" />
 
           <DraggablePointHandle2D
             svgRef={svgRef}

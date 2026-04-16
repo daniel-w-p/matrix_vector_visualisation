@@ -76,3 +76,10 @@ export function buildParallelogramPoints(vectorA: Vector2, helperVector: Vector2
 export function vectorDifference(vectorA: Vector2, vectorB: Vector2): Vector2 {
   return subtractVector2(vectorA, vectorB)
 }
+
+export function midpoint2(vectorStart: Vector2, vectorEnd: Vector2): Vector2 {
+  return [
+    (vectorStart[0] + vectorEnd[0]) / 2,
+    (vectorStart[1] + vectorEnd[1]) / 2,
+  ]
+}
