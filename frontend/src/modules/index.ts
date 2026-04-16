@@ -12,9 +12,9 @@ const CrossProduct3DModule = lazy(async () => {
   return { default: module.CrossProductModule }
 })
 
-const ThreeFoundationPlaceholder = lazy(async () => {
-  const module = await import('./shared/ThreeFoundationPlaceholder')
-  return { default: module.ThreeFoundationPlaceholder }
+const Matrix3DModule = lazy(async () => {
+  const module = await import('./matrix3d/Matrix3DModule')
+  return { default: module.Matrix3DModule }
 })
 
 export const moduleScreens: Record<ModuleKey, ModuleScreenComponent> = {
@@ -22,6 +22,6 @@ export const moduleScreens: Record<ModuleKey, ModuleScreenComponent> = {
   dotProduct: DotProductModule,
   matrix2d: Matrix2DModule,
   crossProduct3d: CrossProduct3DModule,
-  matrix3d: ThreeFoundationPlaceholder,
+  matrix3d: Matrix3DModule,
   eigen: EigenPlaceholder,
 }

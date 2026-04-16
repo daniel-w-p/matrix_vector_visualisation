@@ -77,10 +77,6 @@ export function CrossProductModule() {
                   label: ui.readoutSine,
                   value: state.sineTheta === null ? 'n/a' : formatNumber(state.sineTheta),
                 },
-                {
-                  label: ui.readoutParallel,
-                  value: state.isParallel ? ui.stateParallel : ui.stateGeneral,
-                },
               ]}
             />
           }

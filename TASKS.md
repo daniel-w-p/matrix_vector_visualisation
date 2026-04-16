@@ -88,13 +88,13 @@ Use this file as the high-level implementation queue.
 
 ## Module 5 - Matrix 3D
 
-- [ ] Matrix 3D edit controls
-- [ ] Matrix add/subtract/scale interaction
-- [ ] Matrix-vector multiplication view
-- [ ] Basis transformation view
-- [ ] Unit cube to parallelepiped view
-- [ ] Determinant as volume scale
-- [ ] Module tests
+- [x] Matrix 3D edit controls
+- [x] Matrix add/subtract/scale interaction
+- [x] Matrix-vector multiplication view
+- [x] Basis transformation view
+- [x] Unit cube to parallelepiped view
+- [x] Determinant as volume scale
+- [x] Module tests
 
 ## Module 6 - Eigen
 

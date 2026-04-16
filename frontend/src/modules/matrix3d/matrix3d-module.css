@@ -1,0 +1,121 @@
+.matrix3d-module {
+  display: grid;
+  gap: 1rem;
+}
+
+.matrix3d-scene-card {
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  background: var(--panel-bg);
+  padding: 0.5rem;
+}
+
+.matrix3d-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.matrix3d-controls,
+.matrix3d-algebra {
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  background: var(--panel-bg);
+}
+
+.matrix3d-controls h3,
+.matrix3d-algebra h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.matrix3d-section-title {
+  margin: 0.4rem 0 0.45rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.matrix3d-chip-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.55rem;
+}
+
+.matrix3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(60px, 86px));
+  gap: 0.35rem;
+}
+
+.matrix3-grid input,
+.vector3-grid input {
+  width: 100%;
+  border: 1px solid var(--panel-border);
+  border-radius: 7px;
+  background: var(--tab-bg);
+  color: var(--text-main);
+  padding: 0.28rem 0.38rem;
+}
+
+.vector3-editor {
+  margin: 0.45rem 0 0.55rem;
+}
+
+.vector3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(68px, 90px));
+  gap: 0.35rem;
+}
+
+.vector3-grid label {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.vector3-grid span {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.scalar-control {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.4rem 0 0.55rem;
+}
+
+.matrix3d-toggle-list {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.matrix3d-toggle-list label {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+.control-hint {
+  margin: 0.7rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.matrix3d-algebra p {
+  margin: 0.4rem 0;
+}
+
+.matrix3d-algebra code {
+  background: var(--tab-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+}
+
+@media (max-width: 920px) {
+  .matrix3d-layout {
+    grid-template-columns: 1fr;
+  }
+}
