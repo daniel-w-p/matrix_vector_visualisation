@@ -51,12 +51,12 @@ Use this file as the high-level implementation queue.
 
 ## Module 2 - Dot product
 
-- [ ] Dot product screen
-- [ ] Projection visualization
-- [ ] Angle + cosine view
-- [ ] Positive / zero / negative state callouts
-- [ ] Unit-vector teaching mode
-- [ ] Module tests
+- [x] Dot product screen
+- [x] Projection visualization
+- [x] Angle + cosine view
+- [x] Positive / zero / negative state callouts
+- [x] Unit-vector teaching mode
+- [x] Module tests
 
 ## Module 3 - Matrix 2D and determinant
 

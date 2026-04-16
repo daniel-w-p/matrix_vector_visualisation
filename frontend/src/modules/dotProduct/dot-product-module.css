@@ -1,0 +1,161 @@
+.dot-module {
+  display: grid;
+  gap: 1rem;
+}
+
+.dot-scene-card {
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  background: var(--panel-bg);
+  padding: 0.5rem;
+}
+
+.dot-scene {
+  border-radius: 8px;
+  background: var(--panel-bg);
+}
+
+.dot-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.dot-controls,
+.dot-algebra {
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  background: var(--panel-bg);
+}
+
+.dot-controls h3,
+.dot-algebra h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.dot-control-title {
+  margin: 0 0 0.45rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.dot-chip-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+}
+
+.chip {
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  background: var(--tab-bg);
+  color: var(--text-main);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.chip.is-active {
+  border-color: var(--tab-active-border);
+  background: var(--tab-active-bg);
+  color: var(--tab-active-text);
+}
+
+.dot-toggle-list {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 0.65rem;
+}
+
+.dot-toggle-list label {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+.control-hint {
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.preset-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.preset-button {
+  display: grid;
+  justify-items: start;
+  gap: 0.2rem;
+  text-align: left;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: var(--tab-bg);
+  color: var(--text-main);
+  padding: 0.55rem 0.65rem;
+  cursor: pointer;
+}
+
+.preset-button span {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.dot-algebra p {
+  margin: 0.4rem 0;
+}
+
+.dot-algebra code {
+  background: var(--tab-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+}
+
+.sign-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-weight: 600;
+}
+
+.sign-positive {
+  background: #e8f8ed;
+  color: #1b7f43;
+}
+
+.sign-zero {
+  background: #eef2f8;
+  color: #334a62;
+}
+
+.sign-negative {
+  background: #fdeaea;
+  color: #b42318;
+}
+
+.theme-dark .sign-positive {
+  background: #173324;
+  color: #9be7be;
+}
+
+.theme-dark .sign-zero {
+  background: #243347;
+  color: #c7d4e6;
+}
+
+.theme-dark .sign-negative {
+  background: #3a2023;
+  color: #ffb4ab;
+}
+
+@media (max-width: 920px) {
+  .dot-layout {
+    grid-template-columns: 1fr;
+  }
+}

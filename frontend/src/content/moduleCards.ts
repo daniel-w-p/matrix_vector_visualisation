@@ -82,7 +82,7 @@ export const moduleCards: Record<ModuleKey, ModuleCard> = {
         pl: 'Postać równoważna: a·b = |a||b|cos(theta), łącząca algebrę i geometrię.',
       },
     ],
-    defaultStatus: { en: 'Placeholder screen', pl: 'Ekran placeholdera' },
+    defaultStatus: { en: 'Interactive module', pl: 'Moduł interaktywny' },
   },
   matrix2d: {
     id: 'matrix2d',
