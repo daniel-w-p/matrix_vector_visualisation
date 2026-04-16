@@ -12,7 +12,8 @@ describe('dot product math helpers', () => {
   it('classifies sign state around zero threshold', () => {
     expect(dotSignState(2)).toBe('positive')
     expect(dotSignState(-0.5)).toBe('negative')
-    expect(dotSignState(0.01)).toBe('zero')
+    expect(dotSignState(0)).toBe('zero_exact')
+    expect(dotSignState(0.01)).toBe('zero_near')
   })
 
   it('computes projection of source on target', () => {

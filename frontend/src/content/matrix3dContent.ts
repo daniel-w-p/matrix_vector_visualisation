@@ -17,10 +17,10 @@ export type Matrix3DPreset = {
 export const matrix3DPresets: readonly Matrix3DPreset[] = [
   {
     id: 'identity',
-    label: { en: 'Identity', pl: 'Identyczność' },
+    label: { en: 'Identity', pl: 'Identycznosc' },
     description: {
       en: 'Identity keeps basis, vectors, and unit cube unchanged.',
-      pl: 'Macierz identycznościowa nie zmienia bazy, wektorów ani sześcianu jednostkowego.',
+      pl: 'Macierz identycznosciowa nie zmienia bazy, wektorow ani szescianu jednostkowego.',
     },
     mode: 'apply',
     matrixA: [
@@ -41,7 +41,7 @@ export const matrix3DPresets: readonly Matrix3DPreset[] = [
     label: { en: 'Axis scaling', pl: 'Skalowanie osiowe' },
     description: {
       en: 'Different axis scales change volume by determinant.',
-      pl: 'Różne skale osi zmieniają objętość zgodnie z wyznacznikiem.',
+      pl: 'Rozne skale osi zmieniaja objetosc zgodnie z wyznacznikiem.',
     },
     mode: 'apply',
     matrixA: [
@@ -62,7 +62,7 @@ export const matrix3DPresets: readonly Matrix3DPreset[] = [
     label: { en: 'Reflection', pl: 'Odbicie' },
     description: {
       en: 'Reflection flips orientation and gives negative determinant.',
-      pl: 'Odbicie odwraca orientację i daje ujemny wyznacznik.',
+      pl: 'Odbicie odwraca orientacje i daje ujemny wyznacznik.',
     },
     mode: 'apply',
     matrixA: [
@@ -83,7 +83,7 @@ export const matrix3DPresets: readonly Matrix3DPreset[] = [
     label: { en: 'Singular', pl: 'Osobliwa' },
     description: {
       en: 'Singular matrix collapses unit cube volume to zero.',
-      pl: 'Macierz osobliwa zeruje objętość sześcianu jednostkowego.',
+      pl: 'Macierz osobliwa zeruje objetosc szescianu jednostkowego.',
     },
     mode: 'apply',
     matrixA: [
@@ -114,22 +114,24 @@ export function getMatrix3DUIText(language: AppLanguage) {
       matrixA: 'Macierz A',
       matrixB: 'Macierz B',
       scalar: 'Skalar k',
-      inputVector: 'Wektor wejściowy',
-      overlays: 'Nakładki',
-      basis: 'Pokaż bazę i obrazy bazy',
-      unitCube: 'Pokaż sześcian jednostkowy i obraz',
-      vectorMap: 'Pokaż mapowanie wektora',
+      inputVector: 'Wektor wejsciowy',
+      overlays: 'Nakladki',
+      basis: 'Pokaz baze i obrazy bazy',
+      unitCube: 'Pokaz szescian jednostkowy i obraz',
+      vectorMap: 'Pokaz mapowanie wektora',
       dragHint:
-        'Obracaj scenę i zmieniaj wpisy macierzy, aby łączyć zapis algebraiczny z transformacją 3D.',
+        'Obracaj scene i zmieniaj wpisy macierzy, aby laczyc zapis algebraiczny z transformacja 3D.',
       detPositive: 'Dodatni wyznacznik: orientacja zachowana',
-      detNegative: 'Ujemny wyznacznik: orientacja odwrócona',
-      detZero: 'Wyznacznik bliski zeru: objętość zapada się',
+      detNegative: 'Ujemny wyznacznik: orientacja odwrocona',
+      detZeroExact: 'Wyznacznik rowny zero: objetosc zapadnieta',
+      detZeroNear: 'Wyznacznik bliski zeru: objetosc prawie zapadnieta',
       orientation: 'Orientacja',
       orientationPositive: 'Dodatnia',
       orientationNegative: 'Ujemna',
-      orientationZero: 'Blisko zera',
+      orientationZeroExact: 'Dokladnie zero',
+      orientationZeroNear: 'Blisko zera',
       sceneLabel: 'Scena macierzy 3D',
-      status: 'Moduł interaktywny',
+      status: 'Modul interaktywny',
       resetView: 'Reset widoku',
     }
   }
@@ -154,11 +156,13 @@ export function getMatrix3DUIText(language: AppLanguage) {
       'Orbit the scene and update matrix entries to connect algebraic form with 3D transformation.',
     detPositive: 'Positive determinant: orientation preserved',
     detNegative: 'Negative determinant: orientation flipped',
-    detZero: 'Near-zero determinant: volume collapse',
+    detZeroExact: 'Determinant equals zero: volume collapsed',
+    detZeroNear: 'Near-zero determinant: volume almost collapsed',
     orientation: 'Orientation',
     orientationPositive: 'Positive',
     orientationNegative: 'Negative',
-    orientationZero: 'Near zero',
+    orientationZeroExact: 'Exactly zero',
+    orientationZeroNear: 'Near zero',
     sceneLabel: 'Matrix 3D scene',
     status: 'Interactive module',
     resetView: 'Reset view',
@@ -168,17 +172,17 @@ export function getMatrix3DUIText(language: AppLanguage) {
 export function getMatrix3DTheory(language: AppLanguage): string[] {
   if (language === 'pl') {
     return [
-      'Kolumny macierzy 3x3 to obrazy wektorów bazowych e₁, e₂ i e₃.',
-      'Dodawanie i odejmowanie macierzy są elementowe: (A ± B)ᵢⱼ = Aᵢⱼ ± Bᵢⱼ.',
-      'Skalowanie mnoży każdy element: (kA)ᵢⱼ = k * Aᵢⱼ.',
-      'Wyznacznik 3x3 opisuje skalę objętości i orientację przekształcenia.',
+      'Kolumny macierzy 3x3 to obrazy wektorow bazowych e1, e2 i e3.',
+      'Dodawanie i odejmowanie macierzy sa elementowe: (A +/- B)ij = Aij +/- Bij.',
+      'Skalowanie mnozy kazdy element: (kA)ij = k * Aij.',
+      'Wyznacznik 3x3 opisuje skale objetosci i orientacje przeksztalcenia.',
     ]
   }
 
   return [
-    'Columns of a 3x3 matrix are images of basis vectors e₁, e₂, and e₃.',
-    'Matrix addition and subtraction are element-wise: (A ± B)ᵢⱼ = Aᵢⱼ ± Bᵢⱼ.',
-    'Scaling multiplies each entry: (kA)ᵢⱼ = k * Aᵢⱼ.',
+    'Columns of a 3x3 matrix are images of basis vectors e1, e2, and e3.',
+    'Matrix addition and subtraction are element-wise: (A +/- B)ij = Aij +/- Bij.',
+    'Scaling multiplies each entry: (kA)ij = k * Aij.',
     'Determinant of 3x3 gives volume scale and orientation of the transformation.',
   ]
 }
@@ -188,23 +192,29 @@ export function getMatrix3DWhatToNotice(
   mode: Matrix3DMode,
   determinant: number,
 ): string {
+  const isExactZero = determinant === 0
+  const isNearZero = !isExactZero && Math.abs(determinant) < 0.02
+
   if (language === 'pl') {
     if (mode === 'add') {
-      return 'W trybie A + B każda kolumna wyniku to suma odpowiednich kolumn A i B.'
+      return 'W trybie A + B kazda kolumna wyniku to suma odpowiednich kolumn A i B.'
     }
     if (mode === 'subtract') {
-      return 'W trybie A - B każda kolumna wyniku to różnica odpowiednich kolumn A i B.'
+      return 'W trybie A - B kazda kolumna wyniku to roznica odpowiednich kolumn A i B.'
     }
     if (mode === 'scale') {
-      return 'W trybie k*A każda kolumna skaluje się tym samym współczynnikiem k.'
+      return 'W trybie k*A kazda kolumna skaluje sie tym samym wspolczynnikiem k.'
     }
-    if (Math.abs(determinant) < 0.02) {
-      return 'Objętość bryły zapada się, bo wyznacznik jest bliski zeru.'
+    if (isExactZero) {
+      return 'Objetosc bryly zapada sie dokladnie, bo wyznacznik jest rowny zero.'
+    }
+    if (isNearZero) {
+      return 'Objetosc bryly prawie zapada sie, bo wyznacznik jest bliski zeru.'
     }
     if (determinant < 0) {
-      return 'Ujemny wyznacznik oznacza odwrócenie orientacji bryły.'
+      return 'Ujemny wyznacznik oznacza odwrocenie orientacji bryly.'
     }
-    return 'Dodatni wyznacznik zachowuje orientację, a jego moduł skaluje objętość.'
+    return 'Dodatni wyznacznik zachowuje orientacje, a jego modul skaluje objetosc.'
   }
 
   if (mode === 'add') {
@@ -216,8 +226,11 @@ export function getMatrix3DWhatToNotice(
   if (mode === 'scale') {
     return 'In k*A mode, every column scales by the same scalar k.'
   }
-  if (Math.abs(determinant) < 0.02) {
-    return 'Volume collapses because determinant is near zero.'
+  if (isExactZero) {
+    return 'Volume collapses exactly because determinant equals zero.'
+  }
+  if (isNearZero) {
+    return 'Volume almost collapses because determinant is near zero.'
   }
   if (determinant < 0) {
     return 'Negative determinant indicates orientation flip of the shape.'

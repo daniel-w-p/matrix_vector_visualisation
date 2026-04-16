@@ -102,7 +102,9 @@ export function Matrix2DModule() {
       ? ui.orientationPositive
       : detState === 'negative'
         ? ui.orientationNegative
-        : ui.orientationZero
+        : detState === 'zero_exact'
+          ? ui.orientationZeroExact
+          : ui.orientationZeroNear
 
   return (
     <section className="matrix2d-module">
@@ -341,7 +343,9 @@ export function Matrix2DModule() {
               ? ui.detPositive
               : detState === 'negative'
                 ? ui.detNegative
-                : ui.detZero}
+                : detState === 'zero_exact'
+                  ? ui.detZeroExact
+                  : ui.detZeroNear}
           </p>
           <p>
             {ui.inputVector}: <code>{formatVector(inputVector)}</code>

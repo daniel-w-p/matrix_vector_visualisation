@@ -10,7 +10,7 @@ import {
 
 const EPSILON = 1e-8
 
-export type ResidualState = 'aligned' | 'close' | 'off'
+export type ResidualState = 'exact' | 'aligned' | 'close' | 'off'
 
 export type DirectionSample = {
   endpoint: Vector2
@@ -44,6 +44,9 @@ export function verifyEigenCandidate2D(matrix: Matrix2x2, vector: Vector2, lambd
 }
 
 export function residualState(residual: number): ResidualState {
+  if (residual === 0) {
+    return 'exact'
+  }
   if (residual < 0.08) {
     return 'aligned'
   }

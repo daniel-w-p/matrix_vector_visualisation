@@ -49,7 +49,8 @@ describe('matrix2d math helpers', () => {
   it('classifies determinant state', () => {
     expect(determinantState(3)).toBe('positive')
     expect(determinantState(-2)).toBe('negative')
-    expect(determinantState(0.001)).toBe('zero')
+    expect(determinantState(0)).toBe('zero_exact')
+    expect(determinantState(0.001)).toBe('zero_near')
   })
 
   it('builds transformed grid lines', () => {

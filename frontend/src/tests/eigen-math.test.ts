@@ -5,6 +5,7 @@ import {
   discriminant2x2,
   hasRealEigenvalues2x2,
   rayleighQuotient2D,
+  residualState,
   sampleDirectionResiduals,
   verifyEigenCandidate2D,
 } from '../modules/eigen/eigenMath'
@@ -40,6 +41,7 @@ describe('eigenMath', () => {
     const verification = verifyEigenCandidate2D(matrix, vector, 2)
 
     expect(verification.residual).toBeCloseTo(0, 8)
+    expect(residualState(verification.residual)).toBe('exact')
   })
 
   it('direction scan highlights at least one low-residual ray on diagonal matrix', () => {

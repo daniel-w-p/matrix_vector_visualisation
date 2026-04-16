@@ -5,11 +5,14 @@ import {
   type Vector2,
 } from '../../math'
 
-export type DotSignState = 'positive' | 'zero' | 'negative'
+export type DotSignState = 'positive' | 'zero_exact' | 'zero_near' | 'negative'
 
 export function dotSignState(value: number, epsilon = 0.02): DotSignState {
+  if (value === 0) {
+    return 'zero_exact'
+  }
   if (Math.abs(value) <= epsilon) {
-    return 'zero'
+    return 'zero_near'
   }
 
   return value > 0 ? 'positive' : 'negative'

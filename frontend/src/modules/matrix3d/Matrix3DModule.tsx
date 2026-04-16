@@ -89,7 +89,9 @@ export function Matrix3DModule() {
       ? ui.orientationPositive
       : detState === 'negative'
         ? ui.orientationNegative
-        : ui.orientationZero
+        : detState === 'zero_exact'
+          ? ui.orientationZeroExact
+          : ui.orientationZeroNear
 
   return (
     <section className="matrix3d-module">
@@ -271,7 +273,9 @@ export function Matrix3DModule() {
               ? ui.detPositive
               : detState === 'negative'
                 ? ui.detNegative
-                : ui.detZero}
+                : detState === 'zero_exact'
+                  ? ui.detZeroExact
+                  : ui.detZeroNear}
           </p>
           <p>
             v = <code>{formatVector3(inputVector)}</code>

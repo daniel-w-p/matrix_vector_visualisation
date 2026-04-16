@@ -60,7 +60,8 @@ describe('matrix3dMath', () => {
   it('classifies determinant states', () => {
     expect(determinantState3D(2)).toBe('positive')
     expect(determinantState3D(-0.5)).toBe('negative')
-    expect(determinantState3D(0.001)).toBe('zero')
+    expect(determinantState3D(0)).toBe('zero_exact')
+    expect(determinantState3D(0.001)).toBe('zero_near')
   })
 
   it('formats 3x3 matrix values', () => {

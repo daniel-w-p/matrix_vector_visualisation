@@ -294,7 +294,9 @@ export function DotProductModule() {
                 ? ui.signPositive
                 : signState === 'negative'
                   ? ui.signNegative
-                  : ui.signZero}
+                  : signState === 'zero_exact'
+                    ? ui.signZeroExact
+                    : ui.signZeroNear}
             </span>
           </p>
         </section>

@@ -348,7 +348,9 @@ export function EigenModule() {
           <p>
             {ui.residual}: <code>{formatNumber(verification.residual)}</code>{' '}
             <span className={residualClass}>
-              {state === 'aligned'
+              {state === 'exact'
+                ? ui.residualExact
+                : state === 'aligned'
                 ? ui.residualAligned
                 : state === 'close'
                   ? ui.residualClose
@@ -369,6 +371,9 @@ export function EigenModule() {
 }
 
 function getResidualClass(state: ResidualState): string {
+  if (state === 'exact') {
+    return 'residual-badge residual-good'
+  }
   if (state === 'aligned') {
     return 'residual-badge residual-good'
   }

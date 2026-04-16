@@ -41,9 +41,12 @@ export function matrixColumns3D(matrix: Matrix3x3): readonly [Vector3, Vector3, 
 
 export function determinantState3D(
   determinant: number,
-): 'positive' | 'negative' | 'zero' {
+): 'positive' | 'negative' | 'zero_exact' | 'zero_near' {
+  if (determinant === 0) {
+    return 'zero_exact'
+  }
   if (Math.abs(determinant) < 0.02) {
-    return 'zero'
+    return 'zero_near'
   }
   return determinant < 0 ? 'negative' : 'positive'
 }

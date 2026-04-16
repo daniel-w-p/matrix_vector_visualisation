@@ -52,9 +52,14 @@ export function transformedUnitSquare(matrix: Matrix2x2): Vector2[] {
   ]
 }
 
-export function determinantState(det: number, epsilon = 0.02): 'positive' | 'negative' | 'zero' {
+export type DeterminantState2D = 'positive' | 'negative' | 'zero_exact' | 'zero_near'
+
+export function determinantState(det: number, epsilon = 0.02): DeterminantState2D {
+  if (det === 0) {
+    return 'zero_exact'
+  }
   if (Math.abs(det) <= epsilon) {
-    return 'zero'
+    return 'zero_near'
   }
   return det > 0 ? 'positive' : 'negative'
 }

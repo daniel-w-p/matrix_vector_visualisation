@@ -2,6 +2,7 @@ import type { AppLanguage } from '../app/AppPreferencesContext'
 import type { Matrix2x2, Vector2 } from '../math'
 
 export type Matrix2DMode = 'apply' | 'add' | 'subtract' | 'scale'
+export type Matrix2DDetState = 'positive' | 'negative' | 'zero_exact' | 'zero_near'
 
 export type Matrix2DPreset = {
   id: string
@@ -17,10 +18,10 @@ export type Matrix2DPreset = {
 export const matrix2DPresets: readonly Matrix2DPreset[] = [
   {
     id: 'identity',
-    label: { en: 'Identity', pl: 'Identyczność' },
+    label: { en: 'Identity', pl: 'Identycznosc' },
     description: {
       en: 'Identity keeps vectors and unit square unchanged.',
-      pl: 'Macierz identycznościowa nie zmienia wektorów ani kwadratu jednostkowego.',
+      pl: 'Macierz identycznosciowa nie zmienia wektorow ani kwadratu jednostkowego.',
     },
     mode: 'apply',
     matrixA: [
@@ -39,7 +40,7 @@ export const matrix2DPresets: readonly Matrix2DPreset[] = [
     label: { en: 'Reflection', pl: 'Odbicie' },
     description: {
       en: 'Reflection changes orientation and gives negative determinant.',
-      pl: 'Odbicie zmienia orientację i daje ujemny wyznacznik.',
+      pl: 'Odbicie zmienia orientacje i daje ujemny wyznacznik.',
     },
     mode: 'apply',
     matrixA: [
@@ -55,10 +56,10 @@ export const matrix2DPresets: readonly Matrix2DPreset[] = [
   },
   {
     id: 'shear',
-    label: { en: 'Shear', pl: 'Ścinanie' },
+    label: { en: 'Shear', pl: 'Scinanie' },
     description: {
       en: 'Shear keeps area but slants the grid.',
-      pl: 'Ścinanie zachowuje pole, ale pochyla siatkę.',
+      pl: 'Scinanie zachowuje pole, ale pochyla siatke.',
     },
     mode: 'apply',
     matrixA: [
@@ -106,23 +107,25 @@ export function getMatrix2DUIText(language: AppLanguage) {
       matrixA: 'Macierz A',
       matrixB: 'Macierz B',
       scalar: 'Skalar k',
-      inputVector: 'Wektor wejściowy',
-      overlays: 'Nakładki',
-      basis: 'Pokaż bazę',
-      transformedGrid: 'Pokaż przekształconą siatkę',
-      determinant: 'Pokaż kwadrat jednostkowy i wyznacznik',
-      vectorMap: 'Pokaż mapowanie wektora',
+      inputVector: 'Wektor wejsciowy',
+      overlays: 'Nakladki',
+      basis: 'Pokaz baze',
+      transformedGrid: 'Pokaz przeksztalcona siatke',
+      determinant: 'Pokaz kwadrat jednostkowy i wyznacznik',
+      vectorMap: 'Pokaz mapowanie wektora',
       dragHint:
-        'Przeciągaj wektor wejściowy i zmieniaj wpisy macierzy, aby łączyć zapis algebraiczny z geometrią.',
+        'Przeciagaj wektor wejsciowy i zmieniaj wpisy macierzy, aby laczyc zapis algebraiczny z geometria.',
       detPositive: 'Orientacja zachowana',
-      detNegative: 'Orientacja odwrócona',
-      detZero: 'Zwinięcie pola do zera',
+      detNegative: 'Orientacja odwrocona',
+      detZeroExact: 'Dokladne zwiniecie pola do zera',
+      detZeroNear: 'Prawie zwiniecie pola do zera',
       orientation: 'Orientacja',
       orientationPositive: 'Dodatnia',
       orientationNegative: 'Ujemna',
-      orientationZero: 'Blisko zera',
+      orientationZeroExact: 'Dokladnie zero',
+      orientationZeroNear: 'Blisko zera',
       resetView: 'Reset widoku',
-      status: 'Moduł interaktywny',
+      status: 'Modul interaktywny',
       sceneLabel: 'Scena macierzy 2D',
     }
   }
@@ -148,11 +151,13 @@ export function getMatrix2DUIText(language: AppLanguage) {
       'Drag the input vector and update matrix entries to link algebraic form with geometry.',
     detPositive: 'Orientation preserved',
     detNegative: 'Orientation flipped',
-    detZero: 'Area collapsed to zero',
+    detZeroExact: 'Area exactly collapsed to zero',
+    detZeroNear: 'Area nearly collapsed to zero',
     orientation: 'Orientation',
     orientationPositive: 'Positive',
     orientationNegative: 'Negative',
-    orientationZero: 'Near zero',
+    orientationZeroExact: 'Exactly zero',
+    orientationZeroNear: 'Near zero',
     resetView: 'Reset view',
     status: 'Interactive module',
     sceneLabel: 'Matrix 2D scene',
@@ -162,18 +167,18 @@ export function getMatrix2DUIText(language: AppLanguage) {
 export function getMatrix2DTheory(language: AppLanguage): string[] {
   if (language === 'pl') {
     return [
-      'Kolumny macierzy są obrazami wektorów bazowych e₁ i e₂ po transformacji.',
-      'Dodawanie i odejmowanie macierzy odbywa się element po elemencie: (A ± B)ᵢⱼ = Aᵢⱼ ± Bᵢⱼ.',
-      'Skalowanie macierzy mnoży każdy element: (kA)ᵢⱼ = k * Aᵢⱼ.',
-      'Dla 2x2: det(A) = a₁₁*a₂₂ - a₁₂*a₂₁. |det(A)| to skala pola, a znak mówi o orientacji.',
+      'Kolumny macierzy sa obrazami wektorow bazowych e1 i e2 po transformacji.',
+      'Dodawanie i odejmowanie macierzy odbywa sie element po elemencie: (A +/- B)ij = Aij +/- Bij.',
+      'Skalowanie macierzy mnozy kazdy element: (kA)ij = k * Aij.',
+      'Dla 2x2: det(A) = a11*a22 - a12*a21. |det(A)| to skala pola, a znak mowi o orientacji.',
     ]
   }
 
   return [
-    'Matrix columns are images of basis vectors e₁ and e₂ under the transformation.',
-    'Matrix addition/subtraction is element-wise: (A ± B)ᵢⱼ = Aᵢⱼ ± Bᵢⱼ.',
-    'Matrix scaling multiplies each entry: (kA)ᵢⱼ = k * Aᵢⱼ.',
-    'For 2x2, det(A) = a₁₁*a₂₂ - a₁₂*a₂₁. |det(A)| is area scale, sign indicates orientation.',
+    'Matrix columns are images of basis vectors e1 and e2 under the transformation.',
+    'Matrix addition/subtraction is element-wise: (A +/- B)ij = Aij +/- Bij.',
+    'Matrix scaling multiplies each entry: (kA)ij = k * Aij.',
+    'For 2x2, det(A) = a11*a22 - a12*a21. |det(A)| is area scale, sign indicates orientation.',
   ]
 }
 
@@ -182,23 +187,29 @@ export function getMatrix2DWhatToNotice(
   mode: Matrix2DMode,
   determinant: number,
 ): string {
+  const isExactZero = determinant === 0
+  const isNearZero = !isExactZero && Math.abs(determinant) < 0.02
+
   if (language === 'pl') {
     if (mode === 'add') {
-      return 'W trybie A + B zwróć uwagę, że kolumny wynikowe są sumą kolumn A i B.'
+      return 'W trybie A + B kolumny wynikowe sa suma kolumn A i B.'
     }
     if (mode === 'subtract') {
-      return 'W trybie A - B kolumny wynikowe są różnicą kolumn A i B, co widać na bazie i siatce.'
+      return 'W trybie A - B kolumny wynikowe sa roznica kolumn A i B.'
     }
     if (mode === 'scale') {
-      return 'W trybie k*A każdy element macierzy i cała transformacja skalują się przez ten sam k.'
+      return 'W trybie k*A kazdy element macierzy i cala transformacja skaluja sie przez ten sam k.'
     }
-    if (Math.abs(determinant) < 0.02) {
-      return 'Kwadrat jednostkowy zapada się do odcinka, bo wyznacznik jest bliski zeru.'
+    if (isExactZero) {
+      return 'Kwadrat jednostkowy zapada sie dokladnie do odcinka, bo wyznacznik jest rowny zero.'
+    }
+    if (isNearZero) {
+      return 'Kwadrat jednostkowy prawie zapada sie do odcinka, bo wyznacznik jest bliski zeru.'
     }
     if (determinant < 0) {
-      return 'Ujemny wyznacznik oznacza zmianę orientacji (odbicie).'
+      return 'Ujemny wyznacznik oznacza zmiane orientacji (odbicie).'
     }
-    return 'Dodatni wyznacznik zachowuje orientację, a jego wartość bezwzględna skaluje pole.'
+    return 'Dodatni wyznacznik zachowuje orientacje, a jego wartosc bezwzgledna skaluje pole.'
   }
 
   if (mode === 'add') {
@@ -210,8 +221,11 @@ export function getMatrix2DWhatToNotice(
   if (mode === 'scale') {
     return 'In k*A mode, every matrix entry and the whole transformation scale by the same k.'
   }
-  if (Math.abs(determinant) < 0.02) {
-    return 'The unit square collapses toward a line because determinant is near zero.'
+  if (isExactZero) {
+    return 'The unit square collapses exactly to a line because determinant equals zero.'
+  }
+  if (isNearZero) {
+    return 'The unit square nearly collapses to a line because determinant is near zero.'
   }
   if (determinant < 0) {
     return 'Negative determinant indicates an orientation flip (reflection).'

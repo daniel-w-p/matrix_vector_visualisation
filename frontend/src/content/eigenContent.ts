@@ -134,6 +134,7 @@ export function getEigenUIText(language: AppLanguage) {
         'Skan kierunkow jest numerycznym przyblizeniem: zielone promienie sugeruja male residuum r.',
       noRealEigenHint: `Ta macierz nie ma rzeczywistych wektorow wlasnych w 2D (${D} < 0).`,
       residual: 'Residuum',
+      residualExact: 'Idealna para wlasna',
       residualAligned: 'Prawie idealna para wlasna',
       residualClose: 'Blisko kierunku wlasnego',
       residualOff: 'Poza kierunkiem wlasnym',
@@ -168,6 +169,7 @@ export function getEigenUIText(language: AppLanguage) {
     scanHint: 'Direction scan is numerical approximation: green rays suggest small residual r.',
     noRealEigenHint: `This matrix has no real eigenvectors in 2D (${D} < 0).`,
     residual: 'Residual',
+    residualExact: 'Exact eigenpair',
     residualAligned: 'Near exact eigenpair',
     residualClose: 'Close to eigen-direction',
     residualOff: 'Away from eigen-direction',
@@ -204,7 +206,7 @@ export function getEigenTheory(language: AppLanguage): string[] {
 
 export function getEigenWhatToNotice(
   language: AppLanguage,
-  residualState: 'aligned' | 'close' | 'off',
+  residualState: 'exact' | 'aligned' | 'close' | 'off',
   hasRealEigenvectors: boolean,
 ): string {
   const L = '\u03BB'
@@ -212,6 +214,9 @@ export function getEigenWhatToNotice(
   if (language === 'pl') {
     if (!hasRealEigenvectors) {
       return `Tutaj brak rzeczywistych kierunkow wlasnych: A v i ${L} v nie pokryja sie dla zadnego niezerowego v.`
+    }
+    if (residualState === 'exact') {
+      return `A v pokrywa sie idealnie z ${L} v, wiec masz dokladna pare wlasna.`
     }
     if (residualState === 'aligned') {
       return `A v prawie pokrywa sie z ${L} v, wiec wybrales kierunek bardzo bliski wektorowi wlasnemu.`
@@ -224,6 +229,9 @@ export function getEigenWhatToNotice(
 
   if (!hasRealEigenvectors) {
     return `No real invariant direction here: A v and ${L} v cannot fully align for any non-zero real v.`
+  }
+  if (residualState === 'exact') {
+    return `A v matches ${L} v exactly, so this is an exact eigenpair.`
   }
   if (residualState === 'aligned') {
     return `A v nearly overlaps with ${L} v, so this direction is very close to an eigenvector.`
