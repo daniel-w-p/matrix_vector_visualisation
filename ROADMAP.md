@@ -90,17 +90,14 @@
 
 ---
 
-## Milestone 5 — Pedagogy layer, performance, and release polish
+## Milestone 5 — Performance and release polish
 
 ### Goals
-- add lesson/preset system
 - move only justified workloads to workers
 - finish Django integration for deployment
 - refine accessibility and usability
 
 ### Deliverables
-- lesson mode
-- compare mode and pedagogical presets
 - worker boundary where useful
 - Django static integration
 - release checklist

@@ -1,71 +1,116 @@
-# Vector Lab — Codex Starter Repository
+# Vector Lab - AI-Built Linear Algebra Learning App
 
-This repository is a **docs-first starter kit** for building a web-based educational app for learning vectors, matrices, determinants, and eigen concepts through interaction.
+Vector Lab is a web-first educational app for learning linear algebra through direct manipulation, visual intuition, and synchronized algebraic views.
 
-It intentionally starts **without implementation code**. The goal is to give Codex a clean, durable project context before any scaffolding begins.
+The app teaches vectors, dot product, cross product, matrices, determinants, and eigen concepts.
+It is intentionally not a calculator-first tool.
 
-## Product intent
+## How This App Was Created
 
-Build a web app that helps learners **see** and **manipulate** linear algebra ideas:
+This project was built with a strong AI-assisted workflow in just two evenings.
+
+- GPT-5.4 first analyzed the product idea and prepared the initial repository structure.
+- GPT-5.4 generated the core project documentation for Codex (large contribution): scope, architecture, roadmap, tasks, and prompt sequence.
+- Codex then implemented the app step by step using prompts from `prompts/`.
+- The developer supervised each step, added ongoing corrections and practical instructions during execution, and made directional decisions.
+- Some of those runtime instructions were intentionally not stored in the repository, so the process can later be compared with a "just say continue" prompt flow.
+
+A key takeaway from this project: topic knowledge still matters. AI accelerates delivery, but quality depended on active domain-aware supervision.
+
+## Dual Educational Value
+
+This project has two educational layers:
+
+1. Linear algebra learning itself through interactive visualization.
+2. Public AI engineering case study: the full repo shows how to build a real app collaboratively with AI.
+
+## Product Intent
+
+Build a web app that helps learners see and manipulate linear algebra ideas:
 
 - vector addition, subtraction, and scaling
-- dot product as projection and cosine-of-angle
+- dot product as projection and cosine of angle
 - cross product as oriented area and normal direction
-- matrix addition, subtraction, scaling, and matrix–vector multiplication
+- matrix addition, subtraction, scaling, and matrix-vector multiplication
 - determinant as area/volume scaling and orientation change
-- eigenvalues and eigenvectors with live verification of `A v = λ v`
+- eigenvalues and eigenvectors with live verification of `A v = lambda v`
 
-This is **not** meant to become a calculator-first tool. It should feel like a guided visual lab.
+## Architecture Overview
 
-## Chosen stack
+The app is client-heavy by design.
 
-- **Frontend:** React + TypeScript + Vite
-- **2D rendering:** SVG
-- **3D rendering:** React Three Fiber / Three.js
-- **Heavy computations:** Web Workers when needed
-- **Backend:** Django as a thin host layer and future API surface
+- Frontend owns math, interaction, and rendering.
+- Backend (Django) is intentionally thin and focused on hosting.
+- Math logic, rendering logic, and teaching content are separated.
 
-## Why this starter repo exists
+### Frontend structure
 
-Codex works best when the repository already contains:
+- `frontend/src/math/` - pure math functions (typed, testable)
+- `frontend/src/scene2d/` - reusable SVG scene primitives for 2D
+- `frontend/src/scene3d/` - reusable 3D helpers for R3F/Three.js
+- `frontend/src/modules/` - module-specific UI and interaction flows
+- `frontend/src/content/` - lesson text, presets, and pedagogical content
+- `frontend/src/app/` - app shell, navigation, preferences, shared contexts
 
-- a stable project description
-- architecture decisions
-- module-level acceptance criteria
-- task boundaries
-- reusable instructions in `AGENTS.md`
-- prompts that are small enough to produce reviewable changes
+### Backend structure
 
-This repo gives you that structure up front.
+- `backend/` - Django host shell
+- Serves HTML shell and built frontend assets
+- Keeps room for optional future API endpoints
 
-## Suggested first session with Codex
+## Technology Stack
 
-1. Open the repo root.
-2. Run the prompt in `FIRST_PROMPT.md` in **Ask** or **Plan** mode.
-3. Review Codex's plan.
-4. Then execute `prompts/01-scaffold-frontend.md`.
-5. Continue one prompt at a time.
+- Frontend: React + TypeScript + Vite
+- 2D rendering: SVG
+- 3D rendering: React Three Fiber + Three.js
+- Testing: Vitest + Testing Library
+- Linting: ESLint
+- Backend host: Django
 
-Do **not** paste the whole prompt sequence into one session.
+## Third-Party Software
 
-## Repository map
+Vector Lab uses open-source third-party software, including:
 
-- `AGENTS.md` — standing instructions for Codex
-- `PRODUCT_SPEC.md` — product scope and teaching goals
-- `ARCHITECTURE.md` — proposed technical structure
-- `ROADMAP.md` — milestone order
-- `TASKS.md` — prioritized backlog
-- `PROMPTS.md` — index of the prompt sequence
-- `FIRST_PROMPT.md` — first prompt to run
-- `PLANS_TEMPLATE.md` — reusable planning template for larger tasks
-- `docs/modules/` — module-by-module feature specs
-- `docs/ux/` — screen and pedagogy notes
-- `docs/deployment/` — Django hosting plan
-- `prompts/` — copy-paste prompt files for Codex
-- `docs/frontend-plan.md` — intended frontend structure
-- `docs/backend-plan.md` — intended backend structure
+- [React](https://react.dev/) - UI framework
+- [TypeScript](https://www.typescriptlang.org/) - static typing
+- [Vite](https://vite.dev/) - frontend build tool and dev server
+- [Three.js](https://threejs.org/) - 3D graphics engine
+- [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) - React renderer for Three.js
+- [@react-three/drei](https://github.com/pmndrs/drei) - utility helpers for R3F scenes
+- [Vitest](https://vitest.dev/) - unit/integration testing
+- [Testing Library](https://testing-library.com/) - UI testing utilities
+- [ESLint](https://eslint.org/) - code quality checks
+- [Django](https://www.djangoproject.com/) - backend hosting layer
 
-## Recommended build order
+Please review each dependency license in `package.json` / lockfiles before production distribution.
+
+## Prompt-Driven Development Flow
+
+Recommended usage pattern:
+
+1. Start from `FIRST_PROMPT.md`.
+2. Run prompts from `prompts/` one by one.
+3. Review and adjust after each step.
+4. Keep changes small and verifiable.
+
+Do not paste the full prompt sequence into one session.
+
+## Repository Map
+
+- `AGENTS.md` - standing instructions for Codex
+- `PRODUCT_SPEC.md` - product scope and teaching goals
+- `ARCHITECTURE.md` - technical structure and ownership
+- `ROADMAP.md` - milestone order
+- `TASKS.md` - prioritized backlog
+- `PROMPTS.md` - index of prompt sequence
+- `FIRST_PROMPT.md` - first prompt to run
+- `PLANS_TEMPLATE.md` - planning template for larger tasks
+- `docs/modules/` - module feature specs
+- `docs/ux/` - UI and pedagogy notes
+- `docs/deployment/` - Django hosting plan
+- `prompts/` - copy-paste prompt files for Codex
+
+## Recommended Build Order
 
 1. Frontend scaffold
 2. Django host scaffold
@@ -80,10 +125,9 @@ Do **not** paste the whole prompt sequence into one session.
 11. Matrix 3D module
 12. Eigen module
 13. Workers and performance
-14. Pedagogy layer
-15. Django integration and release polish
+14. Django integration and release polish
 
-## Local commands
+## Local Commands
 
 ### Frontend
 
@@ -100,9 +144,9 @@ Do **not** paste the whole prompt sequence into one session.
 - Django system checks: `cd backend && py -3 manage.py check`
 - backend tests: `cd backend && py -3 manage.py test vectorlab_web`
 
-## Working principle
+## Working Principle
 
-For this project, prioritize:
+Priorities for this project:
 
 1. conceptual clarity
 2. stable architecture
@@ -110,8 +154,3 @@ For this project, prioritize:
 4. visual quality
 5. performance optimization
 6. backend expansion only when truly needed
-
-## Notes
-
-- Most repo docs and prompts are written in **English** on purpose, because that usually gives coding agents the most predictable results.
-- You can still talk to Codex in Polish if you prefer.

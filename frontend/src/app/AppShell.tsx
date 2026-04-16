@@ -150,30 +150,38 @@ export function AppShell() {
               <p className="app-subtitle">{shellText.subtitle}</p>
             </div>
 
-            <div className="app-preferences" aria-label={shellText.preferences}>
-              <label className="pref-label" htmlFor="language-select">
-                {shellText.language}
-              </label>
-              <select
-                id="language-select"
-                value={language}
-                onChange={(event) => setLanguage(event.target.value as AppLanguage)}
-              >
-                <option value="en">English</option>
-                <option value="pl">Polski</option>
-              </select>
+            <div className="app-header-right">
+              <div className="app-author">
+                {shellText.author}{' '}
+                <a href="https://itechmind.pl/" target="_blank" rel="noreferrer">
+                  iTechMind.pl
+                </a>
+              </div>
+              <div className="app-preferences" aria-label={shellText.preferences}>
+                <label className="pref-label" htmlFor="language-select">
+                  {shellText.language}
+                </label>
+                <select
+                  id="language-select"
+                  value={language}
+                  onChange={(event) => setLanguage(event.target.value as AppLanguage)}
+                >
+                  <option value="en">English</option>
+                  <option value="pl">Polski</option>
+                </select>
 
-              <label className="pref-label" htmlFor="theme-select">
-                {shellText.theme}
-              </label>
-              <select
-                id="theme-select"
-                value={theme}
-                onChange={(event) => setTheme(event.target.value as AppTheme)}
-              >
-                <option value="light">{shellText.light}</option>
-                <option value="dark">{shellText.dark}</option>
-              </select>
+                <label className="pref-label" htmlFor="theme-select">
+                  {shellText.theme}
+                </label>
+                <select
+                  id="theme-select"
+                  value={theme}
+                  onChange={(event) => setTheme(event.target.value as AppTheme)}
+                >
+                  <option value="light">{shellText.light}</option>
+                  <option value="dark">{shellText.dark}</option>
+                </select>
+              </div>
             </div>
           </header>
 
@@ -610,6 +618,7 @@ function getShellText(language: AppLanguage) {
       subtitle:
         'Odkrywaj pojęcia przez bezpośrednią manipulację i zsynchronizowane widoki algebraiczne.',
       preferences: 'Preferencje',
+      author: 'Autor:',
       language: 'Język',
       theme: 'Motyw',
       light: 'Jasny',
@@ -628,6 +637,7 @@ function getShellText(language: AppLanguage) {
     title: 'Linear Algebra Exploration Lab',
     subtitle: 'Explore each concept through direct manipulation and synchronized algebraic views.',
     preferences: 'Preferences',
+    author: 'Author:',
     language: 'Language',
     theme: 'Theme',
     light: 'Light',

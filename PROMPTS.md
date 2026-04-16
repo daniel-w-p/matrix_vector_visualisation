@@ -41,7 +41,6 @@ If you ask Codex to do all of that in one pass, the result is harder to verify a
 - `11-matrix-3d-module.md`
 - `12-eigen-module.md`
 - `13-workers-and-performance.md`
-- `14-pedagogy-layer.md`
 - `15-django-integration-and-release.md`
 
 ## Practical advice

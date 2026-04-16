@@ -114,15 +114,6 @@ Use this file as the high-level implementation queue.
 - [ ] Add worker tests / fallback strategy
 - [ ] Verify UI responsiveness with larger scenes
 
-## Pedagogy layer
-
-- [ ] Preset system
-- [ ] Explanation text mapping
-- [ ] "What to notice" panel
-- [ ] Compare mode
-- [ ] Prediction-before-reveal mode
-- [ ] Challenge prompts
-
 ## Deployment and release
 
 - [ ] Frontend production build wired into Django
