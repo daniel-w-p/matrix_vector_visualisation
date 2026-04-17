@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { dotVector2, magnitudeVector2, type Vector2 } from '../../math'
 import { useAppPreferences } from '../../app/AppPreferencesContext'
 import { useModuleSidebar } from '../../app/ModuleSidebarContext'
@@ -84,6 +84,19 @@ export function DotProductModule() {
       : signState === 'negative'
         ? 'sign-badge sign-negative'
         : 'sign-badge sign-zero'
+  const applicationsTitle = language === 'pl' ? 'Zastosowania' : 'Applications'
+  const applicationItems =
+    language === 'pl'
+      ? [
+          'Pomiar podobienstwa kierunkow (ranking, rekomendacje, embeddingi).',
+          'Wyznaczanie pracy: W = F · s, gdy sila i przesuniecie maja kierunek.',
+          'Szybka ocena kata: znak i wartosc iloczynu skalarnego mowi o relacji wektorow.',
+        ]
+      : [
+          'Direction similarity measure (ranking, recommendations, embeddings).',
+          'Work computation: W = F · s when force and displacement have direction.',
+          'Quick angle assessment: dot-product sign and value reveal vector relation.',
+        ]
 
   return (
     <section className="dot-module">
@@ -259,47 +272,59 @@ export function DotProductModule() {
           </div>
         </section>
 
-        <section className="dot-algebra" aria-label="Dot product algebra">
-          <h3>{ui.algebra}</h3>
-          <p>
-            a = <code>{formatVector(vectorA)}</code>
-          </p>
-          <p>
-            b = <code>{formatVector(vectorB)}</code>
-          </p>
-          <p>
-            a·b = <code>{formatNumber(dotValue)}</code>
-          </p>
-          <p>
-            |a| = <code>{formatNumber(magnitudeVector2(vectorA))}</code>, |b| ={' '}
-            <code>{formatNumber(magnitudeVector2(vectorB))}</code>
-          </p>
-          <p>
-            projection ({sourceLabel} on {targetLabel}) ={' '}
-            <code>{formatVector(projection.projectedVector)}</code>
-          </p>
-          {showCosine && (
+        <div className="dot-info-column">
+          <section className="dot-algebra" aria-label="Dot product algebra">
+            <h3>{ui.algebra}</h3>
             <p>
-              cos(theta) = <code>{cosine === null ? 'n/a' : formatNumber(cosine)}</code>
+              a = <code>{formatVector(vectorA)}</code>
             </p>
-          )}
-          {showAngle && (
             <p>
-              theta = <code>{angleRadians === null ? 'n/a' : `${formatNumber((angleRadians * 180) / Math.PI)}°`}</code>
+              b = <code>{formatVector(vectorB)}</code>
             </p>
-          )}
-          <p>
-            <span className={signClass}>
-              {signState === 'positive'
-                ? ui.signPositive
-                : signState === 'negative'
-                  ? ui.signNegative
-                  : signState === 'zero_exact'
-                    ? ui.signZeroExact
-                    : ui.signZeroNear}
-            </span>
-          </p>
-        </section>
+            <p>
+              a·b = <code>{formatNumber(dotValue)}</code>
+            </p>
+            <p>
+              |a| = <code>{formatNumber(magnitudeVector2(vectorA))}</code>, |b| ={' '}
+              <code>{formatNumber(magnitudeVector2(vectorB))}</code>
+            </p>
+            <p>
+              projection ({sourceLabel} on {targetLabel}) ={' '}
+              <code>{formatVector(projection.projectedVector)}</code>
+            </p>
+            {showCosine && (
+              <p>
+                cos(theta) = <code>{cosine === null ? 'n/a' : formatNumber(cosine)}</code>
+              </p>
+            )}
+            {showAngle && (
+              <p>
+                theta ={' '}
+                <code>{angleRadians === null ? 'n/a' : `${formatNumber((angleRadians * 180) / Math.PI)}°`}</code>
+              </p>
+            )}
+            <p>
+              <span className={signClass}>
+                {signState === 'positive'
+                  ? ui.signPositive
+                  : signState === 'negative'
+                    ? ui.signNegative
+                    : signState === 'zero_exact'
+                      ? ui.signZeroExact
+                      : ui.signZeroNear}
+              </span>
+            </p>
+          </section>
+
+          <section className="dot-applications" aria-label="Dot product applications">
+            <h3>{applicationsTitle}</h3>
+            <ul>
+              {applicationItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </section>
   )

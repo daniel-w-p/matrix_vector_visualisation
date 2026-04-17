@@ -92,6 +92,19 @@ export function Matrix3DModule() {
         : detState === 'zero_exact'
           ? ui.orientationZeroExact
           : ui.orientationZeroNear
+  const applicationsTitle = language === 'pl' ? 'Zastosowania' : 'Applications'
+  const applicationItems =
+    language === 'pl'
+      ? [
+          'Grafika 3D: jedna macierz koduje obrot, skale i sciecia obiektu.',
+          'Robotyka i symulacje: przejscia miedzy ukladami wspolrzednych narzedzia i swiata.',
+          'Determinant 3x3 opisuje skale objetosci i zmiane orientacji bryly.',
+        ]
+      : [
+          '3D graphics: one matrix encodes rotation, scale, and shear.',
+          'Robotics/simulation: transforms between tool and world coordinate frames.',
+          '3x3 determinant describes volume scale and orientation change.',
+        ]
 
   return (
     <section className="matrix3d-module">
@@ -104,7 +117,6 @@ export function Matrix3DModule() {
               title="Matrix 3D"
               items={[
                 { label: 'det', value: formatNumber(determinant) },
-                { label: '|det|', value: formatNumber(Math.abs(determinant)) },
                 { label: 'A * v', value: formatVector3(outputVector) },
               ]}
             />
@@ -241,49 +253,60 @@ export function Matrix3DModule() {
           <p className="control-hint">{ui.dragHint}</p>
         </section>
 
-        <section className="matrix3d-algebra" aria-label="Matrix 3D algebra">
-          <h3>{ui.algebra}</h3>
-          <p>
-            A = <code>{formatMatrix3x3(matrixA)}</code>
-          </p>
-          {(mode === 'add' || mode === 'subtract') && (
+        <div className="matrix3d-info-column">
+          <section className="matrix3d-algebra" aria-label="Matrix 3D algebra">
+            <h3>{ui.algebra}</h3>
             <p>
-              B = <code>{formatMatrix3x3(matrixB)}</code>
+              A = <code>{formatMatrix3x3(matrixA)}</code>
             </p>
-          )}
-          {mode === 'scale' && (
+            {(mode === 'add' || mode === 'subtract') && (
+              <p>
+                B = <code>{formatMatrix3x3(matrixB)}</code>
+              </p>
+            )}
+            {mode === 'scale' && (
+              <p>
+                k = <code>{formatNumber(scalar)}</code>
+              </p>
+            )}
             <p>
-              k = <code>{formatNumber(scalar)}</code>
+              Effective matrix = <code>{formatMatrix3x3(effectiveMatrix)}</code>
             </p>
-          )}
-          <p>
-            Effective matrix = <code>{formatMatrix3x3(effectiveMatrix)}</code>
-          </p>
-          <p>
-            det = <code>{formatNumber(determinant)}</code>
-          </p>
-          <p>
-            {ui.orientation}:{' '}
-            <span className={orientationClass}>
-              {orientationText}
-            </span>
-          </p>
-          <p>
-            {detState === 'positive'
-              ? ui.detPositive
-              : detState === 'negative'
-                ? ui.detNegative
-                : detState === 'zero_exact'
-                  ? ui.detZeroExact
-                  : ui.detZeroNear}
-          </p>
-          <p>
-            v = <code>{formatVector3(inputVector)}</code>
-          </p>
-          <p>
-            A * v = <code>{formatVector3(outputVector)}</code>
-          </p>
-        </section>
+            <p>
+              det = <code>{formatNumber(determinant)}</code>
+            </p>
+            <p>
+              {ui.orientation}:{' '}
+              <span className={orientationClass}>
+                {orientationText}
+              </span>
+            </p>
+            <p>
+              {detState === 'positive'
+                ? ui.detPositive
+                : detState === 'negative'
+                  ? ui.detNegative
+                  : detState === 'zero_exact'
+                    ? ui.detZeroExact
+                    : ui.detZeroNear}
+            </p>
+            <p>
+              v = <code>{formatVector3(inputVector)}</code>
+            </p>
+            <p>
+              A * v = <code>{formatVector3(outputVector)}</code>
+            </p>
+          </section>
+
+          <section className="matrix3d-applications" aria-label="Matrix 3D applications">
+            <h3>{applicationsTitle}</h3>
+            <ul>
+              {applicationItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </section>
   )

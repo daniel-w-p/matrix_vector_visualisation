@@ -59,6 +59,19 @@ export function CrossProductModule() {
   const firstLabel = isSwapped ? 'b' : 'a'
   const secondLabel = isSwapped ? 'a' : 'b'
   const operationLabel = isSwapped ? ui.operationBA : ui.operationAB
+  const applicationsTitle = language === 'pl' ? 'Zastosowania' : 'Applications'
+  const applicationItems =
+    language === 'pl'
+      ? [
+          'Wektor normalny prostopadly do powierzchni (oswietlenie i cieniowanie 3D).',
+          'Wyznaczanie orientacji lokalnego ukladu osi zgodnie z regula prawej dloni.',
+          'Pole rownolegloboku i moment obrotowy maja te sama strukture iloczynu wektorowego.',
+        ]
+      : [
+          'Surface normal perpendicular to a face (3D lighting and shading).',
+          'Local orientation basis using the right-hand rule.',
+          'Parallelogram area and torque share the same cross-product structure.',
+        ]
 
   return (
     <section className="cross3d-module">
@@ -187,47 +200,58 @@ export function CrossProductModule() {
           </div>
         </section>
 
-        <section className="cross3d-algebra" aria-label="Cross product algebra">
-          <h3>{ui.algebra}</h3>
-          <p>
-            a = <code>{formatVector3(vectorA)}</code>
-          </p>
-          <p>
-            b = <code>{formatVector3(vectorB)}</code>
-          </p>
-          <p>
-            |a| = <code>{formatNumber(state.magnitudeFirst)}</code>
-          </p>
-          <p>
-            |b| = <code>{formatNumber(state.magnitudeSecond)}</code>
-          </p>
-          <p>
-            {operationLabel} = <code>{formatVector3(state.cross)}</code>
-          </p>
-          <p>
-            |{operationLabel}| = <code>{formatNumber(state.magnitudeCross)}</code>
-          </p>
-          <p>
-            |a||b|sin(theta) ={' '}
-            <code>
-              {formatNumber(state.magnitudeFirst)} * {formatNumber(state.magnitudeSecond)} *{' '}
-              {state.sineTheta === null ? 'n/a' : formatNumber(state.sineTheta)}
-            </code>
-          </p>
-          {showSine && (
+        <div className="cross3d-info-column">
+          <section className="cross3d-algebra" aria-label="Cross product algebra">
+            <h3>{ui.algebra}</h3>
             <p>
-              sin(theta) = <code>{state.sineTheta === null ? 'n/a' : formatNumber(state.sineTheta)}</code>, theta ={' '}
-              <code>{formatAngleDegrees(state.angleRadians)}</code>
+              a = <code>{formatVector3(vectorA)}</code>
             </p>
-          )}
-          <p>
-            dot({operationLabel}, {firstLabel}) = <code>{formatNumber(dotChecks.withFirst)}</code>
-          </p>
-          <p>
-            dot({operationLabel}, {secondLabel}) = <code>{formatNumber(dotChecks.withSecond)}</code>
-          </p>
-          <p className="cross3d-note">{ui.oppositeHint}</p>
-        </section>
+            <p>
+              b = <code>{formatVector3(vectorB)}</code>
+            </p>
+            <p>
+              |a| = <code>{formatNumber(state.magnitudeFirst)}</code>
+            </p>
+            <p>
+              |b| = <code>{formatNumber(state.magnitudeSecond)}</code>
+            </p>
+            <p>
+              {operationLabel} = <code>{formatVector3(state.cross)}</code>
+            </p>
+            <p>
+              |{operationLabel}| = <code>{formatNumber(state.magnitudeCross)}</code>
+            </p>
+            <p>
+              |a||b|sin(theta) ={' '}
+              <code>
+                {formatNumber(state.magnitudeFirst)} * {formatNumber(state.magnitudeSecond)} *{' '}
+                {state.sineTheta === null ? 'n/a' : formatNumber(state.sineTheta)}
+              </code>
+            </p>
+            {showSine && (
+              <p>
+                sin(theta) = <code>{state.sineTheta === null ? 'n/a' : formatNumber(state.sineTheta)}</code>, theta ={' '}
+                <code>{formatAngleDegrees(state.angleRadians)}</code>
+              </p>
+            )}
+            <p>
+              dot({operationLabel}, {firstLabel}) = <code>{formatNumber(dotChecks.withFirst)}</code>
+            </p>
+            <p>
+              dot({operationLabel}, {secondLabel}) = <code>{formatNumber(dotChecks.withSecond)}</code>
+            </p>
+            <p className="cross3d-note">{ui.oppositeHint}</p>
+          </section>
+
+          <section className="cross3d-applications" aria-label="Cross product applications">
+            <h3>{applicationsTitle}</h3>
+            <ul>
+              {applicationItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </section>
   )

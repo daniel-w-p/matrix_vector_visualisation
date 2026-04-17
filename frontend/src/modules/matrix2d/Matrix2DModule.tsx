@@ -105,6 +105,19 @@ export function Matrix2DModule() {
         : detState === 'zero_exact'
           ? ui.orientationZeroExact
           : ui.orientationZeroNear
+  const applicationsTitle = language === 'pl' ? 'Zastosowania' : 'Applications'
+  const applicationItems =
+    language === 'pl'
+      ? [
+          'Transformacje 2D w grafice (obrot, skala, sciecie) realizowane przez macierze.',
+          'Mapowanie ukladow wspolrzednych, np. z ukladu lokalnego obiektu do sceny.',
+          'Szybkie wykrywanie zmiany orientacji (det < 0) i zdegenerowania (det blisko 0).',
+        ]
+      : [
+          '2D graphics transforms (rotation, scale, shear) represented as matrices.',
+          'Coordinate-frame mapping, e.g. from object-local space to world space.',
+          'Fast orientation/degen checks (det < 0 flip, det near 0 collapse).',
+        ]
 
   return (
     <section className="matrix2d-module">
@@ -311,49 +324,60 @@ export function Matrix2DModule() {
           <p className="control-hint">{ui.dragHint}</p>
         </section>
 
-        <section className="matrix2d-algebra" aria-label="Matrix algebra">
-          <h3>{ui.algebra}</h3>
-          <p>
-            A = <code>{formatMatrix2x2(matrixA)}</code>
-          </p>
-          {(mode === 'add' || mode === 'subtract') && (
+        <div className="matrix2d-info-column">
+          <section className="matrix2d-algebra" aria-label="Matrix algebra">
+            <h3>{ui.algebra}</h3>
             <p>
-              B = <code>{formatMatrix2x2(matrixB)}</code>
+              A = <code>{formatMatrix2x2(matrixA)}</code>
             </p>
-          )}
-          {mode === 'scale' && (
+            {(mode === 'add' || mode === 'subtract') && (
+              <p>
+                B = <code>{formatMatrix2x2(matrixB)}</code>
+              </p>
+            )}
+            {mode === 'scale' && (
+              <p>
+                k = <code>{formatNumber(scalar)}</code>
+              </p>
+            )}
             <p>
-              k = <code>{formatNumber(scalar)}</code>
+              Effective matrix = <code>{formatMatrix2x2(effectiveMatrix)}</code>
             </p>
-          )}
-          <p>
-            Effective matrix = <code>{formatMatrix2x2(effectiveMatrix)}</code>
-          </p>
-          <p>
-            det = <code>{formatNumber(det)}</code>
-          </p>
-          <p>
-            {ui.orientation}:{' '}
-            <span className={orientationClass}>
-              {orientationText}
-            </span>
-          </p>
-          <p>
-            {detState === 'positive'
-              ? ui.detPositive
-              : detState === 'negative'
-                ? ui.detNegative
-                : detState === 'zero_exact'
-                  ? ui.detZeroExact
-                  : ui.detZeroNear}
-          </p>
-          <p>
-            {ui.inputVector}: <code>{formatVector(inputVector)}</code>
-          </p>
-          <p>
-            A * v = <code>{formatVector(transformedVectorOutput)}</code>
-          </p>
-        </section>
+            <p>
+              det = <code>{formatNumber(det)}</code>
+            </p>
+            <p>
+              {ui.orientation}:{' '}
+              <span className={orientationClass}>
+                {orientationText}
+              </span>
+            </p>
+            <p>
+              {detState === 'positive'
+                ? ui.detPositive
+                : detState === 'negative'
+                  ? ui.detNegative
+                  : detState === 'zero_exact'
+                    ? ui.detZeroExact
+                    : ui.detZeroNear}
+            </p>
+            <p>
+              {ui.inputVector}: <code>{formatVector(inputVector)}</code>
+            </p>
+            <p>
+              A * v = <code>{formatVector(transformedVectorOutput)}</code>
+            </p>
+          </section>
+
+          <section className="matrix2d-applications" aria-label="Matrix 2D applications">
+            <h3>{applicationsTitle}</h3>
+            <ul>
+              {applicationItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </section>
   )

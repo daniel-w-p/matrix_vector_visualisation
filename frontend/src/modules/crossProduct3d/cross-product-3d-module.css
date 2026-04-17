@@ -16,8 +16,14 @@
   gap: 1rem;
 }
 
+.cross3d-info-column {
+  display: grid;
+  gap: 1rem;
+}
+
 .cross3d-controls,
-.cross3d-algebra {
+.cross3d-algebra,
+.cross3d-applications {
   border: 1px solid var(--panel-border);
   border-radius: 10px;
   padding: 0.9rem;
@@ -25,7 +31,8 @@
 }
 
 .cross3d-controls h3,
-.cross3d-algebra h3 {
+.cross3d-algebra h3,
+.cross3d-applications h3 {
   margin: 0 0 0.75rem;
   font-size: 1rem;
 }
@@ -96,6 +103,15 @@
 .cross3d-note {
   color: var(--text-muted);
   font-size: 0.88rem;
+}
+
+.cross3d-applications ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.cross3d-applications li {
+  margin: 0.4rem 0;
 }
 
 @media (max-width: 920px) {

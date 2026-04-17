@@ -80,6 +80,19 @@ export function Vector2DModule() {
     { id: 'subtract', label: ui.operationSubtract },
     { id: 'scale', label: ui.operationScale },
   ]
+  const applicationsTitle = language === 'pl' ? 'Zastosowania' : 'Applications'
+  const applicationItems =
+    language === 'pl'
+      ? [
+          'Skladanie przesuniec i predkosci (nawigacja, ruch obiektow).',
+          'Rozkladanie sil na osie X/Y przed dalszymi obliczeniami.',
+          'Skalowanie wektora sterowania, gdy chcesz zmienic tylko intensywnosc ruchu.',
+        ]
+      : [
+          'Combining displacements and velocities (navigation, object movement).',
+          'Resolving forces into X/Y components before further calculations.',
+          'Scaling a control vector when you want to change only motion intensity.',
+        ]
 
   const viewOptions: Array<{ id: Vector2DViewMode; label: string }> = [
     { id: 'tailToHead', label: ui.viewTailToHead },
@@ -243,42 +256,53 @@ export function Vector2DModule() {
           </div>
         </section>
 
-        <section className="vector2d-algebra" aria-label="Algebra panel">
-          <h3>{ui.algebraView}</h3>
-          <p>
-            a = <code>{formatVector2(vectorA)}</code>
-          </p>
-          <p>
-            b = <code>{formatVector2(vectorB)}</code>
-          </p>
-
-          {operation === 'add' && (
+        <div className="vector2d-info-column">
+          <section className="vector2d-algebra" aria-label="Algebra panel">
+            <h3>{ui.algebraView}</h3>
             <p>
-              a + b = <code>{formatVector2(resultVector)}</code>
+              a = <code>{formatVector2(vectorA)}</code>
             </p>
-          )}
-
-          {operation === 'subtract' && (
             <p>
-              a - b = a + (-b) = <code>{formatVector2(resultVector)}</code>
+              b = <code>{formatVector2(vectorB)}</code>
             </p>
-          )}
 
-          {operation === 'scale' && (
+            {operation === 'add' && (
+              <p>
+                a + b = <code>{formatVector2(resultVector)}</code>
+              </p>
+            )}
+
+            {operation === 'subtract' && (
+              <p>
+                a - b = a + (-b) = <code>{formatVector2(resultVector)}</code>
+              </p>
+            )}
+
+            {operation === 'scale' && (
+              <p>
+                k a = {formatNumber(scalar)} * {formatVector2(vectorA)} ={' '}
+                <code>{formatVector2(resultVector)}</code>
+              </p>
+            )}
+
             <p>
-              k a = {formatNumber(scalar)} * {formatVector2(vectorA)} ={' '}
-              <code>{formatVector2(resultVector)}</code>
+              |a| = <code>{formatNumber(magnitudeVector2(vectorA))}</code>, |result| ={' '}
+              <code>{formatNumber(computation.resultMagnitude)}</code>
             </p>
-          )}
+            <p>
+              {ui.resultLabel}: <code>{formatVector2(addVector2(vectorA, helperVector))}</code>
+            </p>
+          </section>
 
-          <p>
-            |a| = <code>{formatNumber(magnitudeVector2(vectorA))}</code>, |result| ={' '}
-            <code>{formatNumber(computation.resultMagnitude)}</code>
-          </p>
-          <p>
-            {ui.resultLabel}: <code>{formatVector2(addVector2(vectorA, helperVector))}</code>
-          </p>
-        </section>
+          <section className="vector2d-applications" aria-label="Vector applications">
+            <h3>{applicationsTitle}</h3>
+            <ul>
+              {applicationItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </section>
   )

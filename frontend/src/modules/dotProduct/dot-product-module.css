@@ -32,8 +32,14 @@
   gap: 1rem;
 }
 
+.dot-info-column {
+  display: grid;
+  gap: 1rem;
+}
+
 .dot-controls,
-.dot-algebra {
+.dot-algebra,
+.dot-applications {
   border: 1px solid var(--panel-border);
   border-radius: 10px;
   padding: 0.9rem;
@@ -41,7 +47,8 @@
 }
 
 .dot-controls h3,
-.dot-algebra h3 {
+.dot-algebra h3,
+.dot-applications h3 {
   margin: 0 0 0.75rem;
   font-size: 1rem;
 }
@@ -118,6 +125,15 @@
 }
 
 .dot-algebra p {
+  margin: 0.4rem 0;
+}
+
+.dot-applications ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.dot-applications li {
   margin: 0.4rem 0;
 }
 

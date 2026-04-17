@@ -22,7 +22,8 @@
 }
 
 .eigen-controls,
-.eigen-algebra {
+.eigen-algebra,
+.eigen-applications {
   border: 1px solid var(--panel-border);
   border-radius: 10px;
   padding: 0.9rem;
@@ -30,9 +31,15 @@
 }
 
 .eigen-controls h3,
-.eigen-algebra h3 {
+.eigen-algebra h3,
+.eigen-applications h3 {
   margin: 0 0 0.75rem;
   font-size: 1rem;
+}
+
+.eigen-info-column {
+  display: grid;
+  gap: 1rem;
 }
 
 .eigen-section-title {
@@ -147,6 +154,15 @@
 }
 
 .eigen-algebra p {
+  margin: 0.4rem 0;
+}
+
+.eigen-applications ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.eigen-applications li {
   margin: 0.4rem 0;
 }
 

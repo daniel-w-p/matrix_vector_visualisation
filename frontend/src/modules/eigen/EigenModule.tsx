@@ -65,6 +65,19 @@ export function EigenModule() {
   const discriminant = discriminant2x2(matrix)
   const hasRealEigenvectors = hasRealEigenvalues2x2(matrix)
   const directionSamples = useMemo(() => sampleDirectionResiduals(matrix, 28, 3.4), [matrix])
+  const applicationsTitle = language === 'pl' ? 'Zastosowania' : 'Applications'
+  const applicationItems =
+    language === 'pl'
+      ? [
+          'Podnoszenie macierzy do potegi: A^k v na kierunku wlasnym daje skale ~ lambda^k.',
+          'Analiza stabilnosci ukladow dynamicznych przez modul dominujacego lambda.',
+          'PCA i redukcja wymiaru korzystaja z wektorow wlasnych macierzy kowariancji.',
+        ]
+      : [
+          'Matrix powers: along an eigen-direction, Aᵏv scales approximately as λᵏ.',
+          'Stability analysis of dynamical systems via dominant eigenvalue magnitude.',
+          'PCA and dimensionality reduction rely on covariance eigenvectors.',
+        ]
 
   useEffect(() => {
     setSidebarOverride({
@@ -322,7 +335,8 @@ export function EigenModule() {
           {!hasRealEigenvectors && <p className="eigen-warning">{ui.noRealEigenHint}</p>}
         </section>
 
-        <section className="eigen-algebra" aria-label="Eigen algebra">
+        <div className="eigen-info-column">
+          <section className="eigen-algebra" aria-label="Eigen algebra">
           <h3>{ui.algebra}</h3>
           <p>
             A = <code>{formatMatrix2x2(matrix)}</code>
@@ -364,7 +378,17 @@ export function EigenModule() {
             {ui.realEigenvectors}:{' '}
             <strong>{hasRealEigenvectors ? ui.yes : ui.no}</strong>
           </p>
-        </section>
+          </section>
+
+          <section className="eigen-applications" aria-label="Eigen applications">
+            <h3>{applicationsTitle}</h3>
+            <ul>
+              {applicationItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </section>
   )

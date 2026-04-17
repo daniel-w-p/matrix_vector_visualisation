@@ -32,8 +32,14 @@
   gap: 1rem;
 }
 
+.matrix2d-info-column {
+  display: grid;
+  gap: 1rem;
+}
+
 .matrix2d-controls,
-.matrix2d-algebra {
+.matrix2d-algebra,
+.matrix2d-applications {
   border: 1px solid var(--panel-border);
   border-radius: 10px;
   padding: 0.9rem;
@@ -41,7 +47,8 @@
 }
 
 .matrix2d-controls h3,
-.matrix2d-algebra h3 {
+.matrix2d-algebra h3,
+.matrix2d-applications h3 {
   margin: 0 0 0.75rem;
   font-size: 1rem;
 }
@@ -143,6 +150,15 @@
 }
 
 .matrix2d-algebra p {
+  margin: 0.4rem 0;
+}
+
+.matrix2d-applications ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.matrix2d-applications li {
   margin: 0.4rem 0;
 }
 
