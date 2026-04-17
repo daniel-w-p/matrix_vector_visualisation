@@ -84,9 +84,9 @@ export function Vector2DModule() {
   const applicationItems =
     language === 'pl'
       ? [
-          'Skladanie przesuniec i predkosci (nawigacja, ruch obiektow).',
-          'Rozkladanie sil na osie X/Y przed dalszymi obliczeniami.',
-          'Skalowanie wektora sterowania, gdy chcesz zmienic tylko intensywnosc ruchu.',
+          'Składanie przesunięć i prędkości (nawigacja, ruch obiektów).',
+          'Rozkładanie sił na osie X/Y przed dalszymi obliczeniami.',
+          'Skalowanie wektora sterowania, gdy chcesz zmienić tylko intensywność ruchu.',
         ]
       : [
           'Combining displacements and velocities (navigation, object movement).',

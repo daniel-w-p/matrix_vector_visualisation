@@ -88,9 +88,9 @@ export function DotProductModule() {
   const applicationItems =
     language === 'pl'
       ? [
-          'Pomiar podobienstwa kierunkow (ranking, rekomendacje, embeddingi).',
-          'Wyznaczanie pracy: W = F · s, gdy sila i przesuniecie maja kierunek.',
-          'Szybka ocena kata: znak i wartosc iloczynu skalarnego mowi o relacji wektorow.',
+          'Pomiar podobieństwa kierunków (ranking, rekomendacje, embeddingi).',
+          'Wyznaczanie pracy: W = F · s, gdy siła i przesunięcie mają kierunek.',
+          'Szybka ocena kąta: znak i wartość iloczynu skalarnego mówi o relacji wektorów.',
         ]
       : [
           'Direction similarity measure (ranking, recommendations, embeddings).',

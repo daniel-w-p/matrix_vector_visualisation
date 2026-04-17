@@ -63,9 +63,9 @@ export function CrossProductModule() {
   const applicationItems =
     language === 'pl'
       ? [
-          'Wektor normalny prostopadly do powierzchni (oswietlenie i cieniowanie 3D).',
-          'Wyznaczanie orientacji lokalnego ukladu osi zgodnie z regula prawej dloni.',
-          'Pole rownolegloboku i moment obrotowy maja te sama strukture iloczynu wektorowego.',
+          'Wektor normalny prostopadły do powierzchni (oświetlenie i cieniowanie 3D).',
+          'Wyznaczanie orientacji lokalnego układu osi zgodnie z regułą prawej dłoni.',
+          'Pole równoległoboku i moment obrotowy mają tę samą strukturę iloczynu wektorowego.',
         ]
       : [
           'Surface normal perpendicular to a face (3D lighting and shading).',

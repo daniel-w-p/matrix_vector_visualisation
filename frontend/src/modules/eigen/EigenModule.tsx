@@ -69,9 +69,9 @@ export function EigenModule() {
   const applicationItems =
     language === 'pl'
       ? [
-          'Podnoszenie macierzy do potegi: A^k v na kierunku wlasnym daje skale ~ lambda^k.',
-          'Analiza stabilnosci ukladow dynamicznych przez modul dominujacego lambda.',
-          'PCA i redukcja wymiaru korzystaja z wektorow wlasnych macierzy kowariancji.',
+          'Podnoszenie macierzy do potęgi: Aᵏv na kierunku własnym daje skalę ~ λᵏ.',
+          'Analiza stabilności układów dynamicznych przez moduł dominującego λ.',
+          'PCA i redukcja wymiaru korzystają z wektorów własnych macierzy kowariancji.',
         ]
       : [
           'Matrix powers: along an eigen-direction, Aᵏv scales approximately as λᵏ.',

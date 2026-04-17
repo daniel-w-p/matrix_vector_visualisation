@@ -96,9 +96,9 @@ export function Matrix3DModule() {
   const applicationItems =
     language === 'pl'
       ? [
-          'Grafika 3D: jedna macierz koduje obrot, skale i sciecia obiektu.',
-          'Robotyka i symulacje: przejscia miedzy ukladami wspolrzednych narzedzia i swiata.',
-          'Determinant 3x3 opisuje skale objetosci i zmiane orientacji bryly.',
+          'Grafika 3D: jedna macierz koduje obrót, skalę i ścięcia obiektu.',
+          'Robotyka i symulacje: przejścia między układami współrzędnych narzędzia i świata.',
+          'Determinant 3x3 opisuje skalę objętości i zmianę orientacji bryły.',
         ]
       : [
           '3D graphics: one matrix encodes rotation, scale, and shear.',

@@ -109,8 +109,8 @@ export function Matrix2DModule() {
   const applicationItems =
     language === 'pl'
       ? [
-          'Transformacje 2D w grafice (obrot, skala, sciecie) realizowane przez macierze.',
-          'Mapowanie ukladow wspolrzednych, np. z ukladu lokalnego obiektu do sceny.',
+          'Transformacje 2D w grafice (obrót, skala, ścięcie) realizowane przez macierze.',
+          'Mapowanie układów współrzędnych, np. z układu lokalnego obiektu do sceny.',
           'Szybkie wykrywanie zmiany orientacji (det < 0) i zdegenerowania (det blisko 0).',
         ]
       : [
