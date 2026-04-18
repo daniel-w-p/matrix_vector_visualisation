@@ -189,17 +189,23 @@ export function getEigenTheory(language: AppLanguage): string[] {
 
   if (language === 'pl') {
     return [
-      `Wektor wlasny zachowuje kierunek: A v = ${L} v.`,
-      `${L} to skala (i ewentualne odwrocenie znaku), a residuum ||A v - ${L} v|| mierzy blad dopasowania.`,
-      `Dla macierzy 2x2 znak dyskryminantu ${D} = tr(A)${squared} - 4det(A) wskazuje, czy istnieja rzeczywiste wartosci wlasne.`,
-      'Rotacja 2D bez skalowania nie ma rzeczywistych wektorow wlasnych: kazdy wektor zmienia kierunek.',
+      'Wektor własny zachowuje kierunek:',
+      `A v = ${L} v.`,
+      `${L} to skala (i ewentualne odwrócenie znaku), a residuum mierzy błąd dopasowania:`,
+      `||A v - ${L} v||.`,
+      'Dla macierzy 2x2 znak dyskryminantu wskazuje, czy istnieją rzeczywiste wartości własne:',
+      `${D} = tr(A)${squared} - 4det(A).`,
+      'Rotacja 2D bez skalowania nie ma rzeczywistych wektorów własnych: każdy wektor zmienia kierunek.',
     ]
   }
 
   return [
-    `An eigenvector preserves direction: A v = ${L} v.`,
-    `${L} is the scaling factor (and possible sign flip), while residual ||A v - ${L} v|| measures mismatch.`,
-    `For 2x2 matrices, discriminant ${D} = tr(A)${squared} - 4det(A) indicates whether real eigenvalues exist.`,
+    'An eigenvector preserves direction:',
+    `A v = ${L} v.`,
+    `${L} is the scaling factor (and possible sign flip), while residual measures mismatch:`,
+    `||A v - ${L} v||.`,
+    'For 2x2 matrices, discriminant indicates whether real eigenvalues exist:',
+    `${D} = tr(A)${squared} - 4det(A).`,
     'Pure 2D rotation has no real eigenvectors: every non-zero vector changes direction.',
   ]
 }

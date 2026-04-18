@@ -165,6 +165,21 @@
   margin: 0.4rem 0;
 }
 
+.theory-line p {
+  margin: 0.35rem 0;
+}
+
+.theory-formula-line {
+  display: inline-block;
+  margin-top: 0.1rem;
+  border: 1px solid var(--tab-active-border);
+  border-radius: 6px;
+  background: var(--tab-active-bg);
+  color: var(--tab-active-text);
+  font-family: 'Consolas', 'Courier New', monospace;
+  padding: 0.1rem 0.35rem;
+}
+
 .module-status {
   margin-top: 0.2rem;
   font-weight: 600;
@@ -583,6 +598,12 @@
 .eigen-theory-formula {
   margin: 0.25rem 0;
   font-family: 'Consolas', 'Courier New', monospace;
+  color: var(--tab-active-text);
+  background: var(--tab-active-bg);
+  border: 1px solid var(--tab-active-border);
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
+  display: inline-block;
 }
 
 .eigen-mono {

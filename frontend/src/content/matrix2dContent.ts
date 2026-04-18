@@ -167,18 +167,26 @@ export function getMatrix2DUIText(language: AppLanguage) {
 export function getMatrix2DTheory(language: AppLanguage): string[] {
   if (language === 'pl') {
     return [
-      'Kolumny macierzy sa obrazami wektorow bazowych e1 i e2 po transformacji.',
-      'Dodawanie i odejmowanie macierzy odbywa sie element po elemencie: (A +/- B)ij = Aij +/- Bij.',
-      'Skalowanie macierzy mnozy kazdy element: (kA)ij = k * Aij.',
-      'Dla 2x2: det(A) = a11*a22 - a12*a21. |det(A)| to skala pola, a znak mowi o orientacji.',
+      'Kolumny macierzy są obrazami wektorów bazowych e₁ i e₂ po transformacji.',
+      'Dodawanie i odejmowanie macierzy odbywa się element po elemencie:',
+      '(A ± B)ᵢⱼ = Aᵢⱼ ± Bᵢⱼ.',
+      'Skalowanie macierzy mnoży każdy element:',
+      '(kA)ᵢⱼ = kAᵢⱼ.',
+      'Dla 2x2:',
+      'det(A) = a₁₁a₂₂ - a₁₂a₂₁.',
+      '|det(A)| to skala pola, a znak mówi o orientacji.',
     ]
   }
 
   return [
-    'Matrix columns are images of basis vectors e1 and e2 under the transformation.',
-    'Matrix addition/subtraction is element-wise: (A +/- B)ij = Aij +/- Bij.',
-    'Matrix scaling multiplies each entry: (kA)ij = k * Aij.',
-    'For 2x2, det(A) = a11*a22 - a12*a21. |det(A)| is area scale, sign indicates orientation.',
+    'Matrix columns are images of basis vectors e₁ and e₂ under the transformation.',
+    'Matrix addition/subtraction is element-wise:',
+    '(A ± B)ᵢⱼ = Aᵢⱼ ± Bᵢⱼ.',
+    'Matrix scaling multiplies each entry:',
+    '(kA)ᵢⱼ = kAᵢⱼ.',
+    'For 2x2:',
+    'det(A) = a₁₁a₂₂ - a₁₂a₂₁.',
+    '|det(A)| is area scale, sign indicates orientation.',
   ]
 }
 

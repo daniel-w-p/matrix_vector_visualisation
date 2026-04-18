@@ -285,12 +285,26 @@ export function DotProductModule() {
               a·b = <code>{formatNumber(dotValue)}</code>
             </p>
             <p>
+              a<sub>1</sub>b<sub>1</sub> + a<sub>2</sub>b<sub>2</sub> ={' '}
+              <code>
+                {formatNumber(vectorA[0])}·{formatNumber(vectorB[0])} + {formatNumber(vectorA[1])}·
+                {formatNumber(vectorB[1])}
+              </code>
+            </p>
+            <p>
               |a| = <code>{formatNumber(magnitudeVector2(vectorA))}</code>, |b| ={' '}
               <code>{formatNumber(magnitudeVector2(vectorB))}</code>
             </p>
             <p>
               projection ({sourceLabel} on {targetLabel}) ={' '}
               <code>{formatVector(projection.projectedVector)}</code>
+            </p>
+            <p>
+              proj<sub>{targetLabel}</sub>({sourceLabel}) ={' '}
+              <code>
+                dot({sourceLabel},{targetLabel}) / dot({targetLabel},{targetLabel})
+              </code>{' '}
+              · {targetLabel}
             </p>
             {showCosine && (
               <p>

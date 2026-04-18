@@ -103,18 +103,26 @@ export function getCrossProduct3DUIText(language: AppLanguage) {
 export function getCrossProduct3DTheory(language: AppLanguage): string[] {
   if (language === 'pl') {
     return [
-      'Iloczyn wektorowy ma postać: a × b = [a₂b₃ - a₃b₂, a₃b₁ - a₁b₃, a₁b₂ - a₂b₁].',
-      '|a × b| = |a||b|sin(theta), więc długość wyniku to pole równoległoboku.',
-      'Gdy wektory są równoległe, sin(theta) = 0, więc a × b = 0.',
-      'Zamiana kolejności odwraca wynik: b × a = -(a × b).',
+      'Iloczyn wektorowy ma postać:',
+      'a × b = [a₂b₃ - a₃b₂, a₃b₁ - a₁b₃, a₁b₂ - a₂b₁].',
+      'Długość wyniku:',
+      '|a × b| = |a||b|sin(θ).',
+      'Gdy wektory są równoległe:',
+      'sin(θ) = 0, więc a × b = 0.',
+      'Zamiana kolejności odwraca wynik:',
+      'b × a = -(a × b).',
     ]
   }
 
   return [
-    'Cross product is: a × b = [a₂b₃ - a₃b₂, a₃b₁ - a₁b₃, a₁b₂ - a₂b₁].',
-    '|a × b| = |a||b|sin(theta), so the result magnitude is parallelogram area.',
-    'When vectors are parallel, sin(theta) = 0, so a × b = 0.',
-    'Swapping order flips direction: b × a = -(a × b).',
+    'Cross product is:',
+    'a × b = [a₂b₃ - a₃b₂, a₃b₁ - a₁b₃, a₁b₂ - a₂b₁].',
+    'Result magnitude:',
+    '|a × b| = |a||b|sin(θ).',
+    'When vectors are parallel:',
+    'sin(θ) = 0, so a × b = 0.',
+    'Swapping order flips direction:',
+    'b × a = -(a × b).',
   ]
 }
 

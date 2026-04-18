@@ -4,6 +4,7 @@ export type ModuleKey =
   | 'vector2d'
   | 'dotProduct'
   | 'matrix2d'
+  | 'leastSquares'
   | 'crossProduct3d'
   | 'matrix3d'
   | 'eigen'
@@ -29,6 +30,7 @@ export const moduleOrder: ModuleKey[] = [
   'matrix2d',
   'crossProduct3d',
   'matrix3d',
+  'leastSquares',
   'eigen',
 ]
 
@@ -104,6 +106,42 @@ export const moduleCards: Record<ModuleKey, ModuleCard> = {
       {
         en: 'For 2x2 matrices, determinant gives signed area scale.',
         pl: 'Dla macierzy 2x2 wyznacznik opisuje skalę pola z orientacją.',
+      },
+    ],
+    defaultStatus: { en: 'Interactive module', pl: 'Modul interaktywny' },
+  },
+  leastSquares: {
+    id: 'leastSquares',
+    shortLabel: { en: 'Least Squares', pl: 'Najmniejsze kwadraty' },
+    title: { en: 'Least Squares', pl: 'Najmniejsze kwadraty' },
+    description: {
+      en: 'Overdetermined system Ax=b with A in R^(4x2): closest-fit solution in column space.',
+      pl: 'Uklad nadokreslony Ax=b z A w R^(4x2): najblizsze dopasowanie w przestrzeni kolumn.',
+    },
+    defaultWhatToNotice: {
+      en: 'b is usually outside Col(A); least squares projects it onto the reachable subspace.',
+      pl: 'b jest zwykle poza Col(A); least squares rzutuje je na osiagalna podprzestrzen.',
+    },
+    defaultTheory: [
+      {
+        en: 'Minimization objective:',
+        pl: 'Cel minimalizacji:',
+      },
+      {
+        en: '||Ax - b||²',
+        pl: '||Ax - b||²',
+      },
+      {
+        en: 'Normal equation:',
+        pl: 'Rownanie normalne:',
+      },
+      {
+        en: 'AᵀAx* = Aᵀb',
+        pl: 'AᵀAx* = Aᵀb',
+      },
+      {
+        en: 'Aᵀ is the transpose of A (rows and columns swapped).',
+        pl: 'Aᵀ to transpozycja A (zamiana wierszy z kolumnami).',
       },
     ],
     defaultStatus: { en: 'Interactive module', pl: 'Modul interaktywny' },

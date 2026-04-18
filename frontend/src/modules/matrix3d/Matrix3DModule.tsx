@@ -296,6 +296,30 @@ export function Matrix3DModule() {
             <p>
               A * v = <code>{formatVector3(outputVector)}</code>
             </p>
+            <p>
+              (Av)<sub>1</sub> = a<sub>11</sub>v<sub>1</sub> + a<sub>12</sub>v<sub>2</sub> + a<sub>13</sub>v<sub>3</sub> ={' '}
+              <code>
+                {formatNumber(effectiveMatrix[0][0])}·{formatNumber(inputVector[0])} +{' '}
+                {formatNumber(effectiveMatrix[0][1])}·{formatNumber(inputVector[1])} +{' '}
+                {formatNumber(effectiveMatrix[0][2])}·{formatNumber(inputVector[2])}
+              </code>
+            </p>
+            <p>
+              (Av)<sub>2</sub> = a<sub>21</sub>v<sub>1</sub> + a<sub>22</sub>v<sub>2</sub> + a<sub>23</sub>v<sub>3</sub> ={' '}
+              <code>
+                {formatNumber(effectiveMatrix[1][0])}·{formatNumber(inputVector[0])} +{' '}
+                {formatNumber(effectiveMatrix[1][1])}·{formatNumber(inputVector[1])} +{' '}
+                {formatNumber(effectiveMatrix[1][2])}·{formatNumber(inputVector[2])}
+              </code>
+            </p>
+            <p>
+              (Av)<sub>3</sub> = a<sub>31</sub>v<sub>1</sub> + a<sub>32</sub>v<sub>2</sub> + a<sub>33</sub>v<sub>3</sub> ={' '}
+              <code>
+                {formatNumber(effectiveMatrix[2][0])}·{formatNumber(inputVector[0])} +{' '}
+                {formatNumber(effectiveMatrix[2][1])}·{formatNumber(inputVector[1])} +{' '}
+                {formatNumber(effectiveMatrix[2][2])}·{formatNumber(inputVector[2])}
+              </code>
+            </p>
           </section>
 
           <section className="matrix3d-applications" aria-label="Matrix 3D applications">

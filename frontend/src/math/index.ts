@@ -35,3 +35,6 @@ export {
 } from './matrices'
 
 export { verifyEigenPair2D, verifyEigenPair3D } from './eigen'
+
+export type { Matrix4x2, Vector4 } from './leastSquares'
+export { computeLeastSquares4x2, magnitudeVector4, multiplyMatrix4x2ByVector2 } from './leastSquares'

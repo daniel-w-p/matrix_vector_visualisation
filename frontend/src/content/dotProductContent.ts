@@ -99,18 +99,26 @@ export function getDotProductUIText(language: AppLanguage) {
 export function getDotProductTheory(language: AppLanguage): string[] {
   if (language === 'pl') {
     return [
-      'Iloczyn skalarny w 2D liczymy elementami: a*b = a1b1 + a2b2.',
-      'Przyklad: [2, 1]*[3, -2] = 2*3 + 1*(-2) = 4.',
-      'Rownowaznie: a*b = |a||b|cos(theta), wiec znak zalezy od kata miedzy wektorami.',
-      'Rzut wektora na kierunek celu pokazuje, ile wektor idzie wzdluz tego kierunku.',
+      'Iloczyn skalarny w 2D liczymy elementami:',
+      'a·b = a₁b₁ + a₂b₂.',
+      'Przykład:',
+      '[2, 1]·[3, -2] = 2·3 + 1·(-2) = 4.',
+      'Równoważnie:',
+      'a·b = |a||b|cos(θ).',
+      'Związek z rzutem wektora na kierunek b:',
+      'proj_b(a) = (a·b / |b|²)b.',
     ]
   }
 
   return [
-    'In 2D, dot product is component-wise: a*b = a1b1 + a2b2.',
-    'Example: [2, 1]*[3, -2] = 2*3 + 1*(-2) = 4.',
-    'Equivalent form: a*b = |a||b|cos(theta), so sign depends on the angle between vectors.',
-    'Projection visualizes how much one vector points along the target direction.',
+    'In 2D, dot product is component-wise:',
+    'a·b = a₁b₁ + a₂b₂.',
+    'Example:',
+    '[2, 1]·[3, -2] = 2·3 + 1·(-2) = 4.',
+    'Equivalent form:',
+    'a·b = |a||b|cos(θ).',
+    'Relation to projection on direction b:',
+    'proj_b(a) = (a·b / |b|²)b.',
   ]
 }
 

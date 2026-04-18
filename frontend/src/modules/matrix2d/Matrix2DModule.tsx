@@ -367,6 +367,20 @@ export function Matrix2DModule() {
             <p>
               A * v = <code>{formatVector(transformedVectorOutput)}</code>
             </p>
+            <p>
+              (Av)<sub>1</sub> = a<sub>11</sub>v<sub>1</sub> + a<sub>12</sub>v<sub>2</sub> ={' '}
+              <code>
+                {formatNumber(effectiveMatrix[0][0])}·{formatNumber(inputVector[0])} +{' '}
+                {formatNumber(effectiveMatrix[0][1])}·{formatNumber(inputVector[1])}
+              </code>
+            </p>
+            <p>
+              (Av)<sub>2</sub> = a<sub>21</sub>v<sub>1</sub> + a<sub>22</sub>v<sub>2</sub> ={' '}
+              <code>
+                {formatNumber(effectiveMatrix[1][0])}·{formatNumber(inputVector[0])} +{' '}
+                {formatNumber(effectiveMatrix[1][1])}·{formatNumber(inputVector[1])}
+              </code>
+            </p>
           </section>
 
           <section className="matrix2d-applications" aria-label="Matrix 2D applications">

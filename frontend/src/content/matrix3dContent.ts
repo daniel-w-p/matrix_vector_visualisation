@@ -172,17 +172,21 @@ export function getMatrix3DUIText(language: AppLanguage) {
 export function getMatrix3DTheory(language: AppLanguage): string[] {
   if (language === 'pl') {
     return [
-      'Kolumny macierzy 3x3 to obrazy wektorow bazowych e1, e2 i e3.',
-      'Dodawanie i odejmowanie macierzy sa elementowe: (A +/- B)ij = Aij +/- Bij.',
-      'Skalowanie mnozy kazdy element: (kA)ij = k * Aij.',
-      'Wyznacznik 3x3 opisuje skale objetosci i orientacje przeksztalcenia.',
+      'Kolumny macierzy 3x3 to obrazy wektorów bazowych e₁, e₂ i e₃.',
+      'Dodawanie i odejmowanie macierzy są elementowe:',
+      '(A ± B)ᵢⱼ = Aᵢⱼ ± Bᵢⱼ.',
+      'Skalowanie mnoży każdy element:',
+      '(kA)ᵢⱼ = kAᵢⱼ.',
+      'Wyznacznik 3x3 opisuje skalę objętości i orientację przekształcenia.',
     ]
   }
 
   return [
-    'Columns of a 3x3 matrix are images of basis vectors e1, e2, and e3.',
-    'Matrix addition and subtraction are element-wise: (A +/- B)ij = Aij +/- Bij.',
-    'Scaling multiplies each entry: (kA)ij = k * Aij.',
+    'Columns of a 3x3 matrix are images of basis vectors e₁, e₂, and e₃.',
+    'Matrix addition and subtraction are element-wise:',
+    '(A ± B)ᵢⱼ = Aᵢⱼ ± Bᵢⱼ.',
+    'Scaling multiplies each entry:',
+    '(kA)ᵢⱼ = kAᵢⱼ.',
     'Determinant of 3x3 gives volume scale and orientation of the transformation.',
   ]
 }

@@ -1,4 +1,4 @@
-﻿import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
+import { Suspense, useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
 import {
   AppPreferencesContext,
   type AppLanguage,
@@ -249,8 +249,10 @@ function ModuleDetails({
 
       <section className="sidebar-card">
         <h3>{shellText.theory}</h3>
-        {sidebarContent.theory.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+        {sidebarContent.theory.map((paragraph, index) => (
+          <div key={`${paragraph}-${index}`} className="theory-line">
+            {renderTheoryParagraph(paragraph)}
+          </div>
         ))}
         {moduleId === 'matrix2d' && <DeterminantTheoryVisual />}
         {moduleId === 'matrix3d' && <Determinant3DTheoryVisual language={language} />}
@@ -264,6 +266,35 @@ function ModuleDetails({
       </section>
     </>
   )
+}
+
+function renderTheoryParagraph(paragraph: string): ReactNode {
+  const text = paragraph.trim()
+  const colonIndex = text.indexOf(':')
+
+  if (colonIndex > 0) {
+    const prefix = text.slice(0, colonIndex + 1).trim()
+    const rest = text.slice(colonIndex + 1).trim()
+
+    if (looksLikeFormula(rest)) {
+      return (
+        <>
+          <p>{prefix}</p>
+          <p className="theory-formula-line">{rest}</p>
+        </>
+      )
+    }
+  }
+
+  if (looksLikeFormula(text)) {
+    return <p className="theory-formula-line">{text}</p>
+  }
+
+  return <p>{text}</p>
+}
+
+function looksLikeFormula(value: string): boolean {
+  return /[=]|[₀₁₂₃₄₅₆₇₈₉]|λ|Δ|\|\||det\(|tr\(|diag|A\^|A\*/.test(value)
 }
 
 function DeterminantTheoryVisual() {
@@ -464,6 +495,8 @@ function EigenTheoryVisual({ language }: { language: AppLanguage }) {
   const lambdaCalcTitle = language === 'pl' ? 'Jak policzyć λ (2x2)' : 'How to compute λ (2x2)'
   const vectorCalcTitle =
     language === 'pl' ? 'Jak policzyć wektor własny' : 'How to compute an eigenvector'
+  const diagonalPowerTitle =
+    language === 'pl' ? 'Potęgowanie przez diagonalizację' : 'Powering via diagonalization'
 
   return (
     <div className="eigen-theory">
@@ -513,6 +546,22 @@ function EigenTheoryVisual({ language }: { language: AppLanguage }) {
         {language === 'pl'
           ? 'W praktyce wystarczy proporcja składowych i dowolne przeskalowanie wektora.'
           : 'In practice, component ratio is enough and any non-zero scaling gives the same direction.'}
+      </p>
+
+      <p className="eigen-theory-title">{diagonalPowerTitle}</p>
+      <p className="eigen-theory-formula">A = P D P<sup>-1</sup></p>
+      <p className="eigen-theory-formula">
+        A<sup>k</sup> = P D<sup>k</sup> P<sup>-1</sup>
+      </p>
+      <p className="eigen-theory-formula">
+        D = diag(λ<sub>1</sub>, λ<sub>2</sub>), D<sup>k</sup> = diag(λ<sub>1</sub>
+        <sup>k</sup>, λ<sub>2</sub>
+        <sup>k</sup>)
+      </p>
+      <p>
+        {language === 'pl'
+          ? 'Przykład: dla A = diag(2, 1/2) mamy A⁵ = diag(32, 1/32).'
+          : 'Example: for A = diag(2, 1/2), we get A⁵ = diag(32, 1/32).'}
       </p>
     </div>
   )
@@ -667,3 +716,8 @@ function writeStorage(key: string, value: string) {
     // Ignore storage errors in restricted environments.
   }
 }
+
+
+
+
+
