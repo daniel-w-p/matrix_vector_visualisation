@@ -31,25 +31,25 @@ const crossComponentInfo: Record<
   }
 > = {
   x: {
-    formula: 'a₂b₃ - a₃b₂',
-    positive: ['a₂', 'b₃'],
-    negative: ['a₃', 'b₂'],
+    formula: 'a2b3 - a3b2',
+    positive: ['a2', 'b3'],
+    negative: ['a3', 'b2'],
   },
   y: {
-    formula: 'a₃b₁ - a₁b₃',
-    positive: ['a₃', 'b₁'],
-    negative: ['a₁', 'b₃'],
+    formula: 'a3b1 - a1b3',
+    positive: ['a3', 'b1'],
+    negative: ['a1', 'b3'],
   },
   z: {
-    formula: 'a₁b₂ - a₂b₁',
-    positive: ['a₁', 'b₂'],
-    negative: ['a₂', 'b₁'],
+    formula: 'a1b2 - a2b1',
+    positive: ['a1', 'b2'],
+    negative: ['a2', 'b1'],
   },
 }
 
 const crossMatrixCells = [
-  ['a₁', 'a₂', 'a₃'],
-  ['b₁', 'b₂', 'b₃'],
+  ['a1', 'a2', 'a3'],
+  ['b1', 'b2', 'b3'],
 ] as const
 
 type DeterminantColumnInfo = {
@@ -158,29 +158,47 @@ export function AppShell() {
                 </a>
               </div>
               <div className="app-preferences" aria-label={shellText.preferences}>
-                <label className="pref-label" htmlFor="language-select">
-                  {shellText.language}
-                </label>
-                <select
-                  id="language-select"
-                  value={language}
-                  onChange={(event) => setLanguage(event.target.value as AppLanguage)}
-                >
-                  <option value="en">English</option>
-                  <option value="pl">Polski</option>
-                </select>
+                <span className="pref-label">{shellText.language}</span>
+                <div className="chip-group" role="group" aria-label={shellText.language}>
+                  <button
+                    type="button"
+                    className={language === 'en' ? 'chip is-active' : 'chip'}
+                    aria-pressed={language === 'en'}
+                    onClick={() => setLanguage('en')}
+                  >
+                    EN
+                  </button>
+                  <button
+                    type="button"
+                    className={language === 'pl' ? 'chip is-active' : 'chip'}
+                    aria-pressed={language === 'pl'}
+                    onClick={() => setLanguage('pl')}
+                  >
+                    PL
+                  </button>
+                </div>
 
-                <label className="pref-label" htmlFor="theme-select">
-                  {shellText.theme}
-                </label>
-                <select
-                  id="theme-select"
-                  value={theme}
-                  onChange={(event) => setTheme(event.target.value as AppTheme)}
-                >
-                  <option value="light">{shellText.light}</option>
-                  <option value="dark">{shellText.dark}</option>
-                </select>
+                <span className="pref-label">{shellText.theme}</span>
+                <div className="chip-group" role="group" aria-label={shellText.theme}>
+                  <button
+                    type="button"
+                    className={theme === 'light' ? 'chip is-active' : 'chip'}
+                    aria-pressed={theme === 'light'}
+                    aria-label={shellText.light}
+                    onClick={() => setTheme('light')}
+                  >
+                    <span aria-hidden="true">&#9728;</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={theme === 'dark' ? 'chip is-active' : 'chip'}
+                    aria-pressed={theme === 'dark'}
+                    aria-label={shellText.dark}
+                    onClick={() => setTheme('dark')}
+                  >
+                    <span aria-hidden="true">&#9790;</span>
+                  </button>
+                </div>
               </div>
             </div>
           </header>
@@ -294,7 +312,7 @@ function renderTheoryParagraph(paragraph: string): ReactNode {
 }
 
 function looksLikeFormula(value: string): boolean {
-  return /[=]|[₀₁₂₃₄₅₆₇₈₉]|λ|Δ|\|\||det\(|tr\(|diag|A\^|A\*/.test(value)
+  return /[=]|[0-9]|\u03bb|\u0394|\|\||det\(|tr\(|diag|A\^|A\*/.test(value)
 }
 
 function DeterminantTheoryVisual() {
@@ -331,12 +349,12 @@ function DeterminantTheoryVisual() {
 function Determinant3DTheoryVisual({ language }: { language: AppLanguage }) {
   const [selectedColumn, setSelectedColumn] = useState<DeterminantColumn>('c1')
   const selectedInfo = determinant3x3ColumnInfo[selectedColumn]
-  const hint = language === 'pl' ? 'Kliknij kolumnę' : 'Click column'
-  const signTitle = language === 'pl' ? 'Szachownica znaków kofaktorów' : 'Cofactor sign checkerboard'
+  const hint = language === 'pl' ? 'Kliknij kolumn\u0119' : 'Click column'
+  const signTitle = language === 'pl' ? 'Szachownica znak\u00f3w kofaktor\u00f3w' : 'Cofactor sign checkerboard'
   const signExplanation =
     language === 'pl'
-      ? 'Znaki wynikają z wzoru (-1)ⁱ⁺ʲ. Dlatego druga kolumna ma odwrócony układ znaków względem pierwszej i trzeciej.'
-      : 'Signs come from (-1)ⁱ⁺ʲ. That is why the second column has the opposite sign pattern compared with the first and third.'
+      ? 'Znaki wynikaj\u0105 z wzoru (-1)^(i+j). Dlatego druga kolumna ma odwr\u00f3cony uk\u0142ad znak\u00f3w wzgl\u0119dem pierwszej i trzeciej.'
+      : 'Signs come from (-1)^(i+j). That is why the second column has the opposite sign pattern compared with the first and third.'
 
   const matrixCells = [
     ['a11', 'a12', 'a13'],
@@ -491,12 +509,12 @@ function Determinant3DTheoryVisual({ language }: { language: AppLanguage }) {
 }
 
 function EigenTheoryVisual({ language }: { language: AppLanguage }) {
-  const glossaryTitle = language === 'pl' ? 'Nowe pojęcia' : 'New terms'
+  const glossaryTitle = language === 'pl' ? 'Nowe poj\u0119cia' : 'New terms'
   const lambdaCalcTitle = language === 'pl' ? 'Jak policzyć λ (2x2)' : 'How to compute λ (2x2)'
   const vectorCalcTitle =
-    language === 'pl' ? 'Jak policzyć wektor własny' : 'How to compute an eigenvector'
+    language === 'pl' ? 'Jak policzy\u0107 wektor w\u0142asny' : 'How to compute an eigenvector'
   const diagonalPowerTitle =
-    language === 'pl' ? 'Potęgowanie przez diagonalizację' : 'Powering via diagonalization'
+    language === 'pl' ? 'Pot\u0119gowanie przez diagonalizacj\u0119' : 'Powering via diagonalization'
 
   return (
     <div className="eigen-theory">
@@ -665,20 +683,20 @@ function getShellText(language: AppLanguage) {
     return {
       title: 'Laboratorium eksploracji algebry liniowej',
       subtitle:
-        'Odkrywaj pojęcia przez bezpośrednią manipulację i zsynchronizowane widoki algebraiczne.',
+        'Odkrywaj poj\u0119cia przez bezpo\u015bredni\u0105 manipulacj\u0119 i zsynchronizowane widoki algebraiczne.',
       preferences: 'Preferencje',
       author: 'Autor:',
-      language: 'Język',
+      language: 'J\u0119zyk',
       theme: 'Motyw',
       light: 'Jasny',
       dark: 'Ciemny',
-      moduleNavigation: 'Nawigacja modułów',
-      moduleViewport: 'Widok modułu',
-      moduleDetails: 'Szczegóły modułu',
-      whatToNotice: 'Do zapamiętania',
+      moduleNavigation: 'Nawigacja modu\u0142\u00f3w',
+      moduleViewport: 'Widok modu\u0142u',
+      moduleDetails: 'Szczeg\u00f3\u0142y modu\u0142u',
+      whatToNotice: 'Do zapami\u0119tania',
       theory: 'Teoria',
       status: 'Status',
-      loadingModule: 'Ładowanie modułu...',
+      loadingModule: '\u0141adowanie modu\u0142u...',
     }
   }
 
@@ -716,8 +734,3 @@ function writeStorage(key: string, value: string) {
     // Ignore storage errors in restricted environments.
   }
 }
-
-
-
-
-

@@ -91,12 +91,31 @@
   color: var(--text-muted);
 }
 
-.app-preferences select {
+.app-preferences .chip-group {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.app-preferences .chip {
   border: 1px solid var(--panel-border);
-  border-radius: 6px;
+  border-radius: 999px;
   background: var(--tab-bg);
   color: var(--text-main);
-  padding: 0.2rem 0.35rem;
+  width: 2.35rem;
+  height: 2.1rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.app-preferences .chip.is-active {
+  border-color: var(--tab-active-border);
+  background: var(--tab-active-bg);
+  color: var(--tab-active-text);
 }
 
 .module-nav {
