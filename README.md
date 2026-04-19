@@ -7,7 +7,7 @@ It is intentionally not a calculator-first tool.
 
 ## How This App Was Created
 
-This project was built with a strong AI-assisted workflow in just two evenings.
+This project was built with a strong AI-assisted workflow in just two evenings. (Some additional updates added after app build)
 
 - GPT-5.4 first analyzed the product idea and prepared the initial repository structure.
 - GPT-5.4 generated the core project documentation for Codex (large contribution): scope, architecture, roadmap, tasks, and prompt sequence.
