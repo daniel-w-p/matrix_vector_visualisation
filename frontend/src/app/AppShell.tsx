@@ -16,8 +16,10 @@ import {
 } from '../content/moduleCards'
 import { moduleScreens } from '../modules'
 
-const STORAGE_LANGUAGE_KEY = 'vector-lab-language'
-const STORAGE_THEME_KEY = 'vector-lab-theme'
+const storageKeys = {
+  language: 'vector-lab-language',
+  theme: 'vector-lab-theme',
+} as const
 
 type CrossAxis = 'x' | 'y' | 'z'
 type DeterminantColumn = 'c1' | 'c2' | 'c3'
@@ -82,14 +84,8 @@ const determinant3x3ColumnInfo: Record<DeterminantColumn, DeterminantColumnInfo>
 
 export function AppShell() {
   const { selectedModule, selectModule } = useModuleSelection('vector2d')
-  const [language, setLanguage] = useState<AppLanguage>(() => {
-    const stored = readStorage(STORAGE_LANGUAGE_KEY)
-    return stored === 'pl' || stored === 'en' ? stored : 'en'
-  })
-  const [theme, setTheme] = useState<AppTheme>(() => {
-    const stored = readStorage(STORAGE_THEME_KEY)
-    return stored === 'light' || stored === 'dark' ? stored : 'light'
-  })
+  const [language, setLanguage] = useState<AppLanguage>(getSavedLanguage)
+  const [theme, setTheme] = useState<AppTheme>(getSavedTheme)
   const [sidebarOverride, setSidebarOverride] = useState<{
     moduleId: ModuleKey
     content: ModuleSidebarContent
@@ -101,11 +97,11 @@ export function AppShell() {
   }, [theme])
 
   useEffect(() => {
-    writeStorage(STORAGE_LANGUAGE_KEY, language)
+    writeStorage(storageKeys.language, language)
   }, [language])
 
   useEffect(() => {
-    writeStorage(STORAGE_THEME_KEY, theme)
+    writeStorage(storageKeys.theme, theme)
   }, [theme])
 
   const setSidebarOverrideForModule = useCallback(
@@ -725,6 +721,16 @@ function readStorage(key: string): string | null {
   } catch {
     return null
   }
+}
+
+function getSavedLanguage(): AppLanguage {
+  const saved = readStorage(storageKeys.language)
+  return saved === 'en' || saved === 'pl' ? saved : 'pl'
+}
+
+function getSavedTheme(): AppTheme {
+  const saved = readStorage(storageKeys.theme)
+  return saved === 'light' || saved === 'dark' ? saved : 'dark'
 }
 
 function writeStorage(key: string, value: string) {

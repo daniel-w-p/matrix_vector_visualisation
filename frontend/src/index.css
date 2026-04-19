@@ -1,7 +1,10 @@
 :root {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #122033;
-  background-color: #f2f6fb;
+  --bg: #f2f6fb;
+  --bg-soft: #e8f0fa;
+  --faint: rgba(18, 32, 51, 0.08);
+  background-color: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,11 +17,37 @@
 
 body {
   margin: 0;
-  background: #f2f6fb;
+  position: relative;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(125, 211, 252, 0.22), transparent 32rem),
+    radial-gradient(circle at 82% 12%, rgba(192, 132, 252, 0.18), transparent 34rem),
+    linear-gradient(135deg, var(--bg), var(--bg-soft));
   color: #122033;
 }
 
 body[data-theme='dark'] {
-  background: #0a1118;
+  --bg: #0a1118;
+  --bg-soft: #0f1620;
+  --faint: rgba(229, 237, 248, 0.08);
   color: #e5edf8;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: '';
+  background-image:
+    linear-gradient(var(--faint) 1px, transparent 1px),
+    linear-gradient(90deg, var(--faint) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 82%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 82%);
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  background: transparent;
 }
